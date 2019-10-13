@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="basic">	
+
+	
+    <!-- 회원 조회 -->
+	<select id="getUserByIdx" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.UserVo">
+		select * from am_user_info where idx = #{idx};
+	</select>
+    
+    <!-- 회원 조회 -->
+	<select id="getUserById" parameterType="java.lang.String" resultType="com.armydocs.basic.vo.UserVo">
+		select * from am_user_info where id = #{id};
+	</select>
+	
+    <!-- 회원 등록 -->
+    <insert id="insertUser" parameterType="com.armydocs.basic.vo.UserVo">
+        insert into am_user_info 
+            (id, password, name, email, phonenm, recruitDate, signDate, station, atype, atype2)
+        values
+            (#{id}, #{password}, #{name}, #{email}, #{phonenm}, #{recruitDate}, now(), #{station}, #{atype}, #{atype2})
+    </insert>
+    
+    <!-- 비밀번호 수정 -->
+    <update id="updatePassword" parameterType="java.util.Map">
+        update am_user_info
+        set
+            password = #{password}
+        where 
+            idx = #{id}
+    </update>
+    
+    <!-- 회원정보 수정 -->
+    <update id="updateUser" parameterType="com.armydocs.basic.vo.UserVo">
+        update am_user_info
+        set
+            name = #{name},
+            email = #{email},
+            phonenm = #{phonenm},
+            recruitDate = #{recruitDate},
+            station = #{station},
+            atype = #{atype},
+            atype2 = #{atype2}
+        where 
+            idx = #{idx}
+    </update>
+    
+
+</mapper>
