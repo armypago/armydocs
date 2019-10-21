@@ -48,8 +48,8 @@
         <a class="scrollTop" href="javascript:moveTop()"><img src="/resources/img/top.png"/></a>
 
         <div class="footer-links-group">
-            <a class="link" href="#">아미독스 소개</a>
-            <a class="link" href="#">개발자 소개</a>
+            <a class="link" href="/intro">아미독스 소개</a>
+            <a class="link" href="/developers">개발자 소개</a>
             <a class="link" href="#">문의하기</a>
             <a class="link" href="#">이용가이드</a>
         </div>
@@ -60,8 +60,8 @@
             </p>
         </div>
         <div class="footer-links-group terms" style="margin-top: 20px;">
-            <a class="link" href="#">이용약관</a>
-            <a class="link" href="#">개인정보처리방침</a>
+            <a class="link" href="/terms/terms">이용약관</a>
+            <a class="link" href="/terms/privacy">개인정보처리방침</a>
         </div>
         <div>
             <p class="desc">

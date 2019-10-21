@@ -36,18 +36,24 @@ public class JwtHandler extends HandlerInterceptorAdapter {
 		
         final String token = request.getHeader(HEADER_AUTH);
         
+        try {
+            if(token != null && !token.trim().equals("") && jwtService.isUsable(token)){
+                //System.out.println("[SUCCESSED TOKEN]" + token);
+                return true;
 
-		if(token != null && jwtService.isUsable(token)){
-            System.out.println("[Auth OK]");
-			return true;
+            }else{
+
+                //System.out.println("---------------------Auth NO");
+                //throw new Exception();
+                return true;
+            }
             
-		}else{
-			
-            //System.out.println("---------------------Auth NO");
-            //throw new Exception();
-            return true;
-		}
-
+        }catch(Exception ec){
+            //System.out.println("[FAILED TOKEN] : " + token);
+        }
+        
+		
+        return true;
 	}
     
     

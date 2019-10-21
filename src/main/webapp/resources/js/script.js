@@ -28,6 +28,8 @@ function moveLayer(idName) {
 }
 
 
+
+
 $(document).ready(function(){
 	
 	// 커스텀셀렉트박스
@@ -108,6 +110,9 @@ $(document).ready(function(){
 	adjustFooterHeight();
 	setTimeout(function() { adjustFooterHeight() }, 1000); 
 	$(window).resize(function(){ adjustFooterHeight(); });
+	
+	
+	
 	 
 });
 
@@ -137,6 +142,97 @@ function toggleCampaignTab(numb) {
 function toggleMypageTab(numb) {
 	$("#mypage-tab-wrapper .tab-section").removeClass("selected");
 	$("#mypage-tab-wrapper .tab-section"+numb).addClass("selected"); 
+	
+	if(numb==2) {
+		
+		loadAni(true);
+		
+		$.ajax({ 
+			type : "GET",
+			dataType : "JSON",	
+			data : {
+				"type" : "progress"
+			},
+			async: true,
+			url : "/surveys",	
+			beforeSend : function(xhr){
+				xhr.setRequestHeader("authorization", getCookie("token"));
+				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			},
+			success : function(data){
+				
+				console.log(data);
+				var content = "";
+				$.each(data.data, function(index, value){	
+					
+					content += '<tr>';
+					content += '<td>'+( data.data.length - index )+'</td>';
+					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
+					content += '<td class="tit"><a class="title">'+value.title+'</a></td>';
+					content += '<td>'+value.name+'</td>';
+					content += '<td class="date">'+value.startdate.split(" ")[0]+'</td>';
+					content += '<td class="date mobile-hidden">'+value.enddate.split(" ")[0]+'</td>';
+					content += '</tr>';
+					
+					
+				});
+				$(".pro-survey-list-count").text(data.data.length);
+				$("#pro-survey-list").html(content);
+				
+				loadAni(false);
+
+			}, 
+			error : function(err, err2, err3) {			
+				console.log("[ERROR]");
+				console.log(err); console.log(err2); console.log(err3); 	
+				loadAni(false);
+			} 
+		});
+	}
+	else if(numb==3) {
+		
+		loadAni(true);
+		
+		$.ajax({ 
+			type : "GET",
+			dataType : "JSON",				
+			async: true,
+			url : "/surveys",	
+			beforeSend : function(xhr){
+				xhr.setRequestHeader("authorization", getCookie("token"));
+				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			},
+			success : function(data){
+				
+				console.log(data);
+				var content = "";
+				$.each(data.data, function(index, value){	
+					
+					content += '<tr>';
+					content += '<td>'+( data.data.length - index )+'</td>';
+					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
+					content += '<td class="tit"><a class="title">'+value.title+'</a></td>';
+					content += '<td class="date">'+value.startdate.split(" ")[0]+'</td>';
+					content += '<td class="date mobile-hidden">'+value.enddate.split(" ")[0]+'</td>';
+					content += '</tr>';
+					
+					
+				});
+				$(".my-survey-list-count").text(data.data.length);
+				$("#my-survey-list").html(content);
+				
+				loadAni(false);
+
+			}, 
+			error : function(err, err2, err3) {			
+				console.log("[ERROR]");
+				console.log(err); console.log(err2); console.log(err3); 	
+				loadAni(false);
+			} 
+		});
+		
+	}
+	
 }
 // 포인트탭 토글
 function togglePointTab(numb) {
@@ -286,7 +382,19 @@ globalUser = null;
 
 
 
-
+function loadAni(startFlag) {
+	
+	//console.log("loadAni Event..");
+	
+    if(startFlag){
+        //console.log("로딩 시작..");
+		$("#loadAni").css("display", "block");    
+    }else {
+		//console.log("로딩 종료..");
+		$("#loadAni").fadeOut();//.css("display", "none");  
+	}
+        
+}
 
 $(document).ready(function(){	 
 	
@@ -309,5 +417,8 @@ $(document).ready(function(){
 		$("#attach-file").click();	
 	});
 	
+	
+	
+	loadAni(false);
 	
 });

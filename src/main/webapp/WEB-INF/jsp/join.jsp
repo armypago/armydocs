@@ -90,7 +90,7 @@
 													<input name="atype" id="atype" type="hidden" value=""/>
 													<ul>
 														<li><a data-val="manager">간부</a></li> 
-														<li><a data-val="solider">병사</a></li> 
+														<li><a data-val="soldier">병사</a></li> 
 													</ul>
 												</div>
 											</div>		
@@ -163,6 +163,8 @@
         }
         
         var param = $("#userVo").serialize();
+		
+		loadAni(true);
         
         try{
             $.ajax({ 
@@ -172,9 +174,11 @@
                 async: false,
                 url : "/signup",	           
                 success : function(data){
+					loadAni(false);
                     location.href = './login';
                 }, 
                 error : function(err, err2, err3) {
+					loadAni(false);
                     console.log("알 수 없는 오류가 발생했습니다."); 
                     console.log(err); 
                 } 

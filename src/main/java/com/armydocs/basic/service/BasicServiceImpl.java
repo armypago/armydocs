@@ -17,6 +17,26 @@ public class BasicServiceImpl implements BasicService {
     @Autowired private BasicDao basicDao;
     @Autowired private BCryptPasswordEncoder passwordEncoder;
     
+	
+	public boolean insertItem(SurveyItem info) {
+		
+		// 기존 항목 모두 제거
+		basicDao.deleteItemBySurveyIdx(info.getSurveyIdx(), info.getRegdate());
+		
+		basicDao.insertItem(info); // 항목 추가
+		
+		return true;
+	}
+	
+	/** 설문 등록 */
+	public Integer insertSurvey(int userIdx, SurveyVo surveyVo) {
+		
+		UserVo user = basicDao.getUserByIdx(userIdx);
+		surveyVo.setUserIdx(userIdx);
+		surveyVo.setName(user.getName());
+		
+		return basicDao.insertSurvey(surveyVo);
+	}
     
     /** 회원정보 수정 */
     public boolean changeUserInformation(int idx, UserVo userVo) {
@@ -31,15 +51,18 @@ public class BasicServiceImpl implements BasicService {
     
     /** 비밀번호 변경 */
     public boolean changePassword(int idx, String oldPw, String newPw) {
-        
-        UserVo user = basicDao.getUserByIdx(idx);
-        if( passwordEncoder.matches(oldPw, user.getPassword()) ) {
-			
-            String encodedPassword = passwordEncoder.encode(newPw);
-            if(basicDao.updatePassword(idx, encodedPassword)) {
-                return true;
-            }
-            
+        try {
+			UserVo user = basicDao.getUserByIdx(idx);
+			if( passwordEncoder.matches(oldPw, user.getPassword()) ) {
+				
+				String encodedPassword = passwordEncoder.encode(newPw);
+				if(basicDao.updatePassword(idx, encodedPassword)) {
+					return true;
+				}
+
+			}
+		}catch(Exception ec) {
+			ec.printStackTrace();
 		}
         return false;
     }
@@ -72,6 +95,11 @@ public class BasicServiceImpl implements BasicService {
         
         return null;
     }
+	
+	
+	
+	
+	
     
     
 }

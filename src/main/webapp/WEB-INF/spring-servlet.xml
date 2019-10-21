@@ -52,12 +52,23 @@
 	     </property>
 	</bean>
     
+	
     
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
         <property name="order" value="1"/>
     </bean>
+	
+	<!-- 파일업로드를 위한 서블릿컨텍스트빈 등록 -->	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 단위참고 : 105000000 = 100MB(100메가바이트) -->
+		<property name="maxUploadSize" value="1050000000"/>
+		<!-- 컨트롤러가 멀티파트 요청 확인 중 발생하는 예외를 처리하는 기회를 얻을 수 있다. -->
+		<!--<property name="resolveLazily" value="true"/>-->
+	</bean>
+	
+	
     
     
     

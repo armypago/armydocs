@@ -92,6 +92,7 @@
     <script>
     function loginFunc() {
         
+		loadAni(true);
     
         $.ajax({ 
             type : "POST",
@@ -103,14 +104,24 @@
             async: false,
             url : "/signin",	           
             success : function(data, txt, resp){
+				
+				loadAni(false);
+				
+				if(data.statusCode==200) {
+					
+					var toekn = resp.getResponseHeader("Authorization");       
+					setCookie("token", toekn, 1);
+
+					console.log(toekn);
+					location.href = "/my";
+				}else {
+					alert("아이디와 비밀번호가 일치하지 않습니다.");
+				}
                 
-                var toekn = resp.getResponseHeader("Authorization");       
-                setCookie("token", toekn, 1);
                 
-                console.log(toekn);
-                location.href = "/";
             }, 
             error : function(err){
+				loadAni(false);
                 console.log("알 수 없는 오류가 발생했습니다."); 
                 console.log(err);
             } 

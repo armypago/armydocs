@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -22,10 +23,16 @@
     <link rel="shortcut icon" href="/resources/img/favicon.png" type="image/x-icon"/> 
 	
 	<script type="text/javascript" src="/resources/js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery.flip.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.form.js"></script> 
 	<script type="text/javascript" src="/resources/js/iscroll.js"></script>
 	<script src="/resources/bxslider/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="/resources/js/script.js"></script>
+	
+	
+	
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="/resources/fontawesome/css/all.min.css"/>
+    <script src="/resources/fontawesome/js/fontawesome.min.js"></script> 
 	
 </head>
 <!-- #####################################################################[헤더 끝] -->
@@ -50,7 +57,7 @@
 								<div class="profile-img-area">
 									<div class="img">
 										<img src="/resources/img/profile.png"/>
-										<a class="ico-set" href="#"><img src="/resources/img/ico-set.png"/></a>
+										<a class="ico-set" id="profile-btn"><img src="/resources/img/ico-set.png"/></a>
 									</div>
 									<div style="margin-top: 15px;">
                                         <a class="name"><span class="my-atype"></span>) <span class="my-name"></span></a>
@@ -64,13 +71,13 @@
 									<ul class="mymenu-group">
 										<li>
 											<a class="area">
-												<span class="emp">00</span><br/>
+												<span class="emp my-survey-list-count">00</span><br/>
 												내가 작성한 설문
 											</a>
 										</li>
 										<li>
 											<a class="area" style="cursor: pointer;" onclick="togglePop02();">
-												<span class="emp">00</span><br/>
+												<span class="emp pro-survey-list-count">00</span><br/>
 												현재 참여 가능한 설문
 											</a>
 										</li>
@@ -97,18 +104,18 @@
 										<a class="tab tab-section tab-section1 selected" onclick="toggleMypageTab(1)">프로필 수정<span class="bottom-bar"></span></a>
 									</li>
 									<li>
-										<a class="tab tab-section tab-section2" onclick="toggleMypageTab(2)">진행중인 설문<span class="bottom-bar"></span></span><span class="numb">4</span></a>
+										<a class="tab tab-section tab-section2" onclick="toggleMypageTab(2)">진행중인 설문<span class="bottom-bar"></span></span><span class="numb pro-survey-list-count"></span></a>
 									</li> 
 									<li>
-										<a class="tab tab-section tab-section3" onclick="toggleMypageTab(3)">마이 설문<span class="bottom-bar"></span></span><span class="numb">4</span></a>
+										<a class="tab tab-section tab-section3" onclick="toggleMypageTab(3)">마이 설문<span class="bottom-bar"></span></span><span class="numb my-survey-list-count"></span></a>
 									</li>								
 								</ul>
 								<ul class="tab-group absol-right">
-									<li>
+									<li class="mobile-hidden">
 										<a class="tab" href="12.html">1:1문의<span class="bottom-bar"></span></a>
 									</li>		
 									<li>
-										<a class="tab" href="12.html">설문 등록<span class="bottom-bar"></span></a>
+										<a class="tab" href="/my/survey">설문 등록<span class="bottom-bar"></span></a>
 									</li>					
 								</ul>
 							</div>
@@ -119,7 +126,7 @@
                             
 							<!-- 탭1 -->
 							<div class="tab-container tab-section tab-section1 selected">
-							<form name="userForm" id="userForm" onsubmit="return updateUser();">
+							<form name="userVo" id="userVo" onsubmit="return false;">
                                 <!-- <div class="normal-title-head">
 									<h1 class="tit">개인정보 수정</h1>
 									<span class="cat">Personal editor</span>
@@ -152,7 +159,7 @@
 										</div>
 										<div class="intro-desc">
 											<div class="default-inputbox" style="width: 470px;">
-												<input type="text" placeholder="인증 가능한 이메일" id="f-my-email"/>
+												<input type="text" placeholder="인증 가능한 이메일" id="f-my-email" name="email"/>
 											</div>
 										</div>
 									</li>
@@ -163,7 +170,7 @@
 										</div>
 										<div class="intro-desc">
 											<div class="default-inputbox">
-												<input type="text" placeholder="가입시 입력한 이름" id="f-my-name"/>										
+												<input type="text" placeholder="가입시 입력한 이름" id="f-my-name" name="name"/>										
 											</div>
 										</div>
 									</li>
@@ -174,7 +181,7 @@
 										</div>
 										<div class="intro-desc">
 											<div class="default-inputbox">
-												<input type="text" placeholder="현재 복무중인 부대" id="f-my-station"/>										
+												<input type="text" placeholder="현재 복무중인 부대" id="f-my-station" name="station"/>										
 											</div>
 										</div>
 									</li>
@@ -190,12 +197,9 @@
 												<div style="width: 100%; box-sizing: border-box;">연도</div>
                                                 <input type="hidden" id="f-my-recruitDate1" />
 												<ul style="width: 100%;box-sizing: border-box;">
-													<li><a>2017</a></li> 
-													<li><a>2016</a></li>
-													<li><a>2015</a></li>
-													<li><a>2014</a></li>
-													<li><a>2013</a></li>
-													<li><a>2012</a></li> 
+													<c:forEach var="v" begin="1950" end="2019">
+                                                        <li><a data-val="${v}"><c:out value="${v}"/></a></li> 
+                                                    </c:forEach>
 												</ul>
 											</div>
 											
@@ -204,7 +208,7 @@
                                                 <input type="hidden" id="f-my-recruitDate2" />
 												<ul style="width: 100%;box-sizing: border-box;">
 													<c:forEach var="v" begin="1" end="12">
-                                                        <li><a data-val="${v}">${v}</a></li> 
+                                                        <li><a data-val="${v}"><c:out value="${v}"/></a></li> 
                                                     </c:forEach>
 												</ul>
 											</div>
@@ -214,7 +218,7 @@
                                                 <input type="hidden" id="f-my-recruitDate3" />
 												<ul style="width: 100%;box-sizing: border-box;">
 													<c:forEach var="v" begin="1" end="31">
-                                                        <li><a data-val="${v}">${v}</a></li> 
+                                                        <li><a data-val="${v}"><c:out value="${v}"/></a></li> 
                                                     </c:forEach>
 												</ul>
 											</div>
@@ -239,8 +243,8 @@
                                         </div>
 										<div class="intro-desc m-row-two-item">
 											<div class="select_box mrti-3-1" style="width: 150px;margin-right:10px;">
-												<div style="width: 100%; box-sizing: border-box;">000</div>
-                                                <input type="hidden" id="f-my-phone1" />
+												<div style="width: 100%; box-sizing: border-box;">010</div>
+                                                <input type="hidden" id="f-my-phone1" value="010" />
 												<ul style="width: 100%;box-sizing: border-box;">
 													<li><a data-val="010">010</a></li> 
 													<li><a data-val="011">011</a></li>
@@ -318,17 +322,21 @@
 										<div class="intro-desc noline">
 											<div style="margin-bottom: 10px;">
 												<div class="default-inputbox">
-													<input name="pw" type="password" placeholder="기존 비밀번호"/>																			
+													<input name="oldPassword" type="password" placeholder="기존 비밀번호"/>																			
 												</div>
+												<span class="mobile-hidden"
+													  style="line-height: 55px;display: inline-block;margin-left: 20px;font-size: 14px;">
+													비밀번호 수정시에만 필드를 입력해주세요.
+												</span>
 											</div>
 											<div style="margin-bottom: 10px;">
 												<div class="default-inputbox">
-													<input name="npw" type="password" placeholder="새 비밀번호"/>																			
+													<input name="newPassword" type="password" placeholder="새 비밀번호"/>																			
 												</div>
 											</div>
 											<div>
 												<div class="default-inputbox">
-													<input name="npw2" type="password" placeholder="새 비밀번호 확인"/>																			
+													<input name="newPassword2" type="password" placeholder="새 비밀번호 확인"/>																			
 												</div>
 											</div>
 										</div>
@@ -336,7 +344,7 @@
 								</ul>
 								
 								<div class="profile-modify-bottom">
-									<a class="comm-btn-style" style="float:left;" onclick="withdraw()">회원탈퇴</a>
+									<a class="comm-btn-style" style="float:left; cursor:pointer;" onclick="withdraw()">회원탈퇴</a>
 									<a class="comm-btn-style red" style="float: right; cursor: pointer;" onclick="updateUser()">수정하기</a>
 								</div>
                             </form>	
@@ -350,22 +358,20 @@
 										<div class="inlinegroup_m">
 											<div class="select_box">
 												<div style="width: 100px;">
-													구분
+													필터1
 												</div>
 												<ul style="width: 112px;">
 													<li><a>제목</a></li> 
-													<li><a>제목</a></li>
 													<li><a>제목</a></li>
 												</ul>
 											</div>
 											
 											<div class="select_box">
 												<div style="width: 120px;">
-													카테고리
+													필터2
 												</div>
 												<ul style="width: 132px;">
 													<li><a>관리대대</a></li> 
-													<li><a>제목</a></li>
 													<li><a>제목</a></li>
 												</ul>
 											</div>
@@ -376,32 +382,25 @@
 										</div>
 									</div>
 									<div class="row-filter">
-										<p class="counting"><strong>현재 참여 가능</strong>한 설문 <strong class="emp">52</strong>개</p>
+										<p class="counting"><strong>현재 참여 가능</strong>한 설문 <strong class="emp pro-survey-list-count">0</strong>개</p>
 									</div> 
 								</div>
 					
 								<table class="board-table-style1">
 									<thead>
 										<tr>
-											<th class="tw100">부대구분</th>
-											<th class="tw140">카테고리</th>
-											<th>설문 제목</th>
-											<th class="tw100"><a href="#">마감일<img src="img/ico-order-asc.png"/></a></th>
+											<th class="tw100">순서</th>
+											<th class="tw140">작성일</th>
+											<th>설문제목</th>
+											<th class="tw100">작성자</th>
+											<th class="tw110 mobile-last"><a href="#">시작일<img src="/resources/img/ico-order-asc.png"/></a></th>
+											<th class="tw110 mobile-hidden"><a href="#">마감일<img src="/resources/img/ico-order-asc.png"/></a></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>계근지단</td>
-											<td>카테고리</td>
-											<td class="tit"><a class="title">제목</a></td>
-											<td class="date">2018.01.06</td>
-										</tr>	
-										<tr>
-											<td>계근지단</td>
-											<td>카테고리</td>
-											<td class="tit"><a class="title">제목</a></td>
-											<td class="date">2018.01.06</td>
-										</tr>
+									<tbody id="pro-survey-list">
+										<!-- ####################################################### -->	
+										<!-- 현재 진행중인 설문 목록 노출 -->	
+										<!-- ####################################################### -->	
 									</tbody>
 								</table>
 								
@@ -436,7 +435,7 @@
 										<div class="inlinegroup_m">
 											<div class="select_box">
 												<div style="width: 100px;">
-													채널
+													필터1
 												</div>
 												<ul style="width: 112px;">
 													<li><a>제목</a></li> 
@@ -447,7 +446,7 @@
 											
 											<div class="select_box">
 												<div style="width: 120px;">
-													카테고리
+													필터2
 												</div>
 												<ul style="width: 132px;">
 													<li><a>제목</a></li> 
@@ -461,56 +460,24 @@
 										</div>
 									</div>
 									<div class="row-filter">
-										<p class="counting"><strong>등록</strong>한 캠페인 <strong class="emp">52</strong>개</p>
+										<p class="counting"><strong>내가 등록</strong>한 설문 <strong class="emp my-survey-list-count">0</strong>개</p>
 									</div>   
 								</div>
 								
 								<table class="board-table-style1">
 									<thead>
 										<tr>
-											<th class="tw100">구분</th>
-											<th class="tw140">카테고리</th>
+											<th class="tw100">순서</th>
+											<th class="tw140">작성일</th>
 											<th>설문제목</th>
-											<th class="tw100 mobile-last"><a href="#">작성일<img src="img/ico-order-asc.png"/></a></th>
-											<th class="tw100 mobile-hidden"><a href="#">마감일<img src="img/ico-order-asc.png"/></a></th>
+											<th class="tw110 mobile-last"><a href="#">시작일<img src="/resources/img/ico-order-asc.png"/></a></th>
+											<th class="tw110 mobile-hidden"><a href="#">마감일<img src="/resources/img/ico-order-asc.png"/></a></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>계근지단</td>
-											<td>카테고리</td>
-											<td class="tit"><a class="title">설문 제목 입니다..</a></td>
-											<td class="date">2018.01.06</td>
-											<td class="date mobile-hidden">2018.01.06</td>
-										</tr>	
-										<tr>
-											<td>계근지단</td>
-											<td>카테고리</td>
-											<td class="tit"><a class="title">설문 제목 입니다..</a></td>
-											<td class="date">2018.01.06</td>
-											<td class="date mobile-hidden">2018.01.06</td>
-										</tr>	
-                                        <tr>
-											<td>계근지단</td>
-											<td>카테고리</td>
-											<td class="tit"><a class="title">설문 제목 입니다..</a></td>
-											<td class="date">2018.01.06</td>
-											<td class="date mobile-hidden">2018.01.06</td>
-										</tr>	
-                                        <tr>
-											<td>계근지단</td>
-											<td>카테고리</td>
-											<td class="tit"><a class="title">설문 제목 입니다..</a></td>
-											<td class="date">2018.01.06</td>
-											<td class="date mobile-hidden">2018.01.06</td>
-										</tr>	
-                                        <tr>
-											<td>계근지단</td>
-											<td>카테고리</td>
-											<td class="tit"><a class="title">설문 제목 입니다..</a></td>
-											<td class="date">2018.01.06</td>
-											<td class="date mobile-hidden">2018.01.06</td>
-										</tr>	
+									<tbody id="my-survey-list">
+										<!-- ####################################################### -->	
+										<!-- 내가 작성한 설문 목록 노출 -->	
+										<!-- ####################################################### -->	
 									</tbody>
 								</table>
 								
@@ -555,9 +522,41 @@
 		<!-- #####################################################################[하단 시작] -->
         <jsp:include page="./include/footer.jsp"/>
 		<!-- #####################################################################[하단 끝] -->
+		
 	</section>
-    
+
+
+	<div style="display:none;">
+		<form action="/file/upload" method="post" enctype="multipart/form-data">
+			<input style="display:none;" autocomplete=off name="file1" type="file" />
+			<input type="submit" value="tst"/>
+		</form>
+	</div>
+
     <script>
+		
+		$("#profile-btn").click(function(){
+			$("input[name=file1]").click();
+		}); 
+		$("input[name=file1]").on("change", function(){	
+			
+			var thss = this.form;
+			$(thss).ajaxSubmit({
+				dataType : "json",
+				uploadProgress : function(event,position,total,percentComplete){
+					//percentComplete+"%";
+				},
+				success : function(data){
+					alert("success");   
+				}, 
+				error : function(xhr, status, error) {		  
+					alert("알 수 없는 오류가 발생했습니다."); 
+				}						
+			});   
+
+		});
+		
+		
         
         getUserInfo(function(data){
     
@@ -566,7 +565,7 @@
 
             globalUser = data.data;
             
-            console.log(globalUser);
+            //console.log(globalUser);
 
             if($(".mypage").is(":visible")) {
                 $(".my-name").text(globalUser.name);
@@ -583,6 +582,9 @@
                 
                 $("#f-my-atype").val(globalUser.atype);
                 $("#f-my-atype").parent().find("> div").text(globalUser.atype=="manager"?"간부":"병사");
+				
+				$("#f-my-atype2").val(globalUser.atype2);
+                $("#f-my-atype2").parent().find("> div").text(globalUser.atype2=="army"?"육군":globalUser.atype2=="navy"?"해군":"공군");
                 
                 var p1 = globalUser.phonenm.split("-")[0];
                 var p2 = globalUser.phonenm.split("-")[1];
@@ -617,7 +619,40 @@
         
         function withdraw() {
             
-            alert("정말고 회원 탈퇴 하시겠습니까?");
+			if(confirm("회원을 탈퇴하게 되면 기존 정보들이 전부 삭제됩니다. 정말로 회원 탈퇴 하시겠습니까?")) {
+				
+				loadAni(true);
+           
+				$.ajax({ 
+					type : "DELETE",
+					dataType : "JSON",
+					//data : param,
+					async: false,
+					url : "/user",	
+					beforeSend : function(xhr){
+						xhr.setRequestHeader("authorization", getCookie("token"));
+						xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+					},
+					success : function(data){
+						console.log(data);
+						loadAni(false);
+						if(data.statusCode == 200) {
+							location.href="/logout";
+						}else{
+							alert("회원을 탈퇴할 수 없습니다. 자세한 사항은 문의게시판을 이용해주세요.");
+						}
+					}, 
+					error : function(err, err2, err3) {
+
+						loadAni(false);
+						console.log("[ERROR]");
+						console.log(err); console.log(err2); console.log(err3); 
+
+					} 
+				});
+				
+			}
+            
         }
         
         function updateUser() {
@@ -631,31 +666,62 @@
             
             var param = $("#userVo").serialize();
             
-            console.log(param);
-        
-            try{
-                $.ajax({ 
-                    type : "PUT",
-                    dataType : "JSON",
-                    data : param,
-                    async: false,
-                    url : "/user",	
-                    beforeSend : function(xhr){
-                        xhr.setRequestHeader("authorization", getCookie("token"));
-                        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                    },
-                    success : function(data){
-                        console.log(data);
-                    }, 
-                    error : function(err, err2, err3) {
-                        alert("알 수 없는 오류가 발생했습니다."); 
-                        console.log(err); 
-                    } 
-                });
-            }catch(ex) {
-                alert("ajax error");   
-            }
+			var oldPw = $("input[name=oldPassword]").val();
+			if(oldPw.trim() != "") {
+				var newPw = $("input[name=newPassword]").val();
+				var newPw2 = $("input[name=newPassword2]").val();
+				if(newPw=="") {
+					alert("새 비밀번호를 입력하세요.");
+					return false;
+				}
+				if(newPw != newPw2) {
+					alert("새 비밀빈호와 새 비밀번호 확인이 일치하지 않습니다.");
+					return false;
+				}
+			}
+			
+			//console.log(param);
+            loadAni(true);
             
+           
+			$.ajax({ 
+				type : "POST",
+				dataType : "JSON",
+				data : param,
+				async: false,
+				url : "/user",	
+				beforeSend : function(xhr){
+					xhr.setRequestHeader("authorization", getCookie("token"));
+					xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				},
+				success : function(data){
+					
+					console.log(data);
+					loadAni(false);
+					
+					if(data.statusCode != 200) {
+						
+						alert("기존 사용중인 비밀번호가 일치하지 않습니다.");
+						
+					}else{
+						
+						$(".my-name").text($("#userVo input[name=name]").val());
+						$(".my-station").text($("#userVo input[name=station]").val());
+						$(".my-atype").text($("#userVo input[name=atype]").val()=="manager"?"간부":"병사");
+						$(".my-atype2").text($("#userVo input[name=atype2]").val()=="army"?"육군":$("#userVo input[name=atype2]").val()=="navy"?"해군":"공군");
+
+					}
+
+				}, 
+				error : function(err, err2, err3) {
+					
+					loadAni(false);
+					console.log("[ERROR]");
+					console.log(err); console.log(err2); console.log(err3); 
+					
+				} 
+			});
+           
         }
         
     </script>

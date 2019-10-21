@@ -1,7 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
 <mapper namespace="basic">	
-
+	
+	
+	<select id="getProgressSurveys" resultType="com.armydocs.basic.vo.SurveyVo">
+		select 
+			*
+		from 
+			am_survey_info as a
+		where 
+			now() between a.startdate and a.enddate
+		order by 
+			regdate desc
+	</select>
+	
+	<select id="getSurveys" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.SurveyVo">
+		select 
+			* 
+		from am_survey_info where userIdx = #{userIdx} order by regdate desc
+	</select>
+	
+	<!-- 설묵 항목 로드 -->
+	<select id="getItems" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.SurveyItem">
+		select * from am_survey_items where surveyIdx = #{surveyIdx} order by corder asc
+	</select>
+	
+	<!-- 설문항목 제거 -->
+	<delete id="deleteItemBySurveyIdx" parameterType="java.util.Map">
+		delete from am_survey_items where surveyIdx = #{surveyIdx} and regdate != #{regdate}
+	</delete>
+	
+	<!-- 설문항목 등록 -->
+	<insert id="insertItem" parameterType="com.armydocs.basic.vo.SurveyItem">
+		insert into am_survey_items 
+			(surveyIdx, note, corder, responseNote, qtype, regdate)
+		values
+			(#{surveyIdx}, #{note}, #{corder}, #{responseNote}, #{qtype}, #{regdate})
+	</insert>
+	
+	<!-- 설문 정보 조회 -->
+	<select id="getSurveyInfoByIdx" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.SurveyVo">
+		select * from am_survey_info where idx = #{idx}
+	</select>
+	
+	<!-- 설문 정보 조회 -->
+	<select id="getInsertedSurveyIdx" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select idx from am_survey_info where title = #{title} order by idx desc limit 1
+	</select>
+	
+	<!-- 설문 등록 -->
+	<insert id="insertSurvey" parameterType="com.armydocs.basic.vo.SurveyVo">
+		insert into am_survey_info
+			(title, note, regdate, startdate, enddate, userIdx, name, coverImg)
+		values
+			(#{title}, #{note}, now(), #{startdate}, #{enddate}, #{userIdx}, #{name}, #{coverImg})
+	</insert>
+	
+	<!-- 회원 제거 -->
+	<delete id="deleteUserByIdx" parameterType="java.lang.Integer">
+		delete from am_user_info where idx = #{idx}
+	</delete>
 	
     <!-- 회원 조회 -->
 	<select id="getUserByIdx" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.UserVo">
@@ -27,7 +85,7 @@
         set
             password = #{password}
         where 
-            idx = #{id}
+            idx = #{idx}
     </update>
     
     <!-- 회원정보 수정 -->

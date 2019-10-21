@@ -14,6 +14,24 @@ public class UserVo {
     private String station;
     private String atype;
     private String atype2;
+	
+	public void printVal() {
+
+		String content = "";
+		content += "id:"+id+", ";
+		content += "password:"+password+", ";
+		content += "name:"+name+", ";
+		content += "email:"+email+", ";
+		content += "phonenm:"+phonenm+", ";
+		content += "recruitDate:"+recruitDate+", ";
+		content += "signDate:"+signDate+", ";
+		content += "station:"+station+", ";
+		content += "atype:"+atype+", ";
+		content += "atype2:"+atype2+", ";
+		
+		System.out.println(content);
+		
+	}
     
     
     public String getEmail() {return this.email;}
@@ -23,7 +41,7 @@ public class UserVo {
     public void setPhonenm(String phonenm){this.phonenm = phonenm;}
     
     public String getRecruitDate() {return this.recruitDate;}
-    public void setSecruitDate(String recruitDate){this.recruitDate = recruitDate;}
+    public void setRecruitDate(String recruitDate){this.recruitDate = recruitDate;}
     
     public String getSignDate() {return this.signDate;}
     public void setSignDate(String signDate){this.signDate = signDate;}

@@ -72,7 +72,7 @@ public class JwtServiceImpl {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 		String jwt = request.getHeader("Authorization");
         
-        System.out.println("JWT = " + jwt);
+        //System.out.println("JWT = " + jwt);
 		
         Jws<Claims> claims = null;
 		claims = Jwts.parser().setSigningKey(SALT.getBytes("UTF-8")).parseClaimsJws(jwt);
@@ -83,42 +83,6 @@ public class JwtServiceImpl {
     
     public int getMemberId() throws Exception {
         
-        /*
-        int idx = 0;
-        
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-		String jwt = request.getHeader("Authorization");
-        System.out.println("JWT EX=>>>>>>"+jwt);
-        
-        try{ 
-            
-            Jws<Claims> claims = null;
-		    claims = Jwts.parser().setSigningKey(SALT.getBytes("UTF-8")).parseClaimsJws(jwt);
-	
-		    Map<String, Object> value = (LinkedHashMap<String, Object>)claims.getBody().get("member");
-            
-            if(value==null) {
-                System.out.println("SSSSEEEEEXXXX");
-            }
-            
-            String idxTest = value.get("idx").toString();
-            System.out.println("idxTest ====================" + idxTest);
-            
-        }catch(Exception e) {
-            System.out.println("dd");
-            e.printStackTrace();
-        }
-        */
-        
-        
-        //Map<String, Object> userVo = this.get("member");
-        
-        
-        //String val = userVo.get("idx").toString();
-        //System.out.println("***********************************"+val);
-        
-        
-        //return idx;
 		return (int) (this.get("member").get("idx"));
 	}
     
