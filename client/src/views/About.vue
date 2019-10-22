@@ -1,25 +1,29 @@
 <template>
-    <v-app>
-        <Toolbar/>
+  <v-app>
+    <Toolbar />
 
-        <v-content>
-            <v-container fluid>
-              <router-view></router-view>
-            </v-container>
-        </v-content>
+    <v-content>
+      <Carousel/>
+    </v-content>
 
-        <Footer/>
-    </v-app>
+    <Footer />
+  </v-app>
 </template>
 
 <script>
-    import Toolbar from '@/components/layout/Toolbar.vue'
-    import Footer from '@/components/layout/Footer.vue'
+import Toolbar from "@/components/layout/Toolbar.vue";
+import Footer from "@/components/layout/Footer.vue";
+import Carousel from "@/components/landing/Carousel.vue";
 
-    export default {
-        components: {
-            Toolbar,
-            Footer
-        }
-    }
+export default {
+  data: () => ({
+    
+  }),
+
+  components: {
+    Toolbar,
+    Footer,
+    Carousel
+  }
+};
 </script>
