@@ -10,12 +10,21 @@
                 </v-btn>
             </v-row>
             <v-row justify="center" no-gutters>
+
+            </v-row>
+            <v-row justify="center" no-gutters>
+
+            </v-row>
+            <v-row justify="center" no-gutters>
                 <v-btn
                     v-for="policy in policies"
                     :key="policy.text"
                     color="white" text rounded class="my-2"
                 >{{ policy.text }}
                 </v-btn>
+            </v-row>
+            <v-row justify="center" no-gutters>
+                ARMYDOCS 2019 ⓒ All Rights Reserved.
             </v-row>
         </v-container>
     </v-footer>
