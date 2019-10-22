@@ -45,6 +45,11 @@ public class MainController {
     @Autowired private BasicDao basicDao;
     @Autowired private JwtServiceImpl jwtService;
     @Autowired private BCryptPasswordEncoder passwordEncoder;
+	
+	
+	
+    @RequestMapping("/new")
+	public String getIntnewPage(HttpServletRequest request, ModelMap model) {return "new"; }
     
 	
 	// 약관 페이지
