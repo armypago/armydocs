@@ -1,40 +1,34 @@
 package com.armydocs;
 
-import java.io.UnsupportedEncodingException;
-import java.util.LinkedHashMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.armydocs.basic.service.BasicService;
-import com.armydocs.basic.dao.BasicDao;
-import com.armydocs.basic.vo.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.armydocs.basic.service.JwtServiceImpl;
-
-import javax.servlet.http.Cookie;
-import com.armydocs.util.*;
-
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.armydocs.basic.dao.BasicDao;
+import com.armydocs.basic.service.BasicService;
+import com.armydocs.basic.service.JwtServiceImpl;
+import com.armydocs.basic.vo.Rst;
+import com.armydocs.basic.vo.SurveyAnswer;
+import com.armydocs.basic.vo.SurveyItem;
+import com.armydocs.basic.vo.SurveyVo;
+import com.armydocs.util.FileUtil;
 
 
 @CrossOrigin(origins = "*")
@@ -113,8 +107,7 @@ public class MainController {
 			@RequestParam(required=false, value="regdate") String regdate,
 			HttpServletRequest request) throws Exception {
     	
-    	System.out.println("HEYYYYYYYYYYYYYYYYYYYYY");
-        
+    	
         Rst result = Rst.successInstance();
 		int memberId = jwtService.getMemberId();
 		
@@ -166,12 +159,23 @@ public class MainController {
 		surveyVo.printVal();
         
 		int memberId = jwtService.getMemberId();
-        Integer idx = basicService.insertSurvey(memberId, surveyVo);
-        if(idx == null) {
-			result.fail();
-		}else {
-			result.setData(idx);
+		
+		if(surveyVo.getIdx()!=0) { // 업데이트
+			if(basicDao.updateSurvey(surveyVo)) {
+				result.setData(surveyVo.getIdx());
+			}else {
+				result.fail();
+			}
+		}else { // 신규 등록
+			Integer idx = basicService.insertSurvey(memberId, surveyVo);
+	        if(idx == null) {
+				result.fail();
+			}else {
+				result.setData(idx);
+			}
 		}
+		
+       
 		
         return result;
     }
@@ -261,34 +265,91 @@ public class MainController {
 	
     
     
+    // 통계 정보 + 로드
+    @RequestMapping(value = "/survey/statistics/{surveyIdx}")
+	@ResponseBody
+	public Rst getStatisticsData(@PathVariable int surveyIdx) throws Exception {
+		
+		/*
+			해당 설문idx가 자기꺼인지 확인
+		*/
+		Rst result = Rst.successInstance();
+		
+		List<SurveyItem> list = basicDao.getItems(surveyIdx);
+		List<Map<String,Object>> slist = basicDao.getSurveyStatistics(surveyIdx);
+		
+		Map<String,Object> pMap = new HashMap<String,Object>();
+		pMap.put("qlist", list);	// 질문항목 
+		pMap.put("slist", slist);	// 답변통계
+		
+		result.setData(pMap);
+		
+		return result;
+    }
     
 	
 	@RequestMapping(value = "/file/upload", method = RequestMethod.POST)
 	@ResponseBody
-	public String uploadFilePageString(MultipartHttpServletRequest mRequest) throws Exception {
-		
-		String fileName = FileUtil.upload(mRequest, true, null);
+	public Rst uploadFilePageString(MultipartHttpServletRequest mRequest) throws Exception {
+	
+		Rst result = Rst.successInstance();
+		String fileName = FileUtil.upload( mRequest, true, null);
 		System.out.println(fileName);
-		return fileName;
+		if(fileName!=null) {
+			result.setData(fileName);
+			
+			/*
+			 * if(type!=null && type.equals("profile")) {
+			 * 
+			 * basicDao.updateUserProfile(1, "/resources/tmp/"+fileName); }
+			 */
+			
+		}else {
+			result.fail();
+		}
+		
+		return result;
 	}
-	@RequestMapping(value = "/file/upload2", method = RequestMethod.POST)
+	
+	// 프로필 사진 업데이트
+	@RequestMapping(value = "/profile", method = RequestMethod.POST)
 	@ResponseBody
-	public String uploadFilePageString2(HttpServletRequest mRequest) throws Exception {
+	public Rst profilePathUpadate(
+			@RequestParam(required=false, value="fileName") String fileName) throws Exception {
 		
-		String fileName = FileUtil.upload((MultipartHttpServletRequest) mRequest, true, null);
-		System.out.println(fileName);
-		return fileName;
+		Rst result = Rst.successInstance();
+		
+		int memberId = jwtService.getMemberId();
+		basicDao.updateUserProfile(memberId, "/resources/tmp/"+fileName);
+		return result;
 	}
-    
-    @RequestMapping(value = {"rest"})
-    @ResponseBody
-	public Map<String,Object> getTestObjectPage(@RequestParam(required=false, value="param") Integer param) {
-            
-        Map<String,Object> result = new HashMap<String,Object>();
-        //result.put("lists",basicService.getHeesungString());
-        
-        return result;
-    }
+	
+	
+	// 설문 제거 하기
+	@RequestMapping(value = "/survey/{surveyIdx}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public Rst deleteSurvey(@PathVariable int surveyIdx) throws Exception {
+		
+		Rst result = Rst.successInstance();
+		if(!basicDao.deleteSurveyByIdx(surveyIdx)) {
+			result.fail();
+		}
+		return result;
+	}
+	
+		
+	/*
+	 * @RequestMapping(value = {"rest"})
+	 * 
+	 * @ResponseBody public Map<String,Object>
+	 * getTestObjectPage(@RequestParam(required=false, value="param") Integer param)
+	 * {
+	 * 
+	 * Map<String,Object> result = new HashMap<String,Object>();
+	 * //result.put("lists",basicService.getHeesungString());
+	 * 
+	 * return result; }
+	 */
     
     
 }

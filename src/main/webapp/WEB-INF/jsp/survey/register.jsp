@@ -19,14 +19,20 @@
 	<link rel="stylesheet" href="/resources/bxslider/jquery.bxslider.css">
 	<link type="text/css" rel="stylesheet" href="/resources/css/hamburgers.css"/>   
 	<link type="text/css" rel="stylesheet" href="/resources/css/global.css"/>
+	<link type="text/css" rel="stylesheet" href="/resources/css/animate.css"/>
     
     <link rel="shortcut icon" href="/resources/img/favicon.png" type="image/x-icon"/> 
 	
 	<script type="text/javascript" src="/resources/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.form.js"></script> 
 	<script type="text/javascript" src="/resources/js/jquery.flip.min.js"></script>
 	<script type="text/javascript" src="/resources/js/iscroll.js"></script>
 	<script src="/resources/bxslider/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="/resources/js/script.js"></script>
+	
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="/resources/fontawesome/css/all.min.css"/>
+    <script src="/resources/fontawesome/js/fontawesome.min.js"></script> 
 	
 </head>
 <!-- #####################################################################[헤더 끝] -->
@@ -56,11 +62,13 @@
 						<ul class="profile-modify-group">
 							<li>
 								<div class="intro-title" style="line-height: 140px;">
-									<span class="name">커버 이미지</span>
+									<span class="name">설문 표지</span> 
 								</div>
 								<div class="intro-desc">
-									<img class="va-bottom" src="/resources/img/profile.png"/>
-									<a class="default-btn va-bottom upload-btn" href="#">이미지 업로드</a>
+									<img id="coverImgSrc" class="va-bottom" src="/resources/img/bg-login.jpg" style="height: 140px;"/>
+									<input type="hidden" name="coverImg" id="f-s-coverImg" value=""/>
+									<a class="default-btn va-bottom upload-btn" id="coverImgBtn">설문표지(배경) 등록</a>
+									<p style="padding-top: 10px;">온라인 설문지 진행시에 사용될 <strong class="red">설문 표지</strong> 배경 사진입니다.</p>
 								</div>
 							</li>
 							<li>
@@ -86,8 +94,9 @@
 										<div style="width: 100%; box-sizing: border-box;">연도</div>
 										<input type="hidden" id="f-s-start1" />
 										<ul style="width: 100%;box-sizing: border-box;">
-											<c:forEach var="v" begin="1950" end="2019">
-												<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
+											<c:set var="nowYear" value="2020"></c:set>
+											<c:forEach var="v" begin="2000" end="${nowYear}" step="1">
+												<li><a data-val="${nowYear - v + 2000}"><c:out value="${nowYear - v + 2000}"/></a></li> 
 											</c:forEach>
 										</ul>
 									</div>
@@ -126,8 +135,9 @@
 										<div style="width: 100%; box-sizing: border-box;">연도</div>
 										<input type="hidden" id="f-s-end1" />
 										<ul style="width: 100%;box-sizing: border-box;">
-											<c:forEach var="v" begin="1950" end="2019">
-												<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
+											<c:set var="nowYear" value="2020"></c:set>
+											<c:forEach var="v" begin="2000" end="${nowYear}" step="1">
+												<li><a data-val="${nowYear - v + 2000}"><c:out value="${nowYear - v + 2000}"/></a></li> 
 											</c:forEach>
 										</ul>
 									</div>
@@ -197,7 +207,7 @@
 
 						<div class="profile-modify-bottom" style="margin-bottom: 100px;">
 							<a class="comm-btn-style" style="float:left; cursor:pointer;" href="/my">이전</a>
-							<a class="comm-btn-style red" style="float: right; cursor: pointer;" onclick="registerSurvey()">설문 생성하기</a>
+							<a class="comm-btn-style red" style="float: right; cursor: pointer;" onclick="registerSurvey()">다음단계</a>
 						</div>
 
 				
@@ -214,8 +224,47 @@
         <jsp:include page="../include/footer.jsp"/>
 		<!-- #####################################################################[하단 끝] -->
 	</section>
+	
+	<div style="display:none;">
+		<form action="/file/upload" method="post" enctype="multipart/form-data">
+			<input style="display:none;" autocomplete=off name="file1" type="file" />
+			<input type="submit" value="tst"/>
+		</form>
+	</div>
     
     <script>
+    
+    
+		
+		$("#coverImgBtn").click(function(){
+			$("input[name=file1]").click();
+		}); 
+		$("input[name=file1]").on("change", function(){	
+			
+			createFileLoad();
+			
+			var thss = this.form;
+			$(thss).ajaxSubmit({
+				dataType : "JSON",
+				uploadProgress : function(event,position,total,percentComplete){				
+					$("#fu-per").css('width', percentComplete+"%");
+				},
+				success : function(data){  
+					console.log(data);
+// 					$("#coverImgSrc").css("background-image", 'url(/resources/tmp/'+data.data+'), url(/resources/img/profile.png)');
+					$("#coverImgSrc").attr("src", '/resources/tmp/'+data.data);
+					$("#f-s-coverImg").val('/resources/tmp/'+data.data);
+					$("#file-upload-loading-pop .mt").text("파일을 업로드 했습니다.");
+				}, 
+				error : function(xhr, status, error) {		
+					$("#file-upload-loading-pop").detach(); 
+					createPopup("exclamation-triangle","해당 이미지 파일을 업로드할 수 없습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+					console.log("[ERROR]");
+					console.log(xhr); console.log(status); console.log(error); 
+				}						
+			});   
+
+		});
         
         getUserInfo(function(data){
     

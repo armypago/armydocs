@@ -32,11 +32,37 @@
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="/resources/fontawesome/css/all.min.css"/>
     <script src="/resources/fontawesome/js/fontawesome.min.js"></script> 
-	
+		
 </head>
 <!-- #####################################################################[헤더 끝] -->
 <body>
 	<section id="wrapper" class="no-fix-menu">
+		
+		
+		
+		<!-- <div class="pop displayNone" id="file-upload-loading-pop">
+			<div>
+				<div class="bx">
+					<div class="popbx">
+						<div class="contentbox">
+							<div class="normal-title-head">
+								<h1 class="tit">파일 업로드</h1>
+								<span class="cat">Upload to Server</span>
+							</div>
+							<div class="simpleArea">
+								<div class="i_n">
+									<div class="icons">
+										<i class="fa fa-cloud-upload-alt"></i>
+									</div>
+									<div class="progressHbar"><div id="fu-per" style="width: 0%;"></div></div>
+									<span class="mt">파일을 업로드 하는 중입니다..</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
 	
 		<!-- #####################################################################[상단 시작] -->
 		<jsp:include page="./include/header2.jsp"/>
@@ -55,8 +81,8 @@
 								
 								<div class="profile-img-area">
 									<div class="img">
-										<img src="/resources/img/profile.png"/>
-										<a class="ico-set" id="profile-btn"><img src="/resources/img/ico-set.png"/></a>
+										<span class="pic" id="imgT"></span>
+										<a class="ico-set" id="profile-btn" style='cursor:pointer;'><img src="/resources/img/ico-set.png"/></a>
 									</div>
 									<div style="margin-top: 15px;">
                                         <a class="name"><span class="my-atype"></span>) <span class="my-name"></span></a>
@@ -75,13 +101,13 @@
 											</a>
 										</li>
 										<li>
-											<a class="area" style="cursor: pointer;" onclick="togglePop02();">
+											<a class="area" style="cursor: pointer;" onclick="">
 												<span class="emp pro-survey-list-count">00</span><br/>
 												현재 참여 가능한 설문
 											</a>
 										</li>
 										<li>
-											<a class="area" style="cursor: pointer;" onclick="togglePop02();">
+											<a class="area" style="cursor: pointer;" onclick="">
 												<span class="emp my-signDate">0000-00-00</span><br/>
 												마지막 접속일
 											</a>
@@ -111,10 +137,10 @@
 								</ul>
 								<ul class="tab-group absol-right">
 									<li class="mobile-hidden">
-										<a class="tab" href="12.html">1:1문의<span class="bottom-bar"></span></a>
+										<a class="tab" href="">1:1문의<span class="bottom-bar"></span></a>
 									</li>		
 									<li>
-										<a class="tab" href="/my/survey">설문 등록<span class="bottom-bar"></span></a>
+										<a class="comm-btn-style red" href="/my/survey"><i class="fa fa-folder-open"></i> 설문지 생성</a>
 									</li>					
 								</ul>
 							</div>
@@ -533,23 +559,60 @@
 	</div>
 
     <script>
+    
+	    function sleepI (delay) {
+    	   var start = new Date().getTime();
+    	   while (new Date().getTime() < start + delay);
+    	}
+
 		
 		$("#profile-btn").click(function(){
 			$("input[name=file1]").click();
 		}); 
 		$("input[name=file1]").on("change", function(){	
 			
+			createFileLoad();
+			
 			var thss = this.form;
 			$(thss).ajaxSubmit({
-				dataType : "json",
+				dataType : "JSON",
+				//data: {"type":"profile"},
 				uploadProgress : function(event,position,total,percentComplete){
-					//percentComplete+"%";
+					
+					$("#fu-per").css('width', percentComplete+"%");
 				},
-				success : function(data){
-					alert("success");   
+			/* 	beforeSend : function(xhr){
+					xhr.setRequestHeader("authorization", getCookie("token"));
+					xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				}, */
+				success : function(data){  
+					console.log(data);
+					$("#imgT").css("background-image", 'url(/resources/tmp/'+data.data+'), url(/resources/img/profile.png)');
+					//$("#imgT").addClass("animated");
+					//$("#imgT").addClass("flipInX"); 
+					$("#file-upload-loading-pop .mt").text("파일을 업로드 했습니다.");
+					
+					$.ajax({ 
+						type : "POST",
+						dataType : "JSON",
+						data : {"fileName" : data.data},
+						async: false,
+						url : "/profile",	
+						beforeSend : function(xhr){
+							xhr.setRequestHeader("authorization", getCookie("token"));
+							xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+						},
+						success : function(data){
+							console.log(data);	
+						}
+					});
+					
 				}, 
-				error : function(xhr, status, error) {		  
-					alert("알 수 없는 오류가 발생했습니다."); 
+				error : function(xhr, status, error) {		
+					$("#file-upload-loading-pop").detach(); 
+					createPopup("exclamation-triangle","해당 이미지 파일을 업로드할 수 없습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+					console.log("[ERROR]");
+					console.log(xhr); console.log(status); console.log(error); 
 				}						
 			});   
 
@@ -606,6 +669,8 @@
                 $("#f-my-recruitDate3").val(r3);
                 $("#f-my-recruitDate3").parent().find("> div").text(r3);
                 
+                var imgRes = globalUser.profile;
+                $("#imgT").css("background-image", "url("+imgRes+"), url(/resources/img/profile.png)");
             }
 
 

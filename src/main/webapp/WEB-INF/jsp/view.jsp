@@ -36,10 +36,172 @@
 	<link rel="stylesheet" href="/resources/fontawesome/css/all.min.css"/>
     <script src="/resources/fontawesome/js/fontawesome.min.js"></script> 
 	
+	<style>
+	.pop .profile-modify-group .intro-title {
+		width: 100px; line-height: 1.7;
+	}
+	.pop .profile-modify-group .intro-desc {width: calc(100% - 100px);}
+	.pop .profile-modify-group .select_box {display: inline-block;}
+	.pop .profile-modify-group .intro-title .name {font-size: 18px;}
+	</style>
+							
 </head>
 <!-- #####################################################################[헤더 끝] -->
 <body>
 	<section id="wrapper" class="no-fix-menu">
+	
+		
+		<!-- #####################################################################[ 팝업창 시작] -->
+		<div id="pop02" class="pop displayNone"> 
+			<div style="background: rgba(0,0,0,0.5);">     
+				<div class="bx" style="width: 800px;">
+					<div class="popbx">
+						<div class="contentbox">  
+							  
+							<a class="btn-close" onclick="toggleSurveyIF();"><i class="fa fa-times" style="font-size: 30px;"></i></a>
+							
+							<div class="normal-title-head">
+								<h1 class="tit">기본정보 수정</h1>  
+								<span class="cat">Changing Information</span>
+							</div>
+							
+							<div class="msg-headline" style="">  
+<!-- 								<span class="txt"><strong>읽지 않은</strong> 메시지 <strong class="emp">3</strong>개입니다</span> -->
+								<a class="comm-btn-style red small" style='cursor:pointer;' onclick="registerSurvey()"><i class="fa fa-save"></i> 저장</a>
+							</div>
+							
+							<form id="surveyVo" name="surveyVo" onsubmit="return false;">
+								<input type="hidden" name="idx" value="" id="f-s-idx"/>
+								<ul class="profile-modify-group">
+									<li>
+										<div class="intro-title">
+											<span class="name">설문 표지</span> 
+										</div>
+										<div class="intro-desc">
+											<img id="coverImgSrc" class="va-bottom" src="/resources/img/bg-login.jpg" style="height: 140px;"/>
+											<input type="hidden" name="coverImg" id="f-s-coverImg" value=""/>
+											<a class="default-btn va-bottom upload-btn" id="coverImgBtn">설문표지(배경) 등록</a>
+											<p style="padding-top: 10px;">온라인 설문지 진행시에 사용될 <strong class="red">설문 표지</strong> 배경 사진입니다.</p>
+										</div>
+									</li>
+									<li>
+										<div class="intro-title">
+											<span class="name">설문 제목</span>
+										</div>
+										<div class="intro-desc m-row-two-item">  
+											<div class="default-inputbox mrti-80" style="width: 100%;margin-right: 10px;">
+												<input type="text" placeholder="설문 제목을 입력하세요." name="title" id="f-s-title"/>										
+											</div>
+											<!--<a class="default-btn mrti-20" href="#">중복확인</a>-->
+										</div>
+									</li>
+		
+									<li>
+										<div class="intro-title">
+											<span class="name">설문 시작일</span>
+											<input type="hidden" name="startdate" id="f-s-start"/>
+										</div>
+										<div class="intro-desc m-row-two-item">
+		
+											<div class="select_box mrti-3-1" style="width: 150px;margin-right:10px;">
+												<div style="width: 100%; box-sizing: border-box;">연도</div>
+												<input type="hidden" id="f-s-start1" />
+												<ul style="width: 100%;box-sizing: border-box;">
+													<c:set var="nowYear" value="2020"></c:set>
+													<c:forEach var="v" begin="2000" end="${nowYear}" step="1">
+														<li><a data-val="${nowYear - v + 2000}"><c:out value="${nowYear - v + 2000}"/></a></li> 
+													</c:forEach>
+												</ul>
+											</div>
+		
+											<div class="select_box mrti-3-1" style="width: 150px;margin-right:10px;">
+												<div style="width: 100%; box-sizing: border-box;">월</div>
+												<input type="hidden" id="f-s-start2" />
+												<ul style="width: 100%;box-sizing: border-box;">
+													<c:forEach var="v" begin="1" end="12">
+														<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
+													</c:forEach>
+												</ul>
+											</div>
+		
+											<div class="select_box mrti-3-1" style="width: 150px;">
+												<div style="width: 100%; box-sizing: border-box;">일</div>
+												<input type="hidden" id="f-s-start3" />
+												<ul style="width: 100%;box-sizing: border-box;">
+													<c:forEach var="v" begin="1" end="31">
+														<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
+													</c:forEach>
+												</ul>
+											</div>
+		
+										</div>
+									</li>
+		
+									<li>
+										<div class="intro-title">
+											<span class="name">설문 종료일</span>
+											<input type="hidden" name="enddate" />
+										</div>
+										<div class="intro-desc m-row-two-item">
+		
+											<div class="select_box mrti-3-1" style="width: 150px;margin-right:10px;">
+												<div style="width: 100%; box-sizing: border-box;">연도</div>
+												<input type="hidden" id="f-s-end1" />
+												<ul style="width: 100%;box-sizing: border-box;">
+													<c:set var="nowYear" value="2020"></c:set>
+													<c:forEach var="v" begin="2000" end="${nowYear}" step="1">
+														<li><a data-val="${nowYear - v + 2000}"><c:out value="${nowYear - v + 2000}"/></a></li> 
+													</c:forEach>
+												</ul>
+											</div>
+		
+											<div class="select_box mrti-3-1" style="width: 150px;margin-right:10px;">
+												<div style="width: 100%; box-sizing: border-box;">월</div>
+												<input type="hidden" id="f-s-end2" />
+												<ul style="width: 100%;box-sizing: border-box;">
+													<c:forEach var="v" begin="1" end="12">
+														<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
+													</c:forEach>
+												</ul>
+											</div>
+		
+											<div class="select_box mrti-3-1" style="width: 150px;">
+												<div style="width: 100%; box-sizing: border-box;">일</div>
+												<input type="hidden" id="f-s-end3" />
+												<ul style="width: 100%;box-sizing: border-box;">
+													<c:forEach var="v" begin="1" end="31">
+														<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
+													</c:forEach>
+												</ul>
+											</div>
+		
+										</div>
+									</li>
+		
+									<li>
+										<div class="intro-title">
+											<span class="name">설문 소개</span>
+										</div>
+										<div class="intro-desc">
+											<div class="default-textarea" style="height: 300px; width: 100%;">
+												<textarea placeholder="진행하려는 설문에 대해서 자유롭게 소개하세요." id="f-s-note" name="note"></textarea>										
+											</div>
+										</div>
+									</li>
+								</ul>
+							
+							</form>
+							
+							
+									
+						</div>  
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #####################################################################[ 팝업창 끝] -->
+		
+		
 	
 		<!-- #####################################################################[상단 시작] -->
 		<jsp:include page="./include/header2.jsp"/>
@@ -53,16 +215,17 @@
 				<div class="inf-mod-wrapper">
 				<div class="inner" style='width: 1000px;'>
 					
-					<div class="normal-title-head">
-						<h1 class="tit">${surveyInfo.title}. DI</h1>
-						<span class="cat">Survey Basic Informations</span>
+					<div class="normal-title-head">  
+						<h1 class="tit">${surveyInfo.title}</h1>
+						<span class="cat">Survey Statistics</span>
 					</div>
 					
 					<form id="surveyVo" name="surveyVo" onsubmit="return registerSurvey();">
 						
 						<div class="profile-modify-bottom" style="margin-top: 30px; margin-bottom: 50px;">
-							<a class="comm-btn-style" style="float:left; cursor:pointer;" href="">목록으로</a>
-							<a class="comm-btn-style red" style="float: right; cursor: pointer; margin-left: 10px;" onclick="">
+							<a class="comm-btn-style" style="float:left; cursor:pointer;" href="/my">목록으로</a>
+						
+							<a class="comm-btn-style red" style="float: right; cursor: pointer; margin-left: 10px;" onclick="toggleSurveyIF(${surveyInfo.idx})">
 								<i class="fa fa-save"></i>&nbsp;&nbsp;수정
 							</a>
 							<a class="comm-btn-style red" style="float: right; cursor: pointer; width: 200px; background: rgb(28,115,70)" onclick="">
@@ -73,10 +236,11 @@
 						
 						<style>
 						.anbox { margin-bottom: 100px; }
-						.anbox li {font-size: 18px; color: #000; padding-bottom: 50px; border-bottom: 1px solid #E7E8EF; margin-bottom: 50px;}
-						.anbox li .title {font-size: 22px; font-weight: bold;}
-						.anbox li .subs {margin: 10px 0px 15px 0px;}
-						.anbox li .sta {width: 450px;}
+						.anbox > li {font-size: 18px; color: #000; padding-bottom: 50px; border-bottom: 1px solid #E7E8EF; margin-bottom: 50px;}
+						.anbox > li .title {font-size: 22px; font-weight: bold;}
+						.anbox > li .subs {margin: 10px 0px 15px 0px;}
+						.anbox > li .sta {width: 450px;}
+						.anbox > li .alist li {display: block;background: rgb(247, 244, 244);padding: 5px 10px; margin-bottom: 5px;}
 						</style>
 						<ul class="anbox">
 							<%-- <li>
@@ -85,19 +249,21 @@
 								<div class="sta">
 									<canvas id="myChart" width="400" height="400"></canvas>
 								</div>
-							</li>
+							</li> --%>
 							
-							<li style="font-size: 18px; color: #000; margin-bottom: 60px;">
+							<!-- <li class="title">
 								<div style="font-size: 22px; font-weight: bold;">2. 참석하는 사람들의 성함을 알려주세요.</div>
 								<div style="margin: 10px 0px 15px 0px;">
 									답변한 수: 198,890명
 								</div>
 								<div style="width: 450px;">
-									
-									<canvas id="myChart2" width="400" height="400"></canvas>
-									
+									<ul class="alist">
+										<li>홍기롣ㅇ</li>
+										<li>홍기롣ㅇ</li>
+										<li>홍기롣ㅇ</li>
+									</ul>
 								</div>
-							</li> --%>
+							</li>  -->
 						</ul>
 						
 						
@@ -109,7 +275,7 @@
 								type : "GET",
 								dataType : "JSON",				
 								async: false,
-								url : "/survey/items/${surveyInfo.idx}",	
+								url : "/survey/statistics/${surveyInfo.idx}",	
 								beforeSend : function(xhr){
 									xhr.setRequestHeader("authorization", getCookie("token"));
 									xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -119,7 +285,7 @@
 									console.log(data);
 									var responseNoteArr = new Array();
 									
-									$.each(data.data, function(index, value){	
+									$.each(data.data.qlist, function(index, value){	
 										
 										var numb = index+1;
 										var c = '';
@@ -127,18 +293,47 @@
 										// 객관식 답변
 										if(value.qtype=="multiple") {
 											
+											responseNoteArr = value.responseNote.split("|");
+											console.log(responseNoteArr);
+											
+											
+											answerSum = 0;
+											rNAC = new Array();
+											for(var i=0;i<responseNoteArr.length;i++) {
+												rNAC.push(0);
+											}
+											console.log(rNAC);
+											
+											var tmpCount = 0;
+											for(var tmp=0;tmp<data.data.slist.length;tmp++) {				
+												if(value.idx == data.data.slist[tmp].idx){
+													
+													console.log("=> 답변:"+ data.data.slist[tmp].a +", 합계:"+data.data.slist[tmp].aSum);
+													
+													for(var tmp2=0;tmp2<responseNoteArr.length;tmp2++) {
+														//console.log("==>" + responseNoteArr[tmp2]);
+														if(responseNoteArr[tmp2] == data.data.slist[tmp].a) {
+															rNAC[tmp2] = data.data.slist[tmp].aSum; 
+															answerSum += rNAC[tmp2]; 
+															//console.log("==> rNAC["+tmp2+"] = " + data.data.slist[tmp].aSum);
+														}
+													}    
+													
+													
+												}  
+											}
+											console.log(rNAC);
+											
+											
 											c += '<li>';
 											c += '<div class="title">'+numb+'. '+value.note+'</div>';
-											c += '<div class="subs">답변한 수: '+(1000)+'명</div>';
+											c += '<div class="subs">답변한 수: '+(answerSum)+'명</div>';
 											c += '<div class="sta">';
 											c += '<canvas id="myChart'+numb+'" width="400" height="400"></canvas>';
 											c += '</div>';
 											c += '</li>';
-											
 											$(".anbox").append(c);
 											
-											responseNoteArr = value.responseNote.split("|");
-											console.log(responseNoteArr);
 											
 											var ctx = document.getElementById('myChart'+numb).getContext('2d');
 											var myChart = new Chart(ctx, {
@@ -147,14 +342,14 @@
 											        labels: responseNoteArr,
 											        datasets: [{
 											            label: '# of Votes',
-											            data: [12, 19, 3, 5, 2],
+											            data: rNAC,//[12, 19, 3, 5, 2],
 											            backgroundColor: [
 											            	'rgba(255, 99, 132, 1)',
 											                'rgba(54, 162, 235, 1)',
 											                'rgba(255, 206, 86, 1)',
 											                'rgba(75, 192, 192, 1)',
 											                'rgba(153, 102, 255, 1)'
-											            ],
+											            ]/* ,
 											            borderColor: [
 											                'rgba(255, 99, 132, 1)',
 											                'rgba(54, 162, 235, 1)',
@@ -162,7 +357,7 @@
 											                'rgba(75, 192, 192, 1)',
 											                'rgba(153, 102, 255, 1)'
 											            ],
-											            borderWidth: 1
+											            borderWidth: 1 */
 											        }]
 											    },
 											    options: {
@@ -179,19 +374,34 @@
 										// 주관식 답변
 										else{
 											
+											c += '<li>';
+											c += '<div class="title">'+numb+'. '+value.note+'</div>';
+											c += '<div class="subs">답변한 수: '+(answerSum)+'명</div>';
+											c += '<div class="sta">';
+											c += '<ul class="alist">';
+											
+											
+											for(var tmp=0;tmp<data.data.slist.length;tmp++) {				
+												if(value.idx == data.data.slist[tmp].idx){
+													
+													console.log("=> 답변:"+ data.data.slist[tmp].a +", 합계:"+data.data.slist[tmp].aSum);
+													
+													c += '<li>'+data.data.slist[tmp].a;
+													if(data.data.slist[tmp].aSum>1) {
+														c += ' ('+data.data.slist[tmp].aSum+')';
+													}
+													c += '</li>';
+													
+												}  
+											}
+											
+											c += '</ul></div>';
+											c += '</li>';
+											$(".anbox").append(c);
+											
 										}
-										
+										console.log("==============================");
 									});
-									
-									var testArr = new Array();
-									//testArr = ['네가 내 손에 죽고 싶구나?', '나는 50점 받았다. 잘난 척하니 속이 후련하니?', '평균 90점이 못 본 거라니, 너 정신이 이상하구나', '마음이 아프겠다. 열심히 해서 다음 시험에는 3만점 맞길 바란다.', '다른 데서 그런 식으로 말하면 너는 학교 폭력의 피해자가 될지도 몰라.'];
-									
-									testArr.push('네가 내 손에 죽고 싶구나?');
-									testArr.push('나는 50점 받았다. 잘난 척하니 속이 후련하니?');
-									testArr.push('평균 90점이 못 본 거라니, 너 정신이 이상하구나');
-									testArr.push('마음이 아프겠다. 열심히 해서 다음 시험에는 3만점 맞길 바란다.');
-									testArr.push('다른 데서 그런 식으로 말하면 너는 학교 폭력의 피해자가 될지도 몰라.');
-			
 									
 								}, 
 								error : function(err, err2, err3) {	
@@ -204,159 +414,17 @@
 						
 						heesung();
 						
-						/* var ctx2 = document.getElementById('myChart2').getContext('2d');
-						var myChart2 = new Chart(ctx2, {
-						    type: 'doughnut',
-						    data: {
-						        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-						        datasets: [{
-						            label: '# of Votes',
-						            data: [12, 19, 3, 5, 2, 3],
-						            backgroundColor: [
-						                'rgba(255, 99, 132, 0.2)',
-						                'rgba(54, 162, 235, 0.2)',
-						                'rgba(255, 206, 86, 0.2)',
-						                'rgba(75, 192, 192, 0.2)',
-						                'rgba(153, 102, 255, 0.2)',
-						                'rgba(255, 159, 64, 0.2)'
-						            ],
-						            borderColor: [
-						                'rgba(255, 99, 132, 1)',
-						                'rgba(54, 162, 235, 1)',
-						                'rgba(255, 206, 86, 1)',
-						                'rgba(75, 192, 192, 1)',
-						                'rgba(153, 102, 255, 1)',
-						                'rgba(255, 159, 64, 1)'
-						            ],
-						            borderWidth: 1
-						        }]
-						    },
-						    options: {
-						        scales: {
-						            yAxes: [{
-						                ticks: {
-						                    beginAtZero: true
-						                }
-						            }]
-						        }
-						    }
-						}); */
+						
 						</script>
 
-						<%-- <ul class="profile-modify-group">
 						
-							<li>
-								<div class="intro-title">
-									<span class="name">1.</span>
-								</div>
-								<div class="intro-desc m-row-two-item" style="font-size: 16px;">  
-									asdasda<br/>asdasda<br/>asdasda<br/>asdasda<br/>asdasda<br/>asdasda<br/>asdasda<br/>asdasda<br/>asdasda<br/>asdasda<br/>asdasda<br/>asdasda<br/>
-									
-									
-								
-								</div>
-							</li>
-
-							<li>
-								<div class="intro-title">
-									<span class="name">설문 시작일</span>
-									<input type="hidden" name="startdate" />
-								</div>
-								<div class="intro-desc m-row-two-item">
-
-									<div class="select_box mrti-3-1" style="width: 150px;margin-right:10px;">
-										<div style="width: 100%; box-sizing: border-box;">연도</div>
-										<input type="hidden" id="f-s-start1" />
-										<ul style="width: 100%;box-sizing: border-box;">
-											<c:forEach var="v" begin="1950" end="2019">
-												<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
-											</c:forEach>
-										</ul>
-									</div>
-
-									<div class="select_box mrti-3-1" style="width: 150px;margin-right:10px;">
-										<div style="width: 100%; box-sizing: border-box;">월</div>
-										<input type="hidden" id="f-s-start2" />
-										<ul style="width: 100%;box-sizing: border-box;">
-											<c:forEach var="v" begin="1" end="12">
-												<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
-											</c:forEach>
-										</ul>
-									</div>
-
-									<div class="select_box mrti-3-1" style="width: 150px;">
-										<div style="width: 100%; box-sizing: border-box;">일</div>
-										<input type="hidden" id="f-s-start3" />
-										<ul style="width: 100%;box-sizing: border-box;">
-											<c:forEach var="v" begin="1" end="31">
-												<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
-											</c:forEach>
-										</ul>
-									</div>
-
-								</div>
-							</li>
-
-							<li>
-								<div class="intro-title">
-									<span class="name">설문 종료일</span>
-									<input type="hidden" name="enddate" />
-								</div>
-								<div class="intro-desc m-row-two-item">
-
-									<div class="select_box mrti-3-1" style="width: 150px;margin-right:10px;">
-										<div style="width: 100%; box-sizing: border-box;">연도</div>
-										<input type="hidden" id="f-s-end1" />
-										<ul style="width: 100%;box-sizing: border-box;">
-											<c:forEach var="v" begin="1950" end="2019">
-												<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
-											</c:forEach>
-										</ul>
-									</div>
-
-									<div class="select_box mrti-3-1" style="width: 150px;margin-right:10px;">
-										<div style="width: 100%; box-sizing: border-box;">월</div>
-										<input type="hidden" id="f-s-end2" />
-										<ul style="width: 100%;box-sizing: border-box;">
-											<c:forEach var="v" begin="1" end="12">
-												<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
-											</c:forEach>
-										</ul>
-									</div>
-
-									<div class="select_box mrti-3-1" style="width: 150px;">
-										<div style="width: 100%; box-sizing: border-box;">일</div>
-										<input type="hidden" id="f-s-end3" />
-										<ul style="width: 100%;box-sizing: border-box;">
-											<c:forEach var="v" begin="1" end="31">
-												<li><a data-val="${v}"><c:out value="${v}"/></a></li> 
-											</c:forEach>
-										</ul>
-									</div>
-
-								</div>
-							</li>
-
-							<li>
-								<div class="intro-title">
-									<span class="name">설문 소개</span>
-								</div>
-								<div class="intro-desc">
-									<div class="default-textarea" style="height: 300px; width: 100%;">
-										<textarea placeholder="진행하려는 설문에 대해서 자유롭게 소개하세요." id="f-s-note" name="note"></textarea>										
-									</div>
-								</div>
-							</li>
-
-							
-
-
-						</ul> --%>
-
-						
-
-				
 					</form>
+					
+					<div style="text-align: center;">
+						<a class="comm-btn-style red" style="cursor: pointer;" onclick="deleteSurvey()">
+							<i class="fa fa-trash-alt"></i>&nbsp;&nbsp;설문지 삭제
+						</a>
+					</div>
 					
 				</div>
 				</div>
@@ -378,6 +446,8 @@
 			<input type="submit" value="tst"/>
 		</form>
 	</div>
+	
+
 
     <script>
 		
@@ -395,6 +465,104 @@
             location.href = "/";
         });
         
+        
+        
+        $("#coverImgBtn").click(function(){
+			$("input[name=file1]").click();
+		}); 
+		$("input[name=file1]").on("change", function(){	
+			
+			createFileLoad();
+			
+			var thss = this.form;
+			$(thss).ajaxSubmit({
+				dataType : "JSON",
+				uploadProgress : function(event,position,total,percentComplete){				
+					$("#fu-per").css('width', percentComplete+"%");
+				},
+				success : function(data){  
+					console.log(data);
+// 					$("#coverImgSrc").css("background-image", 'url(/resources/tmp/'+data.data+'), url(/resources/img/profile.png)');
+					$("#coverImgSrc").attr("src", '/resources/tmp/'+data.data);
+					$("#f-s-coverImg").val('/resources/tmp/'+data.data);
+					$("#file-upload-loading-pop .mt").text("파일을 업로드 했습니다.");
+				}, 
+				error : function(xhr, status, error) {		
+					$("#file-upload-loading-pop").detach(); 
+					createPopup("exclamation-triangle","해당 이미지 파일을 업로드할 수 없습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+					console.log("[ERROR]");
+					console.log(xhr); console.log(status); console.log(error); 
+				}						
+			});   
+
+		});
+        
+		function registerSurvey() {
+			
+			var startDate = $("#f-s-start1").val()+"-"+$("#f-s-start2").val()+"-"+$("#f-s-start3").val();
+			var endDate = $("#f-s-end1").val()+"-"+$("#f-s-end2").val()+"-"+$("#f-s-end3").val();
+			$("#surveyVo input[name=startdate]").val(startDate);
+			$("#surveyVo input[name=enddate]").val(endDate);
+			var param = $("#surveyVo").serialize();
+			
+			console.log(param);
+			
+			loadAni(true);
+			
+			$.ajax({ 
+				type : "POST",
+				dataType : "JSON",
+				data : param,
+				async: false,
+				url : "/survey",	
+				beforeSend : function(xhr){
+					xhr.setRequestHeader("authorization", getCookie("token"));
+					xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				},
+				success : function(data){
+					loadAni(false);
+					console.log(data);
+					createPopup('check-circle', '기본 정보를 수정했습니다.', 'bounceInDown', '확인');
+					toggleSurveyIF();
+				}, 
+				error : function(err, err2, err3) {
+					
+					loadAni(false);
+					console.log("[ERROR]");
+					console.log(err); console.log(err2); console.log(err3); 
+					createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+				} 
+			});
+			
+			
+			return false;
+		}
+        
+		function deleteSurvey() {
+			
+			$.ajax({ 
+				type : "DELETE",
+				dataType : "JSON",
+				async: false,
+				url : "/survey/${surveyInfo.idx}",	
+				beforeSend : function(xhr){
+					xhr.setRequestHeader("authorization", getCookie("token"));
+					xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				},
+				success : function(data){
+					loadAni(false);
+					console.log(data);
+					location.href = "/my";
+				}, 
+				error : function(err, err2, err3) {
+					
+					loadAni(false);
+					console.log("[ERROR]");
+					console.log(err); console.log(err2); console.log(err3); 
+					createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+				} 
+			});
+		}
         
     </script>
     

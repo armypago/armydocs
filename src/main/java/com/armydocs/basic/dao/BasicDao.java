@@ -14,6 +14,39 @@ import com.armydocs.basic.vo.UserVo;
 
 public class BasicDao extends SqlSessionDaoSupport {
 	
+	
+	public boolean deleteSurveyByIdx(int idx) {
+		Integer result = getSqlSession().delete("basic.deleteSurveyByIdx", idx);
+		if(result!=null&&result>0) {
+            return true;
+        }
+        return false;
+	}
+	
+	public boolean updateSurvey(SurveyVo vo) {
+		Integer result =  getSqlSession().update("basic.updateSurvey", vo);
+	    if(result!=null&&result>0) {
+            return true;
+        }
+        return false;
+	}
+	
+	/** 회원 프로필 사진 업로드 */
+	public boolean updateUserProfile(int idx, String profile) {
+		Map<String,Object> pMap = new HashMap<String,Object>();
+		pMap.put("idx", idx);
+		pMap.put("profile", profile);
+		Integer result =  getSqlSession().update("basic.updateUserProfile", pMap);
+	    if(result!=null&&result>0) {
+            return true;
+        }
+        return false;
+	}
+	
+	public List<Map<String,Object>> getSurveyStatistics(int surveyIdx) {
+		return getSqlSession().selectList("basic.getSurveyStatistics", surveyIdx);
+	}
+	
 	public boolean insertAnswer(SurveyAnswer info) {
 		Integer result =  getSqlSession().insert("basic.insertAnswer", info);
 	    if(result!=null&&result>0) {
