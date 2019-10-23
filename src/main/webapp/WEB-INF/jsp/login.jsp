@@ -63,12 +63,21 @@
 										<input name="login1" type="checkbox" id="test1" name="radio-group">
 										<label for="test1">아이디 저장</label>
 										   
-										<input name="login1" type="checkbox" id="test2" name="radio-group">
+										<input name="login1" type="checkbox" id="test2" name="radio-group" checked="checked">
 										<label for="test2" style="margin-left: 30px;">자동 로그인</label>
 									</div>
 									 
 									<div class="field-row">
 										<input type="submit" class="btn-login" value="로그인"/>
+										
+										
+										<div style="text-align: center; margin-top: 15px;">
+											<input type="image" style="height: 80px;margin: 10px 0px 5px 0px;" src="/resources/img/login_naver.png"/>
+											<input type="image" style="height: 80px;margin: 10px 0px 5px 0px;" src="/resources/img/login_kakao.png"/>
+											<input type="image" style="height: 80px;margin: 10px 0px 5px 0px;" src="/resources/img/login_google.png"/>
+										</div>
+										
+										
 										<div class="p-vertical-10 p-horizontal-15">
 											<a class="search-ment" href="#">아이디/비밀번호 찾기</a>
 										</div>  
