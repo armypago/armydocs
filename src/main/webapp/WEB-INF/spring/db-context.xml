@@ -26,7 +26,7 @@
 	
 	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/armydocs"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/armydocs?useUnicode=true&amp;characterEncoding=utf8"/>
 		<property name="username" value="root"/>
 		<property name="password" value="root"/>
 		<property name="defaultAutoCommit" value="false"/>
@@ -34,11 +34,11 @@
 	
     <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="dataSourceSpied"/>
-		<!--<property name="logFormatter">
+		<property name="logFormatter">
 			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
 				<property name="loggingType" value="MULTI_LINE" />
 			</bean>
-		</property>-->
+		</property>
 	</bean>
 	
 	 

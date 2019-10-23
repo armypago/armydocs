@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="/resources/bxslider/jquery.bxslider.css">
 	<link type="text/css" rel="stylesheet" href="/resources/css/hamburgers.css"/>   
 	<link type="text/css" rel="stylesheet" href="/resources/css/global.css"/>
+	<link type="text/css" rel="stylesheet" href="/resources/css/animate.css"/>
     
     <link rel="shortcut icon" href="/resources/img/favicon.png" type="image/x-icon"/> 
 	
@@ -25,6 +26,10 @@
 	<script src="/resources/bxslider/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="/resources/js/script.js"></script>
 	
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="/resources/fontawesome/css/all.min.css"/>
+    <script src="/resources/fontawesome/js/fontawesome.min.js"></script> 
+    
 </head>
 <!-- #####################################################################[헤더 끝] -->
 <body>
@@ -36,7 +41,6 @@
 		<!-- #####################################################################[컨테이너 시작] -->
 		<section class="container main">	
 			<div class="container_inner">	
-				
 				
 				<!-- #####################################################################[레이어1] -->
 				<div class="layer add-layer">

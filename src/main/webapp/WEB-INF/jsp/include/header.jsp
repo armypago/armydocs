@@ -1,5 +1,7 @@
 <%@ page contentType = "text/html;charset=utf-8" %>
 
+<div id="popups"></div>
+
 <div id="loadAni" class="loadingBackgroundCover">
     <div class="centerItem">
         
@@ -16,7 +18,7 @@
                 <li><a href="/">이용가이드</a></li>
                 <li><a href="/">고객센터</a></li>
             </ul>
-            <div class="logo-area">
+            <div class="logo-area animated rubberBand">
                 <div class="logo-top">
                     <a class="logo-white" href="/"><img src="/resources/img/logo.png"/></a>
                     <a class="logo-red" href="/"><img src="/resources/img/logo3.png"/></a>

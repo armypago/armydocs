@@ -42,7 +42,8 @@
 				
 				
 				<!-- ##################################################################### -->
-				<div class="inner"style="padding-top: 50px;">
+				<div class="inf-mod-wrapper">
+				<div class="inner">
 					
 					<div class="normal-title-head">
 						<h1 class="tit">Step 1. 설문 기본정보</h1>
@@ -202,10 +203,7 @@
 				
 					</form>
 					
-					
-					
-					
-					
+				</div>
 				</div>
 				
 				

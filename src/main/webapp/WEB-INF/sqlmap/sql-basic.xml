@@ -3,6 +3,57 @@
 <mapper namespace="basic">	
 	
 	
+	<!-- 설묵 항목 로드 -->
+	<select id="getItems2" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.SurveyItem">
+		select 
+			a.idx,
+			a.surveyIdx,
+			a.note,
+			a.corder,
+			a.qtype,
+			a.regdate,
+			a.responseNote,
+			b.responseNote,
+			count(*) as itemCount
+		from 
+			am_survey_items as a join am_survey_answer as b
+		on 
+			a.idx = b.itemsIdx
+		where 
+			a.surveyIdx = #{surveyIdx} 
+		order by 
+			a.corder asc
+	</select>
+	
+	<!-- 
+		select 
+			a.corder,
+			a.idx,
+			a.note,
+			b.responseNote,
+			count(*) as itemCount
+		from 
+			am_survey_items as a join am_survey_answer as b
+		on 
+			a.idx = b.itemsIdx
+		where 
+			a.surveyIdx = 2
+		group by
+			a.idx
+		order by 
+			a.corder asc;
+	
+	 -->
+	
+	<!-- 답변 등록 -->
+	<insert id="insertAnswer" parameterType="com.armydocs.basic.vo.SurveyAnswer">
+		insert into am_survey_answer 
+			(surveyIdx, itemsIdx, userIdx, responseNote, regdate)
+		values
+			(#{surveyIdx},#{itemsIdx},#{userIdx},#{responseNote},#{regdate})
+	</insert>
+	
+	
 	<select id="getProgressSurveys" resultType="com.armydocs.basic.vo.SurveyVo">
 		select 
 			*
@@ -40,7 +91,13 @@
 	
 	<!-- 설문 정보 조회 -->
 	<select id="getSurveyInfoByIdx" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.SurveyVo">
-		select * from am_survey_info where idx = #{idx}
+		select 
+			idx, title, note, regdate, startdate, enddate, userIdx, name, coverImg,
+			(select count(*) from am_survey_items where surveyidx = am_survey_info.idx) as itemCount
+		from 
+			am_survey_info 
+		where 
+			idx = #{idx}
 	</select>
 	
 	<!-- 설문 정보 조회 -->

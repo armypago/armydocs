@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="/resources/bxslider/jquery.bxslider.css">
 	<link type="text/css" rel="stylesheet" href="/resources/css/hamburgers.css"/>   
 	<link type="text/css" rel="stylesheet" href="/resources/css/global.css"/>
+	<link type="text/css" rel="stylesheet" href="/resources/css/animate.css"/>
     
     <link rel="shortcut icon" href="/resources/img/favicon.png" type="image/x-icon"/> 
 	
@@ -27,8 +28,6 @@
 	<script type="text/javascript" src="/resources/js/iscroll.js"></script>
 	<script src="/resources/bxslider/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="/resources/js/script.js"></script>
-	
-	
 	
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="/resources/fontawesome/css/all.min.css"/>
@@ -639,12 +638,13 @@
 						if(data.statusCode == 200) {
 							location.href="/logout";
 						}else{
-							alert("회원을 탈퇴할 수 없습니다. 자세한 사항은 문의게시판을 이용해주세요.");
+							createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
 						}
 					}, 
 					error : function(err, err2, err3) {
-
+			
 						loadAni(false);
+						createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
 						console.log("[ERROR]");
 						console.log(err); console.log(err2); console.log(err3); 
 
@@ -671,11 +671,11 @@
 				var newPw = $("input[name=newPassword]").val();
 				var newPw2 = $("input[name=newPassword2]").val();
 				if(newPw=="") {
-					alert("새 비밀번호를 입력하세요.");
+					createPopup("exclamation-triangle","새롭게 설정할 비밀번호를 입력하세요.", "bounceInDown", "확인");
 					return false;
-				}
+				}  
 				if(newPw != newPw2) {
-					alert("새 비밀빈호와 새 비밀번호 확인이 일치하지 않습니다.");
+					createPopup("exclamation-triangle","새 비밀번호와 새 비밀번호 확인이<br/>일치하지 않습니다.", "bounceInDown", "확인");
 					return false;
 				}
 			}
@@ -701,7 +701,7 @@
 					
 					if(data.statusCode != 200) {
 						
-						alert("기존 사용중인 비밀번호가 일치하지 않습니다.");
+						createPopup("exclamation-triangle","기존 사용중인 비밀번호가 일치하지 않습니다.", "bounceInDown", "확인");
 						
 					}else{
 						
@@ -714,8 +714,8 @@
 
 				}, 
 				error : function(err, err2, err3) {
-					
 					loadAni(false);
+					createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
 					console.log("[ERROR]");
 					console.log(err); console.log(err2); console.log(err3); 
 					
