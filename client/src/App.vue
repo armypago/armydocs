@@ -8,4 +8,7 @@
 * {
     font-family: 'NanumSquare' !important;
 }
+.theme--light.v-application {
+    background-color: white !important;
+}
 </style>
