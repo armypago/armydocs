@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+ 	
+	<!-- 쿼리문 -->
+    <appender name="console-sqlonly" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yy.MM.dd HH:mm:ss}] [%-5p] [SQL::] %n%m%n" />
+        </layout>   
+    </appender>
+    <!-- 쿼리 결과문 -->
+   <appender name="console-resultsettable" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yy.MM.dd HH:mm:ss}] [%-5p] %m%n" />
+        </layout>   
+    </appender>
+    
+    
+    
+
+    <!-- [콘솔 로그] -->
+    <appender name="ALL_CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yy.MM.dd HH:mm:ss}] [%-5p] [%X{uri}] [%13F:%L] %m%n" />
+        </layout>   
+    </appender>
+    
+
+ 	<!-- 쿼리 로그 -->
+	<logger name="jdbc.sqlonly" additivity="false"> -->
+        <level value="INFO"/>  
+        <appender-ref ref="console-sqlonly"/>  
+    </logger>  
+    
+    <!-- 쿼리결과 로그 --> 
+	<logger name="jdbc.resultsettable" additivity="false">
+        <level value="INFO"/>  
+        <appender-ref ref="console-resultsettable"/>  
+    </logger> 
+	
+
+    <!-- 웹어플리케이션 로그 -->
+	<logger name="com.armydocs" additivity="false">
+		<level value="INFO"/>
+		<appender-ref ref="ALL_CONSOLE"/>
+	</logger> 
+ 
+    <!-- 루트 로그 -->
+    <root>
+    	<level value="ERROR"/>
+   	  	<appender-ref ref="ALL_CONSOLE"/>
+    </root>
+     
+</log4j:configuration>
