@@ -59,12 +59,15 @@
           </v-col>
         </v-row>
 
-        <v-row justify="end">
-          <v-col cols="3">
-            <v-btn
-              class="contact-btn"
-              color="error"
-            >문의하기</v-btn>
+        <v-row justify="center">
+          <v-col cols="10">
+            <v-row justify="end">
+              <v-btn
+                class="contact-btn"
+                color="error"
+              >문의하기
+              </v-btn>
+            </v-row>
             </v-col>
         </v-row>
 
@@ -103,7 +106,6 @@
   width: 13rem !important;
   font-size: 1.2rem !important;
   font-weight: bold;
-  margin-left: 4.2rem;
 }
 </style>
 
