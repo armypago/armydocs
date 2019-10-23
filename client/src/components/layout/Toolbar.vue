@@ -34,6 +34,10 @@
   opacity: 0 !important;
 }
 
+.v-btn.v-size--default {
+  font-size: 1.1rem !important;
+}
+
 .v-btn:before {
   background-color: transparent !important;
 }

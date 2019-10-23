@@ -57,7 +57,7 @@ export default {
           "부대 내 각종 설문 작성 및 결과를 분석하는 관리자와",
           "설문 및 수요조사에 참여하는 사용자에게 각각 다른 기능을 제공합니다."
         ],
-        src: require("@/assets/carousel1.png"),
+        src: require("@/assets/landing/carousel1.png"),
         btn: "아미독스 설명서 다운로드",
         to: "/about"
       },
@@ -72,7 +72,7 @@ export default {
           "부대 내 각종 설문 작성 및 결과를 분석하는 관리자와",
           "설문 및 수요조사에 참여하는 사용자에게 각각 다른 기능을 제공합니다."
         ],
-        src: require("@/assets/carousel2.png"),
+        src: require("@/assets/landing/carousel2.png"),
         btn: "아미독스 설명서 다운로드",
         to: "/about"
       }
