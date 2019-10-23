@@ -1,12 +1,13 @@
 <template>
   <v-app>
-    <Toolbar />
+    <Toolbar/>
 
     <v-content>
       <Carousel/>
+      <Contact/>
     </v-content>
 
-    <Footer />
+    <Footer/>
   </v-app>
 </template>
 
@@ -14,6 +15,7 @@
 import Toolbar from "@/components/layout/Toolbar.vue";
 import Footer from "@/components/layout/Footer.vue";
 import Carousel from "@/components/landing/Carousel.vue";
+import Contact from "@/components/landing/Contact.vue";
 
 export default {
   data: () => ({
@@ -23,7 +25,8 @@ export default {
   components: {
     Toolbar,
     Footer,
-    Carousel
+    Carousel,
+    Contact
   }
 };
 </script>

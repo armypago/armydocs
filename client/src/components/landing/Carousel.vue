@@ -93,7 +93,9 @@ export default {
 }
 .slide-btn {
   margin-top: 50px;
-  font-size: 1.2rem !important;
-  height: 3rem !important;
+  font-size: 1.1rem !important;
+  height: 3.3rem !important;
+  width: 16rem !important;
+  background-color: black !important;
 }
 </style>
