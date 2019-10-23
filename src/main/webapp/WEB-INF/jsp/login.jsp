@@ -54,7 +54,7 @@
 										<a class="sub" href="03.html">회원가입</a>     
 									</div>
 									<div class="field-row">
-										<input id="id" name="id" autocomplete="off" type="text" class="input-style1" placeholder="아이디(이메일)" value="19-76039568"/>
+										<input id="id" name="id" autocomplete="off" type="text" class="input-style1" placeholder="아이디(군번)" value="19-76039568"/>
 									</div>	
 									<div class="field-row">
 										<input id="pw" name="pw" autocomplete="off" type="password" class="input-style1" placeholder="비밀번호" value="test1234"/>
