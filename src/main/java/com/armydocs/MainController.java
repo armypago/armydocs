@@ -94,9 +94,6 @@ public class MainController {
     	return "view";
     }
     
-    
-    
-    
     // 답변 
     @RequestMapping(value = "/survey/{surveyIdx}/answer", method = RequestMethod.POST)
     @ResponseBody
