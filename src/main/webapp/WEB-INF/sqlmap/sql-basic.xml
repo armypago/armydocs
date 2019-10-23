@@ -27,21 +27,25 @@
 	
 	<!-- 
 		select 
+			
+			a.surveyIdx,
 			a.corder,
 			a.idx,
-			a.note,
-			b.responseNote,
-			count(*) as itemCount
+			count(*) as '답변 합계',
+			a.note as '질문',
+			b.responseNote as '답변s'
+			
 		from 
 			am_survey_items as a join am_survey_answer as b
 		on 
 			a.idx = b.itemsIdx
-		where 
-			a.surveyIdx = 2
+		where
+			a.surveyIdx = 3
 		group by
 			a.idx
-		order by 
-			a.corder asc;
+		order by
+			corder asc 
+		
 	
 	 -->
 	
