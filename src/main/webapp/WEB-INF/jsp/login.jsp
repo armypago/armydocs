@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="/resources/bxslider/jquery.bxslider.css">
 	<link type="text/css" rel="stylesheet" href="/resources/css/hamburgers.css"/>   
 	<link type="text/css" rel="stylesheet" href="/resources/css/global.css"/>
+	<link type="text/css" rel="stylesheet" href="/resources/css/animate.css"/>
     
     <link rel="shortcut icon" href="/resources/img/favicon.png" type="image/x-icon"/> 
 	
@@ -24,6 +25,10 @@
 	<script type="text/javascript" src="/resources/js/iscroll.js"></script>
 	<script src="/resources/bxslider/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="/resources/js/script.js"></script>
+	
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="/resources/fontawesome/css/all.min.css"/>
+    <script src="/resources/fontawesome/js/fontawesome.min.js"></script> 
 	
 </head>
 <!-- #####################################################################[헤더 끝] -->
@@ -115,13 +120,14 @@
 					console.log(toekn);
 					location.href = "/my";
 				}else {
-					alert("아이디와 비밀번호가 일치하지 않습니다.");
+					createPopup("exclamation-triangle","아이디와 비밀번호가 일치하지 않습니다.<br/>다시 시도해주세요.", "bounceInDown");
 				}
                 
                 
             }, 
             error : function(err){
 				loadAni(false);
+				createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
                 console.log("알 수 없는 오류가 발생했습니다."); 
                 console.log(err);
             } 

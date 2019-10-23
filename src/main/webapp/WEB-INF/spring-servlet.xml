@@ -58,6 +58,7 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
         <property name="order" value="1"/>
+        <property name="contentType" value="text/html; charset=UTF-8"/>
     </bean>
 	
 	<!-- 파일업로드를 위한 서블릿컨텍스트빈 등록 -->	

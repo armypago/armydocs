@@ -11,6 +11,7 @@ public class SurveyVo {
 	private String name;
 	private Integer userIdx;
 	private String coverImg;
+	private int itemCount;
 	
 	public void printVal() {
 
@@ -55,5 +56,14 @@ public class SurveyVo {
 	
 	public void setUserIdx(Integer userIdx) {this.userIdx = userIdx;}
 	public Integer getUserIdx() {return this.userIdx;}
+
+	public int getItemCount() {
+		return itemCount;
+	}
+
+	public void setItemCount(int itemCount) {
+		this.itemCount = itemCount;
+	}
+	
 	
 }

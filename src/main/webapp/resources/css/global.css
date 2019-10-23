@@ -1,9 +1,4 @@
 
-/* @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');   */
-
-/* @import url('nanumbarungothic.css');    */
-/* @import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);   */
-
 @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
   
 body {font-size:12px; font-family: 'NanumSquare', sans-serif; font-weight: 400; }
@@ -14,12 +9,6 @@ body, html {background:#fff; height:100%;}
 	padding-bottom: 246px;
 	min-height: 100%; 
 }	
-/* .container {
-  position: relative;
-  margin: 0;
-  padding-bottom: 246px;
-  min-height: 100%; 
-} */
 select {font-family: 'NanumSquare', sans-serif;}
 input {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; outline-width:0;}
 textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; outline-width:0;}
@@ -65,10 +54,10 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 		padding: 0px 10px;
 	}
 	#wrapper {
-	    padding-bottom: 78px !important;  /* 하단 고정 네비게이션 높이 */
+	    padding-bottom: 78px !important;  /* �븯�떒 怨좎젙 �꽕鍮꾧쾶�씠�뀡 �넂�씠 */
 	}
 	#wrapper.no-fix-menu {
-	    padding-bottom: 0px !important;  /* 하단 고정 네비게이션 높이 */
+	    padding-bottom: 0px !important;  /* �븯�떒 怨좎젙 �꽕鍮꾧쾶�씠�뀡 �넂�씠 */
 	}
 	.mobile-hidden {
 		display: none !important; 
@@ -94,7 +83,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 
 
 
-/******************************************************************* 헤더 시작 */
+/******************************************************************* �뿤�뜑 �떆�옉 */
 .header {
 	position: fixed;
 	width: 100%;
@@ -193,8 +182,8 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	.header .logo-red {display: inline-block;}
 	.header .logo-white {display: none;}  
 }
-/******************************************************************* 헤더 끝 */
-/******************************************************************* 풋터 시작 */
+/******************************************************************* �뿤�뜑 �걹 */
+/******************************************************************* �뭼�꽣 �떆�옉 */
 .footer {
 	background: #343434; 
 	text-align: center; 
@@ -205,6 +194,13 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	position:absolute;
     bottom:0;   
     overflow: hidden;
+    height: 355px ;
+}
+.footer .corps {
+	background: #fff; padding: 25px; border-top: 1px solid #E7E8EF;
+}
+.footer .corps > img {
+	margin: 0px 20px; height: 40px;
 }
 .footer .inner {
 	position: relative;
@@ -277,8 +273,8 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 		font-size: 12px;
 	}
 }
-/******************************************************************* 풋터 끝 */
-/******************************************************************* 컨텐츠영역 시작 */
+/******************************************************************* �뭼�꽣 �걹 */
+/******************************************************************* 而⑦뀗痢좎쁺�뿭 �떆�옉 */
 .container.push-top {
 	padding-top: 92px;
 }  
@@ -290,8 +286,8 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 		padding-top: 50px;
 	}
 }
-/******************************************************************* 컨텐츠영역 끝 */
-/******************************************************************* 메인레이어1 시작 */
+/******************************************************************* 而⑦뀗痢좎쁺�뿭 �걹 */
+/******************************************************************* 硫붿씤�젅�씠�뼱1 �떆�옉 */
 .layer1 .banner-wrapper {
 	background-image: url('../img/bn1.png');
 	background-size: auto 100%;
@@ -328,7 +324,8 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	text-align: center;
 	box-sizing: border-box;
 	background-image: url('../img/bn-add.png'); 
-	height: 1097px;
+	background-size: 100% auto;
+	height: 1097px; height: 1000px;
 }
 .add-layer .banner-wrapper .in {
 	background-color: rgba(0,0,0,0.5);  
@@ -345,6 +342,15 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
 }
+
+.centerbox {
+	width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
 .add-layer .down-btn {
 	position: absolute;
     bottom: 30px;
@@ -439,8 +445,8 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	
 }
 
-/******************************************************************* 메인레이어1 끝 */
-/******************************************************************* 메인레이어2 시작 */
+/******************************************************************* 硫붿씤�젅�씠�뼱1 �걹 */
+/******************************************************************* 硫붿씤�젅�씠�뼱2 �떆�옉 */
 .layer2 {
 	min-height: 1000px;
 }
@@ -588,7 +594,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	height: 100%;
 /* 	transition: 0.6s; */
 	
-	/* 하위요소에 3D 좌표값 지정 */
+	/* �븯�쐞�슂�냼�뿉 3D 醫뚰몴媛� 吏��젙 */
 /* 	transform-style: preserve-3d; */
 /* 	position: relative; */
 }
@@ -890,7 +896,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	.play-list-group .play-list-item .btn-learn-more { background: #fff;width: auto;padding: 3px 12px;font-size: 12px; letter-spacing: 0px;}
 }
 @media screen and (max-width:425px) {
-	/* 안드로이드 갤럭시 노트4, 아이폰X */
+	/* �븞�뱶濡쒖씠�뱶 媛ㅻ윮�떆 �끂�듃4, �븘�씠�룿X */
 	.play-list-group .play-list-item { width: 165px; height: 221px; }
 	.play-list-group .play-list-item .txt-visual { margin-top: 0px; }
 	.play-list-group .play-list-item .txt-visual .desc { margin-top: 0px; }	
@@ -903,8 +909,8 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 } */
 
 
-/******************************************************************* 메인레이어2 끝 */
-/******************************************************************* 메인레이어3 시작 */
+/******************************************************************* 硫붿씤�젅�씠�뼱2 �걹 */
+/******************************************************************* 硫붿씤�젅�씠�뼱3 �떆�옉 */
 .layer3 .bg-red-cover {
 	background-color: #f6303e; 
 	min-height: 300px;
@@ -1093,8 +1099,8 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 		
 }
 
-/******************************************************************* 메인레이어3 끝 */
-/******************************************************************* 메인레이어4 시작 */
+/******************************************************************* 硫붿씤�젅�씠�뼱3 �걹 */
+/******************************************************************* 硫붿씤�젅�씠�뼱4 �떆�옉 */
 .layer4 {
 	background-image: url('../img/bg-layer4-bn.png');
 	background-position: center center;
@@ -1185,9 +1191,9 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	}
 		
 }
-/******************************************************************* 메인레이어4 끝 */
+/******************************************************************* 硫붿씤�젅�씠�뼱4 �걹 */
 
-/******************************************************************* 계정설정(로그인/회원가입) 시작 */
+/******************************************************************* 怨꾩젙�꽕�젙(濡쒓렇�씤/�쉶�썝媛��엯) �떆�옉 */
 .acc-layer {
 	text-align: left;
 	box-sizing: border-box;
@@ -1599,9 +1605,9 @@ input[type=password].input-style1::placeholder {
 	
 }
 
-/******************************************************************* 계정설정(로그인/회원가입) 끝 */
+/******************************************************************* 怨꾩젙�꽕�젙(濡쒓렇�씤/�쉶�썝媛��엯) �걹 */
 
-/******************************************************************* 리스트페이지 시작 */
+/******************************************************************* 由ъ뒪�듃�럹�씠吏� �떆�옉 */
 .playlist-layer {
 	margin-top: 80px;
 }
@@ -1881,8 +1887,8 @@ input[type=password].input-style1::placeholder {
 }
 
 
-/******************************************************************* 리스트페이지 끝 */
-/******************************************************************* 켐페인상세페이지 시작 */
+/******************************************************************* 由ъ뒪�듃�럹�씠吏� �걹 */
+/******************************************************************* 耳먰럹�씤�긽�꽭�럹�씠吏� �떆�옉 */
 .campaign-detail-wrapper {
 	
 }
@@ -2337,8 +2343,8 @@ input[type=password].input-style1::placeholder {
 	
 }
 
-/******************************************************************* 켐페인상세페이지 끝 */
-/******************************************************************* 마이페이지 시작 */
+/******************************************************************* 耳먰럹�씤�긽�꽭�럹�씠吏� �걹 */
+/******************************************************************* 留덉씠�럹�씠吏� �떆�옉 */
 .mypage .visual-layer {
 	height: 508px;
 	background-image: url('../img/bg-login.jpg');
@@ -2462,9 +2468,9 @@ input[type=password].input-style1::placeholder {
 }
 
 
-/******************************************************************* 마이페이지 끝 */
+/******************************************************************* 留덉씠�럹�씠吏� �걹 */
 
-/******************************************************************* 개인정보수정페이지 시작 */
+/******************************************************************* 媛쒖씤�젙蹂댁닔�젙�럹�씠吏� �떆�옉 */
 .normal-title-head {
 	color: #000;
 	border-bottom: 1px solid #efefef; 
@@ -2576,10 +2582,10 @@ input[type=password].input-style1::placeholder {
 	color: #000; 
 }
 
-/******************************************************************* 개인정보수정페이지 끝 */
+/******************************************************************* 媛쒖씤�젙蹂댁닔�젙�럹�씠吏� �걹 */
 
 
-/******************************************************************* 포인트-마이페이지 시작 */
+/******************************************************************* �룷�씤�듃-留덉씠�럹�씠吏� �떆�옉 */
 .point-mng-wrapper { 
 	margin-top: 50px;  
 }
@@ -2656,7 +2662,7 @@ input[type=password].input-style1::placeholder {
 	display: block;  
 }
 
-/******************************************************************* 포인트-마이페이지 끝 */
+/******************************************************************* �룷�씤�듃-留덉씠�럹�씠吏� �걹 */
 
 
 
@@ -2671,7 +2677,7 @@ input[type=password].input-style1::placeholder {
 /* 	letter-spacing: -2px;   */
 	padding: 0px 3px;  
 	color: #000;    
-	
+	cursor: pointer;
 	box-sizing: border-box;
 	width: 182px;
 	text-align: center;
@@ -2688,7 +2694,10 @@ input[type=password].input-style1::placeholder {
 	background: #f63c48;    
 	color: #fff;   
 }
-
+.comm-btn-style.black {
+	background: #000;    
+	color: #fff;   
+}
 
 .radio-style:checked,
 .radio-style:not(:checked) {
@@ -3599,7 +3608,7 @@ table .tw100 {width: 100px;}
 
 
 
-/******************************************************************* 문의하기 시작 */
+/******************************************************************* 臾몄쓽�븯湲� �떆�옉 */
 .board-write-wrapper {
 	
 }
@@ -4016,10 +4025,10 @@ table .tw100 {width: 100px;}
 }
 			
 
-/******************************************************************* 문의하기 끝 */
+/******************************************************************* 臾몄쓽�븯湲� �걹 */
 
 
-/******************************************************************* 게시판 상세보기 시작 */
+/******************************************************************* 寃뚯떆�뙋 �긽�꽭蹂닿린 �떆�옉 */
 .board-detail-view {
 	margin: 50px 0px 60px 0px;
 }
@@ -4178,12 +4187,12 @@ table .tw100 {width: 100px;}
 	color: #6e6e6e; 
 }
 
-/******************************************************************* 게시판 상세보기 끝 */
+/******************************************************************* 寃뚯떆�뙋 �긽�꽭蹂닿린 �걹 */
 
 
 
 
-/******************************************************************* 이용약관 시작 */
+/******************************************************************* �씠�슜�빟愿� �떆�옉 */
 .terms-txt-group {
 		
 }
@@ -4214,9 +4223,9 @@ table .tw100 {width: 100px;}
 .terms-txt-group .p-l-20 {padding-left: 20px;}
 
 
-/******************************************************************* 이용약관 끝 */
+/******************************************************************* �씠�슜�빟愿� �걹 */
 
-/******************************************************************* 나블나블소개 시작 */
+/******************************************************************* �굹釉붾굹釉붿냼媛� �떆�옉 */
 .intro-pg-box {
 	position: relative;
 	padding: 0px 15px;
@@ -4381,7 +4390,7 @@ table .tw100 {width: 100px;}
 	color: #000; 
 	padding: 20px 10px;
 }
-/******************************************************************* 나블나블소개 끝 */
+/******************************************************************* �굹釉붾굹釉붿냼媛� �걹 */
 
 
 
@@ -4426,7 +4435,7 @@ table .tw100 {width: 100px;}
 
 
 
-/******************************************************************* 서비스가이드(22~26) 시작 */
+/******************************************************************* �꽌鍮꾩뒪媛��씠�뱶(22~26) �떆�옉 */
 .gtw-cover {
 	padding: 50px 0px 50px 0px;
 }
@@ -4500,7 +4509,7 @@ table .tw100 {width: 100px;}
 	background: #fff;
 }  
 
-/******************************************************************* 서비스가이드(22~26) 끝 */
+/******************************************************************* �꽌鍮꾩뒪媛��씠�뱶(22~26) �걹 */
 
 
 .add-header-line {
@@ -4533,10 +4542,10 @@ table .tw100 {width: 100px;}
  
  
  
- /******************************************************************* 팝업창 디자인 시작 */
- /* 팝업창 시작 */
+ /******************************************************************* �뙘�뾽李� �뵒�옄�씤 �떆�옉 */
+ /* �뙘�뾽李� �떆�옉 */
 .pop {
-	background-color: rgba(255,255,255,0.5); 
+	background-color: rgba(255,255,255,0.2); 
 	position: fixed; width: 100%; height: 100%; 
 	z-index: 900; 
 	
@@ -4548,8 +4557,8 @@ table .tw100 {width: 100px;}
     width: 100%; height: 100%; overflow-y: scroll;
 }
 .pop .bx {
-/* 	position: absolute; top: 0; left: 0; bottom: 0; right: 0; margin: auto;  */
-	width: 730px; 
+/* 	position: absolute; top: 0; left: 0; bottom: 0; right: 0; margin: auto; width: 730px; */
+	width: 500px; 
 	margin: auto; 
 
 	
@@ -4561,8 +4570,8 @@ table .tw100 {width: 100px;}
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%); */
 	
-	top: 50px;
-	margin-bottom: 50px;
+	top: 100px;
+	margin-bottom: 100px;
 
 	border-radius: 10px;
 	-webkit-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.2);
@@ -4586,6 +4595,10 @@ table .tw100 {width: 100px;}
 .pop .border-line {margin: 10px 0px; height: 2px; background:#717171;}
 .pop .btn-close {position: absolute; right: 25px; top: 25px; cursor: pointer;}
 
+.pop .simpleArea {text-align: center;}
+.pop .simpleArea .i_n {margin: 35px 0px 45px 0px; text-align: ; font-size: 17px; color: #000;}
+.pop .simpleArea .i_n .icons {text-align: center; margin-bottom: 10px;}
+.pop .simpleArea .i_n .icons i {color: #f63c48; font-size: 40px;}
 
 .pop strong { font-weight: 600; }
 .pop .current-area {
@@ -4773,6 +4786,12 @@ table .tw100 {width: 100px;}
 	color: #f7323f; 
 }
 
+.comm-btn-style.small {
+	height: 45px;
+    line-height: 45px;
+    width: 140px;
+}
+
 @media screen and (max-width:768px) { 
 	
 	.pop .bx {width: 100%;}
@@ -4849,7 +4868,7 @@ table .tw100 {width: 100px;}
 	}
 }
 
- /******************************************************************* 팝업창 디자인 끝 */
+ /******************************************************************* �뙘�뾽李� �뵒�옄�씤 �걹 */
  
 
 .select_tabbox {

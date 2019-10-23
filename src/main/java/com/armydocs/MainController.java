@@ -45,19 +45,15 @@ public class MainController {
     @Autowired private BasicDao basicDao;
     @Autowired private JwtServiceImpl jwtService;
     @Autowired private BCryptPasswordEncoder passwordEncoder;
-	
-	
-	
-    @RequestMapping("/new")
-	public String getIntnewPage(HttpServletRequest request, ModelMap model) {return "new"; }
     
+    // 페이지
+    @RequestMapping("/test")
+	public String getTestPage(HttpServletRequest request, ModelMap model) {return "test"; }
 	
 	// 약관 페이지
     @RequestMapping("/terms/{terms}")
 	public String getTermsPage(@PathVariable String terms, HttpServletRequest request, ModelMap model) {
-		if(terms!=null && terms.equals("privacy")) {
-			return "privacy";
-		}
+		if(terms!=null && terms.equals("privacy")) {return "privacy";}
 		return "terms";
 	}
 	
@@ -84,8 +80,57 @@ public class MainController {
 	// 설문 등록 페이지
     @RequestMapping("/my/survey")
 	public String getSurveyRegisterPage(HttpServletRequest request, ModelMap model) {return "survey/register";}
-	
-	
+    
+    
+    
+    // 프로세스 페이지
+    @RequestMapping("/process/{surveyIdx}")
+	public String getprocessPage(@PathVariable int surveyIdx, ModelMap model) {
+    	
+    	SurveyVo surveyInfo = basicDao.getSurveyInfoByIdx(surveyIdx);
+    	model.put("surveyInfo", surveyInfo);
+    	return "process";
+    }
+    // 뷰어(통계) 페이지
+    @RequestMapping("/view/{surveyIdx}")
+	public String getViewPage(@PathVariable int surveyIdx, ModelMap model) {
+    	
+    	SurveyVo surveyInfo = basicDao.getSurveyInfoByIdx(surveyIdx);
+    	model.put("surveyInfo", surveyInfo);
+    	return "view";
+    }
+    
+    
+    
+    
+    // 답변 
+    @RequestMapping(value = "/survey/{surveyIdx}/answer", method = RequestMethod.POST)
+    @ResponseBody
+	public Rst answerPro(
+			@PathVariable int surveyIdx,
+			@RequestParam(required=false, value="itemsIdx") Integer itemsIdx,
+			@RequestParam(required=false, value="responseNote") String responseNote,
+			@RequestParam(required=false, value="regdate") String regdate,
+			HttpServletRequest request) throws Exception {
+    	
+    	System.out.println("HEYYYYYYYYYYYYYYYYYYYYY");
+        
+        Rst result = Rst.successInstance();
+		int memberId = jwtService.getMemberId();
+		
+		SurveyAnswer info = new SurveyAnswer(surveyIdx, itemsIdx, memberId, responseNote, regdate);
+		if(!basicDao.insertAnswer(info)) {
+			result.fail();
+		}else {
+			result.setData(info);
+		}
+        return result;
+    }
+    
+ 
+    
+    
+    
 	// 설문 항목 로드
     @RequestMapping(value = "/surveys")
     @ResponseBody
@@ -133,14 +178,14 @@ public class MainController {
 	
 	// 설문 생성 (2)
     @RequestMapping(value = "/my/survey/{surveyIdx}", method = RequestMethod.GET)
-	public String createSurvey(@PathVariable int surveyIdx, HttpServletRequest request, ModelMap model) throws Exception {
+	public String asdsdsdds(@PathVariable int surveyIdx, HttpServletRequest request, ModelMap model) throws Exception {
         
 		/*
 			해당 설문idx가 자기꺼인지 확인
 		*/
 		
 		SurveyVo inf = basicDao.getSurveyInfoByIdx(surveyIdx);
-		if(inf==null) {
+		if(inf==null) {  
 			System.out.println("Not Survey Information");
 			return "redirect:/my/";
 		}
@@ -148,11 +193,31 @@ public class MainController {
 		
         return "survey/items";
     }
-	
-	// 설문 항목 정보 로드 (2)
+    
+    
+    // 설문 기본 정보 로드
     @RequestMapping(value = "/survey/{surveyIdx}", method = RequestMethod.GET)
 	@ResponseBody
-	public Rst createSurvey2(@PathVariable int surveyIdx) throws Exception {
+	public Rst loadSurveybasicInfo(@PathVariable int surveyIdx) throws Exception {
+		
+		/*
+			해당 설문idx가 자기꺼인지 확인
+		*/
+		
+    	Rst result = Rst.successInstance();
+    	
+    	SurveyVo inf = basicDao.getSurveyInfoByIdx(surveyIdx);
+		if(inf==null) {
+			result.fail();
+		}
+		result.setData(inf);
+		return result;
+    }
+	
+	// 설문 항목 정보 로드 (2)
+    @RequestMapping(value = "/survey/items/{surveyIdx}", method = RequestMethod.GET)
+	@ResponseBody
+	public Rst createSurvey222(@PathVariable int surveyIdx) throws Exception {
 		
 		/*
 			해당 설문idx가 자기꺼인지 확인
@@ -195,129 +260,7 @@ public class MainController {
 	
 	
     
-    /** 로그아웃 */
-    @RequestMapping("/logout")
-	public String doLogout(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-        
-        System.out.println("try logout..");
-        
-        Cookie kc = new Cookie("token", null);     // (쿠키 이름)에 대한 값을 null로 지정
-        kc.setMaxAge(0);                           // 유효시간을 0으로 설정
-        response.addCookie(kc);                    // 응답 헤더에 추가해서 없어지도록 함
-        
-        System.out.println("success logout..");
-        return "home";
-    }
     
-    
-    // 회원가입
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    @ResponseBody
-	public Rst signUp(@ModelAttribute UserVo userVo, HttpServletRequest request) {
-        
-        Rst result = Rst.successInstance();
-        /*
-            아이디, 이메일 중복검사
-            기타 필드 유효성 검사
-        */
-        
-        if(!basicService.signUp(userVo)) {
-           result.fail();
-        }
-        
-        return result;
-    }
-    
-    // 로그인 처리
-    @RequestMapping("/signin")
-    @ResponseBody
-	public Rst signIn(
-        @RequestParam(required=false, value="id") String id,
-        @RequestParam(required=false, value="pw") String pw,
-        HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-        
-        Rst result = Rst.successInstance();
-        
-        UserVo user = basicService.signIn(id, pw);
-        if(user!=null) {
-            // 토큰 생성 및 리턴 처리
-            String token = jwtService.create("member", user, "member");
-            response.setHeader("Authorization", token);
-            result.setData(user);
-            
-            //System.out.println("[Login OK]");
-            
-            return result;
-        }
-        
-        return result.fail().setMessage("incorrect passowrd");
-    }
-    
-	// 회원 정보 로드
-    @RequestMapping(value="/info")
-    @ResponseBody
-    public Rst getInfoData(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-        
-    	Rst result = Rst.successInstance();
-        int memberId = jwtService.getMemberId();
-        UserVo userVo = basicDao.getUserByIdx(memberId);
-        result.setData(userVo);
-        return result;
-    }
-	
-	/** 회원 탈퇴 */
-    @RequestMapping(value="/user", method = RequestMethod.DELETE)
-    @ResponseBody
-    public Rst withdraw(HttpServletRequest request) throws Exception {
-		
-		Rst result = Rst.successInstance();
-        int memberId = jwtService.getMemberId();
-		
-		System.out.println("MemberID For Delete: "+ memberId);
-		
-		if(!basicDao.deleteUserByIdx(memberId)) {
-			return result.fail().setMessage("errors");
-		}
-		return result;
-	}
-    
-    /** 회원정보 수정 */
-    @RequestMapping(value="/user", method = RequestMethod.POST)
-    @ResponseBody
-    public Rst changeUserInfo(@ModelAttribute UserVo userVo, 
-							  @RequestParam(required=false, value="oldPassword") String oldPassword,
-							  @RequestParam(required=false, value="newPassword") String newPassword,
-							  HttpServletRequest request) throws Exception {
-        
-        System.out.println("PASSWORD: "+ oldPassword);
-		System.out.println("PASSWORD(NEW): "+ newPassword);
-		userVo.printVal();
-        
-        
-    	Rst result = Rst.successInstance();
-        int memberId = jwtService.getMemberId();
-		
-		System.out.println("MemberID: "+ memberId);
-        
-		// 회원 기본정보 업데이트
-        basicService.changeUserInformation(memberId, userVo);
-		
-		//try {
-			// 비밀번호 업데이트
-			if(oldPassword!=null && oldPassword.trim()!="" &&
-			   newPassword!=null && newPassword.trim()!="") {
-
-				if(!basicService.changePassword(memberId, oldPassword, newPassword)){
-					result.fail().setMessage("password incorrect");
-				}
-			}
-		//}catch(Exception ec) {
-			//ec.printStackTrace();
-		//}
-		
-		
-        return result;
-    }
     
 	
 	@RequestMapping(value = "/file/upload", method = RequestMethod.POST)

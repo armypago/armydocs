@@ -267,7 +267,7 @@ margin-top: 30px;
 						type : "GET",
 						dataType : "JSON",				
 						async: false,
-						url : "/survey/${survey.idx}",	
+						url : "/survey/items/${survey.idx}",	
 						beforeSend : function(xhr){
 							xhr.setRequestHeader("authorization", getCookie("token"));
 							xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");

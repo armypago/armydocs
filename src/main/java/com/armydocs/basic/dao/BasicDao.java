@@ -3,12 +3,24 @@ package com.armydocs.basic.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.armydocs.basic.vo.*;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import com.armydocs.basic.vo.SurveyAnswer;
+import com.armydocs.basic.vo.SurveyItem;
+import com.armydocs.basic.vo.SurveyVo;
+import com.armydocs.basic.vo.UserVo;
+
 
 public class BasicDao extends SqlSessionDaoSupport {
+	
+	public boolean insertAnswer(SurveyAnswer info) {
+		Integer result =  getSqlSession().insert("basic.insertAnswer", info);
+	    if(result!=null&&result>0) {
+            return true;
+        }
+        return false;
+	}
 	
 	public List<SurveyVo> getProgressSurveys() {
 		return getSqlSession().selectList("basic.getProgressSurveys");

@@ -13,7 +13,7 @@
     
 	<link type="text/css" rel="stylesheet" href="/resources/css/normalize.css"/>
 	<link rel="stylesheet" href="/resources/bxslider/jquery.bxslider.css">
-	<link type="text/css" rel="stylesheet" href="/resources/css/new.css"/>
+	<link type="text/css" rel="stylesheet" href="/resources/css/test.css"/>
     
 	<script type="text/javascript" src="/resources/js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="/resources/js/iscroll.js"></script>
