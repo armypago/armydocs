@@ -98,7 +98,7 @@ public class LoginController {
     	Rst result = Rst.successInstance();
         int memberId = jwtService.getMemberId();
         UserVo userVo = basicDao.getUserByIdx(memberId);
-        System.out.println("[안녕]: "+ userVo.getName());
+        //System.out.println("[안녕]: "+ userVo.getName());
         result.setData(userVo);
         return result;
     }
@@ -110,7 +110,7 @@ public class LoginController {
         
     	Rst result = Rst.successInstance();
         UserVo userVo = basicDao.getUserByIdx(1);
-        System.out.println("[안녕]: "+ userVo.getName());
+        //System.out.println("[안녕]: "+ userVo.getName());
         result.setData(userVo);
         return result;
     }

@@ -168,7 +168,7 @@ function toggleMypageTab(numb) {
 					content += '<tr>';
 					content += '<td>'+( data.data.length - index )+'</td>';
 					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
-					content += '<td class="tit"><a class="title" href="/process/'+value.idx+'">'+value.title+'</a></td>';
+					content += '<td class="tit"><a class="title" href="/process/'+value.idx+'">'+value.title+' <i style="color:red" class="fa fa-caret-square-right"></i></a></td>';
 					content += '<td>'+value.name+'</td>';
 					content += '<td class="date">'+value.startdate.split(" ")[0]+'</td>';
 					content += '<td class="date mobile-hidden">'+value.enddate.split(" ")[0]+'</td>';
@@ -212,7 +212,7 @@ function toggleMypageTab(numb) {
 					content += '<tr>';
 					content += '<td>'+( data.data.length - index )+'</td>';
 					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
-					content += '<td class="tit"><a class="title" href="/view/'+value.idx+'">'+value.title+'</a></td>';
+					content += '<td class="tit"><a class="title" href="/view/'+value.idx+'">'+value.title+' <i style="color:red" class="fa fa-signal"></i></a></td>';
 					content += '<td class="date">'+value.startdate.split(" ")[0]+'</td>';
 					content += '<td class="date mobile-hidden">'+value.enddate.split(" ")[0]+'</td>';
 					content += '</tr>';
@@ -290,21 +290,65 @@ function togglePop01() {
 	}
 }
 
-function togglePop02() {              
+function toggleSurveyIF(idx) {              
 	if(!pop_flag_02) {
 		
-		$(".pop").addClass("displayNone");$("body").css("height", "auto");$("body").css("overflow", "visible");
 		
-		$("#pop02").removeClass("displayNone");
-		var h = $("#pop02 .popbx").height();
-		if(h>$(window).height()) {$("#pop02 .bx").css("height", "auto");}
-		else{$("#pop02 .bx").css("height", h+"px");}
-		$("body").css("height", "100%");
-		$("body").css("overflow", "hidden");
-		pop_flag_02 = true;
+		$.ajax({ 
+			type : "GET",
+			dataType : "JSON",				
+			async: false,
+			url : "/survey/"+idx,	
+			beforeSend : function(xhr){
+				xhr.setRequestHeader("authorization", getCookie("token"));
+				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			},
+			success : function(data){							
+				console.log(data);
+				
+				
+				$("#f-s-idx").val(data.data.idx);
+				
+				$("#f-s-note").val(data.data.note);  
+				$("#f-s-title").val(data.data.title);
+				if(data.data.coverImg!=null && data.data.coverImg!="") {
+					$("#f-s-coverImg").val(data.data.coverImg);
+					$("#coverImgSrc").attr("src", data.data.coverImg);
+				}
+				
+				$("#f-s-start").val(data.data.startdate);
+                $("#f-s-start1").parent().find("> div").text(data.data.startdate.split("-")[0]); $("#f-s-start1").val(data.data.startdate.split("-")[0]);
+                $("#f-s-start2").parent().find("> div").text(data.data.startdate.split("-")[1]); $("#f-s-start2").val(data.data.startdate.split("-")[1]);
+                $("#f-s-start3").parent().find("> div").text(data.data.startdate.split("-")[2]); $("#f-s-start3").val(data.data.startdate.split("-")[2]);
+                
+                $("#f-s-end").val(data.data.enddate);
+                $("#f-s-end1").parent().find("> div").text(data.data.enddate.split("-")[0]); $("#f-s-end1").val(data.data.enddate.split("-")[0]);
+                $("#f-s-end2").parent().find("> div").text(data.data.enddate.split("-")[1]); $("#f-s-end2").val(data.data.enddate.split("-")[1]);
+                $("#f-s-end3").parent().find("> div").text(data.data.enddate.split("-")[2]); $("#f-s-end3").val(data.data.enddate.split("-")[2]);
+               
+				
+				$(".pop").addClass("displayNone");$("body").css("height", "auto");$("body").css("overflow", "visible");
+				
+				$("#pop02").removeClass("displayNone");
+				var h = $("#pop02 .popbx").height();
+				if(h>$(window).height()) {$("#pop02 .bx").css("height", "auto");}
+				else{$("#pop02 .bx").css("height", h+"px");}
+				$("body").css("height", "100%");
+				$("body").css("overflow", "hidden");
+				pop_flag_02 = true;
+				
+				$("#pop02 .bx").addClass("bounceInDown");
+				$("#pop02 .bx").addClass("animated");
+				
+				
+			}, 
+			error : function(err, err2, err3) {	
+				createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+				console.log("[ERROR]");
+				console.log(err); console.log(err2); console.log(err3); 
+			} 
+		});
 		
-		$("#pop02 .bx").addClass("bounceInDown");
-		$("#pop02 .bx").addClass("animated");
 		
 		
 	}else{
@@ -454,7 +498,23 @@ $(document).ready(function(){
 
 
 
-
+//[파일업로드 팝업 생성]
+function createFileLoad() {
+	
+	var c = '<div class="pop" id="file-upload-loading-pop"><div><div class="bx jackInTheBox animated"><div class="popbx">';
+	c += '<div class="contentbox"><div class="normal-title-head"><h1 class="tit">파일 업로드</h1><span class="cat">Upload to Server</span>';
+	c += '</div><div class="simpleArea"><div class="i_n"><div class="icons"><i class="fa fa-cloud-upload-alt"></i></div>';
+	c += '<div class="progressHbar"><div id="fu-per" style="width: 0%;"></div></div>';
+	c += '<span class="mt">파일을 업로드 하는 중입니다..</span>';
+	c += '</div><a class="comm-btn-style small black popupCloseBtn">확인</a></div></div></div></div></div></div>';
+	
+	$("#popups").html(c);
+	
+	$(".popupCloseBtn").click(function(){
+		$(this).parents(".pop").detach();
+	});
+	
+}
 
 
 

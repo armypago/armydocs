@@ -3,51 +3,39 @@
 <mapper namespace="basic">	
 	
 	
-	<!-- 설묵 항목 로드 -->
-	<select id="getItems2" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.SurveyItem">
-		select 
-			a.idx,
-			a.surveyIdx,
-			a.note,
-			a.corder,
-			a.qtype,
-			a.regdate,
-			a.responseNote,
-			b.responseNote,
-			count(*) as itemCount
-		from 
-			am_survey_items as a join am_survey_answer as b
-		on 
-			a.idx = b.itemsIdx
-		where 
-			a.surveyIdx = #{surveyIdx} 
-		order by 
-			a.corder asc
-	</select>
+	<delete id="deleteSurveyByIdx" parameterType="java.lang.Integer">
+		delete from am_survey_info where idx = #{idx}
+	</delete>
 	
-	<!-- 
+	<!-- 회원 프로필 사진 업데이트 -->
+	<update id="updateUserProfile" parameterType="java.util.Map">
+		update am_user_info 
+		set profile = #{profile}
+		where idx = #{idx}
+	</update> 
+	
+	<!-- 설문답변 통계목록 가져오기 -->
+	<select id="getSurveyStatistics" parameterType="java.lang.Integer" resultType="java.util.Map">
 		select 
 			
-			a.surveyIdx,
-			a.corder,
-			a.idx,
-			count(*) as '답변 합계',
-			a.note as '질문',
-			b.responseNote as '답변s'
+			a.idx as idx,
+			a.note as q,
+			b.responseNote as a,
+			count(*) as aSum
 			
 		from 
-			am_survey_items as a join am_survey_answer as b
+			am_survey_items as a right outer join am_survey_answer as b
 		on 
 			a.idx = b.itemsIdx
 		where
-			a.surveyIdx = 3
+			a.surveyIdx = #{surveyIdx}
 		group by
-			a.idx
+			b.itemsIdx, b.responseNote
 		order by
 			corder asc 
-		
+	</select>
 	
-	 -->
+	
 	
 	<!-- 답변 등록 -->
 	<insert id="insertAnswer" parameterType="com.armydocs.basic.vo.SurveyAnswer">
@@ -108,6 +96,20 @@
 	<select id="getInsertedSurveyIdx" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select idx from am_survey_info where title = #{title} order by idx desc limit 1
 	</select>
+	
+	
+	<!-- 설문 수정 -->
+	<insert id="updateSurvey" parameterType="com.armydocs.basic.vo.SurveyVo">
+		update am_survey_info
+		set
+			title = #{title},
+			note = #{note},
+			startdate = #{startdate},
+			enddate = #{enddate},
+			coverImg = #{coverImg}
+		where 
+			idx = #{idx}	
+	</insert>
 	
 	<!-- 설문 등록 -->
 	<insert id="insertSurvey" parameterType="com.armydocs.basic.vo.SurveyVo">

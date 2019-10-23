@@ -2134,8 +2134,8 @@ input[type=password].input-style1::placeholder {
 	color: #484848; 
 }
 
-.campaign-intro-group .intro-desc p.red {
-	color: #f74653;
+.campaign-intro-group .intro-desc .red {
+	color: #f74653;  
 }
 .campaign-contents-wrapper .map-wrapper {
 	border-top: 1px solid #efefef;
@@ -2152,6 +2152,9 @@ input[type=password].input-style1::placeholder {
 .qna-wrapping {
 	padding: 70px 0px 100px 0px;
 }
+
+.progressHbar {height: 8px; background: #717171; margin: 15px 45px;}
+.progressHbar > div {height: 100%; background: #f63c48;}
 
 @media screen and (max-width:999px) { 
 	
@@ -2365,6 +2368,16 @@ input[type=password].input-style1::placeholder {
 	width: 140px;
 	margin: 0px auto;
 }
+.mypage .visual-layer .profile-img-area .img .pic {
+	width: 100%; height: 140px;
+	background-image: url(../img/profile.png);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	display: inline-block;
+}
+
 .mypage .visual-layer .profile-img-area .img .ico-set {
 	position: absolute;
 	bottom: 0px;

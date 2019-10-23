@@ -91,9 +91,10 @@
 		.surveybox .l {
 			float: left; width: 50%; height: 100%; box-sizing: border-box;
 			background-image: url(/resources/img/bg-login.jpg); 
+			background-position: center;
 		}
 		.surveybox .emptybox {height: 100%; width: 100%; position: relative; box-sizing: border-box; }
-		.surveybox .emptybox.blk {background: rgba(0,0,0,0.3);}
+		.surveybox .emptybox.blk {background: rgba(0,0,0,0.5);}
 		.surveybox .visualText {
 			font-size: 18px; font-weight: bold;
 			color: #fff; text-align: center; 
@@ -262,7 +263,10 @@
 				$("#sd-title").html(data.data.title);
 				$("#sd-date").html( data.data.startdate.split(" ")[0] + " ~ " + data.data.enddate.split(" ")[0] );
 				$("#sd-itemcount").html(data.data.itemCount);
-				  
+				if(data.data.coverImg!=null && data.data.coverImg!="") {
+					$(".surveybox .l").css("background-image", "url("+data.data.coverImg+")");  
+				}
+				
 				
 			}, 
 			error : function(err, err2, err3) {	

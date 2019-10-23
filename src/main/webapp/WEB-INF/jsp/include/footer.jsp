@@ -7,6 +7,7 @@
     	<img src="https://osam.kr/assets/images/logo_2.19bcfff9c8cc1dff2326ef4d64acb085.svg"/>
     	<img src="https://osam.kr/assets/images/logo_3.6919b1b870367a730b1cd4ea3d49e81a.svg"/>  	
     </div>
+    
      <div class="inner">
         <a class="scrollTop" href="javascript:moveTop()"><img src="/resources/img/top.png"/></a>
         <div class="footer-links-group">
