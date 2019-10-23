@@ -13,6 +13,17 @@ public class SurveyVo {
 	private String coverImg;
 	private int itemCount;
 	
+	private String station;
+	private Integer dDay;
+	
+	public Integer getdDay() {
+		return dDay;
+	}
+
+	public void setdDay(Integer dDay) {
+		this.dDay = dDay;
+	}
+
 	public void printVal() {
 
 		String content = "";
@@ -63,6 +74,14 @@ public class SurveyVo {
 
 	public void setItemCount(int itemCount) {
 		this.itemCount = itemCount;
+	}
+
+	public String getStation() {
+		return station;
+	}
+
+	public void setStation(String station) {
+		this.station = station;
 	}
 	
 	

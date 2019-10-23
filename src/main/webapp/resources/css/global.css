@@ -565,10 +565,10 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 }
 
 
-.play-list-group {
+.card-style-wrapper {
 	
 }
-.play-list-group:after {
+.card-style-wrapper:after {
 	display: block;
     visibility: hidden;
     height: 0;
@@ -576,7 +576,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
     clear: both;
     content: '';
 }
-.play-list-group .play-list-item {
+.card-style-wrapper .card-li {
 	width: 302px;
 	height: 405px;
 	float: left; 
@@ -588,9 +588,10 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	position: relative;
 	color: #fff;   
 	perspective: 1000px;
+/* 	border-radius: 10px;          */
 /* 	overflow: hidden;  */
 }
-.play-list-group .play-list-item .flipper {
+.card-style-wrapper .card-li .flipper {
 	height: 100%;
 /* 	transition: 0.6s; */
 	
@@ -599,27 +600,33 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 /* 	position: relative; */
 }
 /* flip the pane when hovered */
-.play-list-group .play-list-item:hover .flipper, .play-list-group .play-list-item.hover .flipper {
+.card-style-wrapper .card-li:hover .flipper, .card-style-wrapper .card-li.hover .flipper {
 /*     transform: rotateY(180deg); */
 }
-.play-list-group .play-list-item .img-cover {
+.card-style-wrapper .card-li .boxx {
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover; 
-	
+	border-radius: 10px;
 	box-sizing: border-box;  
 	width: 100%; 
   	height: 100%;
 	position: absolute; 
 	backface-visibility:hidden;
+	
+	background-image:url('/resources/img/bg-login.jpg');
+	
+	-webkit-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.2);
+    box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.2);
 }
-.play-list-group .play-list-item .bg-overlay {
+.card-style-wrapper .card-li .bg-overlay {
 	
-	/* background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;  */
 	
-	background-color: rgba(0,0,0,0.5); 
+	background-color: rgba(0,0,0,0.2); 
+	
+	border-radius: 10px;
+	
 	padding: 10px 10px;
 	position: relative;
 	box-sizing: border-box;  
@@ -628,19 +635,12 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
   	height: 100%;
 /*   	backface-visibility:hidden; */
 }
-.play-list-group .play-list-item .img-cover.front {
-/* 	transform: rotateY(0deg); */
-}
-.play-list-group .play-list-item .img-cover.back {
-/* 	transform: rotateY(180deg);  */
-}
-.play-list-group .play-list-item .img-cover.back .bg-overlay {
-	background-color: rgba(0,0,0,0.9);
-}
-.play-list-group .play-list-item .top-line {
+
+
+.card-style-wrapper .card-li .top-line {
 	
 }
-.play-list-group .play-list-item .top-line:after {
+.card-style-wrapper .card-li .top-line:after {
 	display: block;
     visibility: hidden;
     height: 0;
@@ -648,67 +648,75 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
     clear: both;
     content: '';
 }
-.play-list-group .play-list-item .top-line .left {
+.card-style-wrapper .comm-btn-style {
+	height: 40px; line-height: 40px; width: 120px; font-size: 16px;
+}
+.card-style-wrapper .card-li .top-line .left {
 	float: left;
 }
-.play-list-group .play-list-item .top-line .right {
+.card-style-wrapper .card-li .top-line .right {
 	float: right;
 }
-.play-list-group .play-list-item .top-line .ico {
+.card-style-wrapper .card-li .top-line .ico {
 	margin-top: 5px;
 }
-.play-list-group .play-list-item .ment1 {
+.card-style-wrapper .card-li .ment1 {
 	font-size: 18px;
 	letter-spacing: -1px;  
 }
-.play-list-group .play-list-item .ment2 {
+.card-style-wrapper .card-li .ment2 {
 	font-size: 14px;
 	color: #ccc;  
 	letter-spacing: -1px;  
 }
-.play-list-group .play-list-item .txt-visual {
+.card-style-wrapper .card-li .txt-visual {
 	text-align: center;
 	margin-top: 40px;
 }
-.play-list-group .play-list-item .txt-visual .tit {
-	font-size: 40px;
+.card-style-wrapper .card-li .txt-visual .tit {
+	font-size: 24px;
 /* 	letter-spacing: -2px; */
 	line-height: 1.2; 
-	margin: 15px 0px;
+	margin: 15px 20px;
 }
-.play-list-group .play-list-item .txt-visual .desc {
+.card-style-wrapper .card-li .txt-visual .desc {
 	font-size: 16px; 
 	margin-top: 75px;
 	color: #ccc;   
+	position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 20px;
 }
-.play-list-group .play-list-item .txt-visual .desc .emp {
+.card-style-wrapper .card-li .txt-visual .desc .emp {
 	color: #f8aeb3; 
 }
-.play-list-group .play-list-item .back-txt-visual {
+.card-style-wrapper .card-li .back-txt-visual {
 	text-align: center;   
 	padding: 0px 10px;
 	margin-top: 110px;
 }
-.play-list-group .play-list-item .back-txt-visual .tit {
+.card-style-wrapper .card-li .back-txt-visual .tit {
 	font-size: 18px;
 	letter-spacing: -1px;
 	line-height: 1.2; 
 	margin: 15px 0px 35px 0px;
 	text-align: center;   
 }
-.play-list-group .play-list-item .back-txt-visual .progress-group {
+.card-style-wrapper .card-li .back-txt-visual .progress-group {
 
 }
-.play-list-group .play-list-item .back-txt-visual .progress-group .txt {
+.card-style-wrapper .card-li .back-txt-visual .progress-group .txt {
 	overflow: hidden;
 	color: #fff;
 	font-size: 14px;
 	margin-bottom: 2px;
 }
-.play-list-group .play-list-item .back-txt-visual .progress-group .txt .left {
+.card-style-wrapper .card-li .back-txt-visual .progress-group .txt .left {
 	float: left;
 }
-.play-list-group .play-list-item .back-txt-visual .progress-group .txt .right {
+.card-style-wrapper .card-li .back-txt-visual .progress-group .txt .right {
 	float: right; 
 }
 .progress-bar {
@@ -725,7 +733,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	width: 0%;  
 	background: #f7323f;  
 }
-.play-list-group .play-list-item .back-txt-visual .progress-group .progress-bar {
+.card-style-wrapper .card-li .back-txt-visual .progress-group .progress-bar {
 	height: 12px;
 	border-radius: 4px;
 	background: #fff;
@@ -734,15 +742,15 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	overflow: hidden; 
 	display: block; 
 }
-.play-list-group .play-list-item .back-txt-visual .progress-group .progress-bar .bar {
+.card-style-wrapper .card-li .back-txt-visual .progress-group .progress-bar .bar {
  	height: 100%;
 	width: 0%;  
 	background: #f7323f;  
 }
-.play-list-group .play-list-item .btn-area {
+.card-style-wrapper .card-li .btn-area {
 	margin-top: 80px;
 }
-.play-list-group .play-list-item .btn-learn-more {
+.card-style-wrapper .card-li .btn-learn-more {
 	background: #fff; 
 	width: 115px;
 	height: 30px;
@@ -789,20 +797,20 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	text-align: center; 
 }
 @media screen and (max-width:999px) {
-	.play-list-group {
+	.card-style-wrapper {
 		padding: 0px 0px;
 		text-align: center; 
 	}
-	.play-list-group .play-list-item {
+	.card-style-wrapper .card-li {
 		float: none; 
 		display: inline-block; 
 	    box-sizing: border-box;
 	    margin: 0px 0px 10px 0px; 
 	}	
-	.play-list-group .play-list-item .btn-area {
+	.card-style-wrapper .card-li .btn-area {
 		margin-top: 40px;
 	}
-	.play-list-group .play-list-item .btn-learn-more {
+	.card-style-wrapper .card-li .btn-learn-more {
 	    background: #fff;
 	    width: 115px;
 	    height: auto;
@@ -833,7 +841,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 		text-align: center; 
 		padding: 0px 10px 50px 10px; 
 	}
-	.play-list-group .play-list-item {
+	.card-style-wrapper .card-li {
 		width: 250px; 
 	    height: 335px;  
 	    float: none;    
@@ -842,71 +850,65 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	    margin: 0px 0px 10px 0px; 
 	}	
 	
-	.play-list-group .play-list-item .ment1 {
+	.card-style-wrapper .card-li .ment1 {
 		font-size: 12px;
 	}
-	.play-list-group .play-list-item .ment2 {
+	.card-style-wrapper .card-li .ment2 {
 		font-size: 12px;
 	}
-	.play-list-group .play-list-item .top-line .ico {
+	.card-style-wrapper .card-li .top-line .ico {
 	    margin-top: 2px;
 	    height: 12px;
 	}
-	.play-list-group .play-list-item .txt-visual .tit {
+	.card-style-wrapper .card-li .txt-visual .tit {
 	    font-size: 20px;
 	    margin: 15px 0px;
 	}
-	.play-list-group .play-list-item .txt-visual .desc {
+	.card-style-wrapper .card-li .txt-visual .desc {
 	    font-size: 14px;
 	    margin-top: 25px;
 	    color: #ccc;
 	}
-	.play-list-group .play-list-item .back-txt-visual .tit {
+	.card-style-wrapper .card-li .back-txt-visual .tit {
 		font-size: 14px;
 	}
-	.play-list-group .play-list-item .back-txt-visual .progress-group .txt {
+	.card-style-wrapper .card-li .back-txt-visual .progress-group .txt {
 		font-size: 12px;  
 	}
-	.play-list-group .play-list-item .back-txt-visual {
+	.card-style-wrapper .card-li .back-txt-visual {
 	    text-align: center;
 	    padding: 0px 10px;
 	    margin-top: 50px;
 	}
 	
-	.play-list-group .play-list-item .flipper {
+	.card-style-wrapper .card-li .flipper {
 		margin-left: 0px; 
 		margin-right: 1%;
 	}
-	.play-list-group .play-list-item:nth-child(2n) .flipper {
+	.card-style-wrapper .card-li:nth-child(2n) .flipper {
 		margin-left: 2%; 
 		margin-right: 0px;
 	}
 	
 }
 @media screen and (max-width:550px) {
-	.play-list-group .play-list-item { width: 200px; height: 268px; }	
+	.card-style-wrapper .card-li { width: 200px; height: 268px; }	
 }
 @media screen and (max-width:450px) {
-	.play-list-group .play-list-item { width: 170px; height: 227px; }	
-	.play-list-group .play-list-item .txt-visual { margin-top: 10px; }
-	.play-list-group .play-list-item .txt-visual img { width: 40px; }
-	.play-list-group .play-list-item .txt-visual .desc { font-size: 12px; }
-	.play-list-group .play-list-item .back-txt-visual .tit { font-size: 12px; letter-spacing: 0px; margin-bottom: 20px; }
-	.play-list-group .play-list-item .btn-area { margin-top: 10px; }
-	.play-list-group .play-list-item .btn-learn-more { background: #fff;width: auto;padding: 3px 12px;font-size: 12px; letter-spacing: 0px;}
+	.card-style-wrapper .card-li { width: 170px; height: 227px; }	
+	.card-style-wrapper .card-li .txt-visual { margin-top: 10px; }
+	.card-style-wrapper .card-li .txt-visual img { width: 40px; }
+	.card-style-wrapper .card-li .txt-visual .desc { font-size: 12px; }
+	.card-style-wrapper .card-li .back-txt-visual .tit { font-size: 12px; letter-spacing: 0px; margin-bottom: 20px; }
+	.card-style-wrapper .card-li .btn-area { margin-top: 10px; }
+	.card-style-wrapper .card-li .btn-learn-more { background: #fff;width: auto;padding: 3px 12px;font-size: 12px; letter-spacing: 0px;}
 }
 @media screen and (max-width:425px) {
 	/* �븞�뱶濡쒖씠�뱶 媛ㅻ윮�떆 �끂�듃4, �븘�씠�룿X */
-	.play-list-group .play-list-item { width: 165px; height: 221px; }
-	.play-list-group .play-list-item .txt-visual { margin-top: 0px; }
-	.play-list-group .play-list-item .txt-visual .desc { margin-top: 0px; }	
+	.card-style-wrapper .card-li { width: 165px; height: 221px; }
+	.card-style-wrapper .card-li .txt-visual { margin-top: 0px; }
+	.card-style-wrapper .card-li .txt-visual .desc { margin-top: 0px; }	
 }  
-/* @media screen and (max-width:400px) {
-	.play-list-group .play-list-item { float:left; width: 50%; height: 201px;}
-}   */
-/* @media screen and (max-width:300px) {
-	.play-list-group .play-list-item { width: 120px; height: 160px; }
-} */
 
 
 /******************************************************************* 硫붿씤�젅�씠�뼱2 �걹 */
@@ -4525,30 +4527,10 @@ table .tw100 {width: 100px;}
 /******************************************************************* �꽌鍮꾩뒪媛��씠�뱶(22~26) �걹 */
 
 
-.add-header-line {
-	text-align: center;
-	margin-top: 80px;
-	height: 60px;
-}
- .add-header-line .tit {
- 	position: relative;
- 	font-size: 24px;
- 	display: inline-block;
- 	color: #000; 
- 	font-weight: bold;
- }
- .add-header-line .tit .emp {
- 	color: #f63c48;
- }
- .add-header-line .bottom-bar {
- 	position: absolute;
-   bottom: -10px;
-   left: 0px; right: 0px; margin: auto; 
-   height: 3px;
-   width: 135px;
-   background: #000;
- }
- 
+.layerIntro {text-align: center; margin-bottom: 50px; color: #000; padding-top: 70px;}
+.layerIntro .t {font-size: 30px; font-weight: bold;}
+.layerIntro .s {font-size: 18px;margin-top: 7px;}
+.layerIntro .i {font-size: 24px; margin-top: 15px;}
  
  
  

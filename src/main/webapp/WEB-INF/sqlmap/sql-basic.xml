@@ -48,7 +48,17 @@
 	
 	<select id="getProgressSurveys" resultType="com.armydocs.basic.vo.SurveyVo">
 		select 
-			*
+			idx,
+			title,
+			note,
+			regdate,
+			startdate,
+			enddate,
+			userIdx,
+			name,
+			coverImg,
+			TO_DAYS(enddate) - TO_DAYS(now()) as dDay,
+			(select station from am_user_info where idx = userIdx) as station
 		from 
 			am_survey_info as a
 		where 
