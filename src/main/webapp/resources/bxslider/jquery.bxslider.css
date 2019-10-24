@@ -79,6 +79,9 @@ ul.bxslider {
 		width: 11px;
   		height: 11px;
 	}
+	.bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+		bottom: 50px;
+	}
 }
 /* .bx-wrapper .bx-pager.bx-default-pager a:hover, */
 .bx-wrapper .bx-pager.bx-default-pager a.active,

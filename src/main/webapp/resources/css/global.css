@@ -824,6 +824,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 		display: inline-block; 
 	    box-sizing: border-box;
 	    margin: 0px 0px 10px 0px; 
+	    margin: 10px;
 	}	
 	.card-style-wrapper .card-li .btn-area {
 		margin-top: 40px;
@@ -871,6 +872,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 		display: inline-block; 
 	    box-sizing: border-box;
 	    margin: 0px 0px 10px 0px; 
+	    margin: 10px;
 	}	
 	
 	.card-style-wrapper .card-li .ment1 {
@@ -925,7 +927,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 	
 }
 @media screen and (max-width:550px) {
-	.card-style-wrapper .card-li { width: 200px; height: 268px; }	
+	.card-style-wrapper .card-li { width: 200px; height: 268px; margin: 10px 5px 10px 5px;}	
 }
 @media screen and (max-width:450px) {
 	.card-style-wrapper .card-li { width: 170px; height: 227px; }	
