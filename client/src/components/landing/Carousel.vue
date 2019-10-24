@@ -31,7 +31,7 @@
             >
               {{ text }}
             </div>
-            <v-btn class="slide-btn">
+            <v-btn class="slide-btn" :to="slide.to">
               {{ slide.btn }}
             </v-btn>
           </v-col>
@@ -58,8 +58,8 @@ export default {
           "설문 및 수요조사에 참여하는 사용자에게 각각 다른 기능을 제공합니다."
         ],
         src: require("@/assets/landing/carousel1.png"),
-        btn: "아미독스 설명서 다운로드",
-        to: "/about"
+        btn: "아미독스 시작하기",
+        to: "/"
       },
       {
         title: [
@@ -73,8 +73,8 @@ export default {
           "설문 및 수요조사에 참여하는 사용자에게 각각 다른 기능을 제공합니다."
         ],
         src: require("@/assets/landing/carousel2.png"),
-        btn: "아미독스 설명서 다운로드",
-        to: "/about"
+        btn: "아미독스 시작하기",
+        to: "/"
       }
     ]
   })
