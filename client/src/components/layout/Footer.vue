@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-divider class="footer-divider"></v-divider>
+
     <v-container>
       <v-row justify="center" class="footer-company">
           <v-img
@@ -13,6 +14,7 @@
           ></v-img>
       </v-row>
     </v-container>
+
     <v-footer
       class="footer"
       height="260"
@@ -108,7 +110,7 @@ export default {
         src:
           "https://grm-project-template-bucket.s3.ap-northeast-2.amazonaws.com/organization/osam/logo/logo_big.png",
         height: "3rem",
-        width: "8rem"
+        width: "4rem"
       },
       {
         src:

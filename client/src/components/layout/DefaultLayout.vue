@@ -1,14 +1,10 @@
 <template>
   <v-app>
-    <Toolbar />
-
-    <v-content>
-      <v-container fluid>
-        <router-view></router-view>
-      </v-container>
-    </v-content>
-
-    <Footer />
+    <Toolbar/>
+      <v-content>
+        <slot></slot>
+      </v-content>
+    <Footer/>
   </v-app>
 </template>
 
