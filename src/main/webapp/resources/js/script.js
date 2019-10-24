@@ -140,99 +140,15 @@ function toggleCampaignTab(numb) {
 }
 // 마이페이지 탭 토글 
 function toggleMypageTab(numb) {
+	
 	$("#mypage-tab-wrapper .tab-section").removeClass("selected");
 	$("#mypage-tab-wrapper .tab-section"+numb).addClass("selected"); 
 	
-	if(numb==2) {
-		
-		loadAni(true);
-		
-		$.ajax({ 
-			type : "GET",
-			dataType : "JSON",	
-			data : {
-				"type" : "progress"
-			},
-			async: true,
-			url : "/surveys",	
-			beforeSend : function(xhr){
-				xhr.setRequestHeader("authorization", getCookie("token"));
-				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			},
-			success : function(data){
-				
-				console.log(data);
-				var content = "";
-				$.each(data.data, function(index, value){	
-					
-					content += '<tr>';
-					content += '<td>'+( data.data.length - index )+'</td>';
-					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
-					content += '<td class="tit"><a class="title" href="/process/'+value.idx+'">'+value.title+' <i style="color:red" class="fa fa-caret-square-right"></i></a></td>';
-					content += '<td>'+value.name+'</td>';
-					content += '<td class="date">'+value.startdate.split(" ")[0]+'</td>';
-					content += '<td class="date mobile-hidden">'+value.enddate.split(" ")[0]+'</td>';
-					content += '</tr>';
-					
-					
-				});
-				$(".pro-survey-list-count").text(data.data.length);
-				$("#pro-survey-list").html(content);
-				
-				loadAni(false);
-
-			}, 
-			error : function(err, err2, err3) {			
-				console.log("[ERROR]");
-				console.log(err); console.log(err2); console.log(err3); 	
-				loadAni(false);
-				createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
-			} 
-		});
+	if(numb==1) {	
+		loadSurveyList("process");  
 	}
-	else if(numb==3) {
-		
-		loadAni(true);
-		
-		$.ajax({ 
-			type : "GET",
-			dataType : "JSON",				
-			async: true,
-			url : "/surveys",	
-			beforeSend : function(xhr){
-				xhr.setRequestHeader("authorization", getCookie("token"));
-				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			},
-			success : function(data){
-				
-				console.log(data);
-				var content = "";
-				$.each(data.data, function(index, value){	
-					
-					content += '<tr>';
-					content += '<td>'+( data.data.length - index )+'</td>';
-					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
-					content += '<td class="tit"><a class="title" href="/view/'+value.idx+'">'+value.title+' <i style="color:red" class="fa fa-signal"></i></a></td>';
-					content += '<td class="date">'+value.startdate.split(" ")[0]+'</td>';
-					content += '<td class="date mobile-hidden">'+value.enddate.split(" ")[0]+'</td>';
-					content += '</tr>';
-					
-					
-				});
-				$(".my-survey-list-count").text(data.data.length);
-				$("#my-survey-list").html(content);
-				
-				loadAni(false);
-
-			}, 
-			error : function(err, err2, err3) {			
-				console.log("[ERROR]");
-				console.log(err); console.log(err2); console.log(err3); 	
-				loadAni(false);
-				createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
-			} 
-		});
-		
+	else if(numb==2) {
+		loadSurveyList("my");
 	}
 	
 }

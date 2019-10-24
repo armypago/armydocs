@@ -65,8 +65,7 @@
 								<span class="cat">Changing Information</span>
 							</div>
 							
-							<div class="msg-headline" style="">  
-<!-- 								<span class="txt"><strong>읽지 않은</strong> 메시지 <strong class="emp">3</strong>개입니다</span> -->
+							<div class="msg-headline">  
 								<a class="comm-btn-style red small" style='cursor:pointer;' onclick="registerSurvey()"><i class="fa fa-save"></i> 저장</a>
 							</div>
 							
@@ -92,7 +91,6 @@
 											<div class="default-inputbox mrti-80" style="width: 100%;margin-right: 10px;">
 												<input type="text" placeholder="설문 제목을 입력하세요." name="title" id="f-s-title"/>										
 											</div>
-											<!--<a class="default-btn mrti-20" href="#">중복확인</a>-->
 										</div>
 									</li>
 		

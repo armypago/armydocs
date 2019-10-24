@@ -246,64 +246,12 @@
 								또한 자신이 속한 부대를 대상으로 설문조사를 시행할 수도 있습니다.<br/>
 								<br/>
 								많은 이용/채택 부탁 드립니다.<br/>
-								<br/>
-								어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고<br/> 
-								어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고<br/>
-								어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고<br/>
-								어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고
 								
 								
 								</p>
 							</div>							
 							
 						</div>
-						
-						<div class="mid-hori-line" style="margin-top: 100px;"></div>
-						
-						<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
-							
-							<div class="contents-box p613" style="padding-right: 0px; padding-left: 613px;">
-								<h2>&#60;사업 전망&#62;</h2>
-								<p style="margin-top: 10px;">
-
-									현재 군 내 설문조사는 수기로 작성한 뒤 담당자가 해당 내용을 일일이 타이핑해 취합되고 있습니다. 
-									이러한 단순 업무를 위해 출장 및 야근을 하는 병사들이 많은데, 아미독스는 이 과정을 전산화하여 불필요한 업무와 비용을 줄이는 것을 목표로 합니다.<br/>
-									<br/>
-									단순히 결과만 출력하는 기존 설문조사와 다르게 아미독스는 빅데이터 분석을 통해 여러 통계수치를 그래프화해, 부대에서 특정 사업을 기획할 때 세부사항을 결정하는 데 도움이 됩니다. 
-									추후 아미독스의 이용률이 높아져 커뮤니티화된다면, 병사 개개인의 활용성도 커질 것으로 보입니다.<br/>
-									<br/>
-									그 사례로, 최근 개최된 국방 K-Startup과 같은 군 내 공모전에 참여한 병사들이 실제 기획 단계에서 아이디어에 대한 실수요를 예측 못 해 탈락하는 경우가 많았는데, 개인이 중대 이상의 수요를 조사하는 건 어렵기 때문입니다. 
-									따라서 병사들끼리도 수요조사가 가능하면, 대한민국 국군의 발전에 기여하는 다양한 아이디어 창출과 새로운 소통의 장을 만들 수 있을 것입니다.<br/>
-
-								</p>
-							</div>	
-							<div class="pic-area" style="left: 0; right: auto;">
-								<img src="/resources/img/vv1.jpg" style="width: 553px;"/>
-							</div>						
-						</div>
-						
-						<div class="mid-hori-line" style="margin-top: 100px;"></div>
-						
-						<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
-							<div class="pic-area">
-								<img src="/resources/img/vv2.jpg" style="width: 553px;"/>
-							</div>
-							<div class="contents-box p613">
-								<h2>&#60;개발 전망&#62;</h2>
-								<p style="margin-top: 10px;">
-
-									아미독스는 웹 기반 서비스로, 웹 서버는 Tomcat과 Spring을 기반으로 Restful 하게 구축하며, POI 라이브러리를 활용해 엑셀 파일을 관리합니다. 
-									DB는 MySQL을 사용하고, Hadoop으로 집계된 데이터를 분석합니다. 또한 ELK Stack을 사용해 대규모 요청에 따른 서버 상태를 모니터링합니다.<br/>
-									<br/>
-									웹 클라이언트는 Vue.js를 활용해 SPA로 구축하며, Vuetify와 Webpack, Babel을 사용해 다양한 브라우저를 지원하는 반응형 웹앱을 지원합니다. 
-									추가로 애플리케이션도 추가 개발하여 모바일 편의성을 극대화할 예정입니다.<br/>
-									<br/>
-									아미독스 프로젝트가 국군에서 공식적으로 운영되는 체계로 채택된다면, 수많은 장병들을 대상으로 집계된 데이터들이 통합된 환경에서 관리 및 운용될 수 있으며, 현재 4차 산업혁명 시대를 맞아 진행 중인 여러 빅데이터 및 머신러닝 프로젝트에서 더 유의미한 정보로 가공되어, 대한민국 국군의 발전에 큰 기여를 할 수 있을 것입니다.
-									<br/>
-								</p>
-							</div>							
-						</div>
-						
 						
 						<div class="mid-hori-line" style="margin-top: 100px;"></div>
 						
@@ -331,6 +279,55 @@
 							</div>						
 						</div>
 						
+						
+						
+						<div class="mid-hori-line" style="margin-top: 100px;"></div>
+						
+						<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
+							<div class="pic-area">
+								<img src="/resources/img/vv2.jpg" style="width: 553px;"/>
+							</div>
+							<div class="contents-box p613">
+								<h2>&#60;개발 전망&#62;</h2>
+								<p style="margin-top: 10px;">
+
+									아미독스는 웹 기반 서비스로, 웹 서버는 Tomcat과 Spring을 기반으로 Restful 하게 구축하며, POI 라이브러리를 활용해 엑셀 파일을 관리합니다. 
+									DB는 MySQL을 사용하고, Hadoop으로 집계된 데이터를 분석합니다. 또한 ELK Stack을 사용해 대규모 요청에 따른 서버 상태를 모니터링합니다.<br/>
+									<br/>
+									웹 클라이언트는 Vue.js를 활용해 SPA로 구축하며, Vuetify와 Webpack, Babel을 사용해 다양한 브라우저를 지원하는 반응형 웹앱을 지원합니다. 
+									추가로 애플리케이션도 추가 개발하여 모바일 편의성을 극대화할 예정입니다.<br/>
+									<br/>
+									아미독스 프로젝트가 국군에서 공식적으로 운영되는 체계로 채택된다면, 수많은 장병들을 대상으로 집계된 데이터들이 통합된 환경에서 관리 및 운용될 수 있으며, 현재 4차 산업혁명 시대를 맞아 진행 중인 여러 빅데이터 및 머신러닝 프로젝트에서 더 유의미한 정보로 가공되어, 대한민국 국군의 발전에 큰 기여를 할 수 있을 것입니다.
+									<br/>
+								</p>
+							</div>							
+						</div>
+						
+						
+						<div class="mid-hori-line" style="margin-top: 100px;"></div>
+						
+						
+						<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
+							
+							<div class="contents-box p613" style="padding-right: 0px; padding-left: 613px;">
+								<h2>&#60;사업 전망&#62;</h2>
+								<p style="margin-top: 10px;">
+
+									현재 군 내 설문조사는 수기로 작성한 뒤 담당자가 해당 내용을 일일이 타이핑해 취합되고 있습니다. 
+									이러한 단순 업무를 위해 출장 및 야근을 하는 병사들이 많은데, 아미독스는 이 과정을 전산화하여 불필요한 업무와 비용을 줄이는 것을 목표로 합니다.<br/>
+									<br/>
+									단순히 결과만 출력하는 기존 설문조사와 다르게 아미독스는 빅데이터 분석을 통해 여러 통계수치를 그래프화해, 부대에서 특정 사업을 기획할 때 세부사항을 결정하는 데 도움이 됩니다. 
+									추후 아미독스의 이용률이 높아져 커뮤니티화된다면, 병사 개개인의 활용성도 커질 것으로 보입니다.<br/>
+									<br/>
+									그 사례로, 최근 개최된 국방 K-Startup과 같은 군 내 공모전에 참여한 병사들이 실제 기획 단계에서 아이디어에 대한 실수요를 예측 못 해 탈락하는 경우가 많았는데, 개인이 중대 이상의 수요를 조사하는 건 어렵기 때문입니다. 
+									따라서 병사들끼리도 수요조사가 가능하면, 대한민국 국군의 발전에 기여하는 다양한 아이디어 창출과 새로운 소통의 장을 만들 수 있을 것입니다.<br/>
+
+								</p>
+							</div>	
+							<div class="pic-area" style="left: 0; right: auto;">
+								<img src="/resources/img/vv1.jpg" style="width: 553px;"/>
+							</div>						
+						</div>
 						
 						
 						
