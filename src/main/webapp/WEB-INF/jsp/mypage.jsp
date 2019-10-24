@@ -37,32 +37,6 @@
 <!-- #####################################################################[헤더 끝] -->
 <body>
 	<section id="wrapper" class="no-fix-menu">
-		
-		
-		
-		<!-- <div class="pop displayNone" id="file-upload-loading-pop">
-			<div>
-				<div class="bx">
-					<div class="popbx">
-						<div class="contentbox">
-							<div class="normal-title-head">
-								<h1 class="tit">파일 업로드</h1>
-								<span class="cat">Upload to Server</span>
-							</div>
-							<div class="simpleArea">
-								<div class="i_n">
-									<div class="icons">
-										<i class="fa fa-cloud-upload-alt"></i>
-									</div>
-									<div class="progressHbar"><div id="fu-per" style="width: 0%;"></div></div>
-									<span class="mt">파일을 업로드 하는 중입니다..</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
 	
 		<!-- #####################################################################[상단 시작] -->
 		<jsp:include page="./include/header2.jsp"/>
@@ -157,7 +131,6 @@
 						<div class="inner">
 						    
                             
-							<!-- 탭333333333 -->
 							<div class="tab-container tab-section tab-section3 ">
 							<form name="userVo" id="userVo" onsubmit="return false;">
                                 
@@ -245,17 +218,7 @@
 											
 										</div>
 									</li>
-									<!--<li>
-										<div class="intro-title">
-											<span class="name">성별</span>  
-										</div>
-										<div class="intro-desc">
-											<input class="radio-style" name="gender" type="radio" id="test1" checked="checked">
-											<label for="test1">여자</label>        										    
-											<input class="radio-style" name="gender" type="radio" id="test2" >
-											<label for="test2" style="margin-left: 30px;">남자</label>
-										</div>
-									</li>-->
+								
 									<li>
 										<div class="intro-title">
 											<span class="name">휴대폰</span>    
@@ -370,7 +333,6 @@
                             </form>	
 							</div>
 							
-							<!-- 탭111111 -->
 							<div class="tab-container tab-section tab-section1 selected">
 								
 								<div class="list-filter-wrapper">
@@ -425,7 +387,6 @@
 								
 							</div>
 							
-							<!-- 탭22222222222222 -->
 							<div class="tab-container tab-section tab-section2">
 								
 								<div class="list-filter-wrapper">
@@ -474,7 +435,6 @@
 							</div>
 							
 							
-							<!-- 탭44444444 -->
 							<div class="tab-container tab-section tab-section4 master-menu">
 								
 								<div class="list-filter-wrapper">
@@ -505,22 +465,13 @@
 									</tbody>
 								</table>
 								
-								
-								
 							</div>
-							
-							
-							
 							
 						</div>
 						
 					</div>
 					
-					
-					
-					
 				</div>
-				
 				
 			</div>
 		</section>
@@ -563,7 +514,7 @@
 					$("#fu-per").css('width', percentComplete+"%");
 				},
 				success : function(data){  
-					console.log(data);
+					//console.log(data);
 					$("#imgT").css("background-image", 'url(/resources/tmp/'+data.data+'), url(/resources/img/profile.png)');				
 					$("#file-upload-loading-pop .mt").text("파일을 업로드 했습니다.");
 					
@@ -601,8 +552,6 @@
 
             globalUser = data.data;
             
-            //console.log(globalUser);
-
             if($(".mypage").is(":visible")) {
                 $(".my-name").text(globalUser.name);
                 $(".my-station").text(globalUser.station);
@@ -670,7 +619,6 @@
 				$.ajax({ 
 					type : "DELETE",
 					dataType : "JSON",
-					//data : param,
 					async: false,
 					url : "/user",	
 					beforeSend : function(xhr){
@@ -687,12 +635,8 @@
 						}
 					}, 
 					error : function(err, err2, err3) {
-			
 						loadAni(false);
-						createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
-						console.log("[ERROR]");
-						console.log(err); console.log(err2); console.log(err3); 
-
+						createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");					
 					} 
 				});
 				
@@ -701,7 +645,6 @@
         }
         
         function updateUser() {
-            
             
             var recruitDate = $("#f-my-recruitDate1").val()+"-"+$("#f-my-recruitDate2").val()+"-"+$("#f-my-recruitDate3").val();
             var phonenm = $("#f-my-phone1").val()+"-"+$("#f-my-phone2").val()+"-"+$("#f-my-phone3").val();
@@ -725,10 +668,8 @@
 				}
 			}
 			
-			//console.log(param);
             loadAni(true);
             
-           
 			$.ajax({ 
 				type : "POST",
 				dataType : "JSON",
@@ -739,31 +680,21 @@
 					xhr.setRequestHeader("authorization", getCookie("token"));
 					xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 				},
-				success : function(data){
-					
-					console.log(data);
-					loadAni(false);
-					
-					if(data.statusCode != 200) {
-						
-						createPopup("exclamation-triangle","기존 사용중인 비밀번호가 일치하지 않습니다.", "bounceInDown", "확인");
-						
+				success : function(data){					
+					//console.log(data);
+					loadAni(false);					
+					if(data.statusCode != 200) {						
+						createPopup("exclamation-triangle","기존 사용중인 비밀번호가 일치하지 않습니다.", "bounceInDown", "확인");						
 					}else{
-						
 						$(".my-name").text($("#userVo input[name=name]").val());
 						$(".my-station").text($("#userVo input[name=station]").val());
 						$(".my-atype").text($("#userVo input[name=atype]").val()=="manager"?"간부":"병사");
 						$(".my-atype2").text($("#userVo input[name=atype2]").val()=="army"?"육군":$("#userVo input[name=atype2]").val()=="navy"?"해군":"공군");
-
 					}
-
 				}, 
 				error : function(err, err2, err3) {
 					loadAni(false);
 					createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
-					console.log("[ERROR]");
-					console.log(err); console.log(err2); console.log(err3); 
-					
 				} 
 			});
            
@@ -823,12 +754,10 @@
     					
     					content += '<td><a class="comm-btn-style small" style="width: 90px;" onclick="signUser('+value.idx+',this)">승인</a></td>';
     					
-    					
     					content += '</tr>';   					
     				});   				
     				$(".u-list-count").text(data.data.length);
     				$("#u-list").html(content);
-    				
     				
     				loadAni(false); 
     			}, 
@@ -990,7 +919,6 @@
         	
         }
     	
-    
         
     </script>
     

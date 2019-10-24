@@ -9,20 +9,12 @@
                            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd 
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
-   
-    
-    <!--<bean name="/home" class="io.goorm.example.HomeController"></bean>-->
-    
-    <!--<security:http pattern="/resources/**" security="none"/>
-    -->
-    
+       
     <mvc:resources mapping="/resources/**" location="/resources/" order="0"/>
     
     <context:component-scan base-package="com.armydocs" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
-    
-    
     
     <!-- 인터셉터 설정 -->
     <mvc:interceptors>   
@@ -34,7 +26,6 @@
         </mvc:interceptor>    
         
     </mvc:interceptors>
-    
     
     
     <!-- JSON 방식 지원 -->
@@ -51,8 +42,6 @@
 	          </value>
 	     </property>
 	</bean>
-    
-	
     
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>

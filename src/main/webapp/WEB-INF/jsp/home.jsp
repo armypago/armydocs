@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<!-- #####################################################################[헤더 시작] -->
 <head>
 	
 	<meta charset="UTF-8"/>
@@ -34,14 +33,10 @@
     
     
 </head>
-<!-- #####################################################################[헤더 끝] -->
 <body>
 	<section id="wrapper">
 	
-		<!-- #####################################################################[상단 시작] -->
 		<jsp:include page="./include/header.jsp"/>
-		<!-- #####################################################################[상단 끝] -->
-		<!-- #####################################################################[컨테이너 시작] -->
 		<section class="container main">	
 			<div class="container_inner">	
 				
@@ -49,8 +44,6 @@
 					<div>	
 						<div id="slider1"><!-- slide start -->				
 							<div class="slider" style="margin: 0px auto;">
-								
-								<!-- 슬라이드1 -->
 								<div class="banner-wrapper">
 									<div class="in">
 										<div class="centerbox"> 
@@ -69,8 +62,6 @@
 										</div> 
 									</div>      
 								</div>
-								
-								<!-- 슬라이드2 -->
 								<div class="banner-wrapper" style="background-image: url(/resources/img/vs2.jpg)">
 									<div class="in">
 										<div class="centerbox"> 										
@@ -89,8 +80,6 @@
 										</div> 
 									</div>      
 								</div>
-								
-								
 							</div>
 						</div><!-- slide end -->
 					</div>
@@ -98,56 +87,21 @@
 				
 				<div style="background: #f2f2f2;">
 					<div class="inner" style=" padding-bottom: 70px;">
-						
 						<div class="layerIntro">
 							<div class="t">진행중인 설문</div>
 							<div class="s">현재 참여 가능한 <strong class="card-sum">1,892</strong>개의 설문이 진행 중입니다.</div>
 							<div class="i"><i class="fa fa-arrow-down"></i></div>
 						</div>
-						
 						<ul class="card-style-wrapper"></ul>
-						
 						<div style="text-align: center; margin-top: 30px;">
 							<a class="comm-btn-style red" href="/my">더보기</a>
 						</div>
-								
 					</div>
 				</div>
 				
 				<div class="nable-intro-wrapper np">
 						
 					<div class="inner">
-						
-						
-						<!-- <div class="intro-pg-box">
-							<div class="pic-area">
-								<div style="position: relatvie; width: 653px; height: 536px;">
-									<img src="/resources/img/v_pc.png" style="position: absolute; top: -20px; left: -20px;"/>
-									<img src="/resources/img/v_mobile.png" style="position: absolute; bottom: -50px; right: -60px; width: 260px;"/>
-								</div> 
-							</div>
-							<div class="contents-box p653">  
-								<h2>장병 설문 플랫폼 ‘아미독스’</h2>
-								
-								<p style="margin-top: 30px;">
-								
-								아미독스는<br/>군 내에서 수기로 시행되는 각종 설문조사를<br/> 
-								전산화하여 군 인트라넷에 구현한 웹 사이트 체계입니다.<br/>
-								<br/> 
-								부대 내 각종 설문 작성 및 결과를 분석하는 관리자와<br/> 
-								설문 및 수요조사에 참여하는 사용자에게 각각 다른 기능을 제공합니다.<br/> 
-								<br/> 
-								사용자는 관리자에게 승인받은 병사들로 구성되며, <br/>
-								지정 기간 내에 등록된 설문을 제출하거나 수정할 수 있습니다.<br/> 
-								또한 자신이 속한 부대를 대상으로 설문조사를 시행할 수도 있습니다.<br/>
-								<br/>
-								많은 이용/채택 부탁 드립니다.<br/>
-								
-								
-								</p>
-							</div>							
-							
-						</div> -->
 						
 						<div class="mid-hori-line intro"></div>
 						
@@ -213,39 +167,12 @@
 									따라서 병사들끼리도 수요조사가 가능하면, 대한민국 국군의 발전에 기여하는 다양한 아이디어 창출과 새로운 소통의 장을 만들 수 있을 것입니다.<br/>									
 								</p>
 							</div>				
-						</div>
-						
-					<!-- 	<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
-							
-							<div class="contents-box p613" style="padding-right: 0px; padding-left: 613px;">
-								<h2>&#60;사업 전망&#62;</h2>
-								<p style="margin-top: 10px;">
-
-									현재 군 내 설문조사는 수기로 작성한 뒤 담당자가 해당 내용을 일일이 타이핑해 취합되고 있습니다. 
-									이러한 단순 업무를 위해 출장 및 야근을 하는 병사들이 많은데, 아미독스는 이 과정을 전산화하여 불필요한 업무와 비용을 줄이는 것을 목표로 합니다.<br/>
-									<br/>
-									단순히 결과만 출력하는 기존 설문조사와 다르게 아미독스는 빅데이터 분석을 통해 여러 통계수치를 그래프화해, 부대에서 특정 사업을 기획할 때 세부사항을 결정하는 데 도움이 됩니다. 
-									추후 아미독스의 이용률이 높아져 커뮤니티화된다면, 병사 개개인의 활용성도 커질 것으로 보입니다.<br/>
-									<br/>
-									그 사례로, 최근 개최된 국방 K-Startup과 같은 군 내 공모전에 참여한 병사들이 실제 기획 단계에서 아이디어에 대한 실수요를 예측 못 해 탈락하는 경우가 많았는데, 개인이 중대 이상의 수요를 조사하는 건 어렵기 때문입니다. 
-									따라서 병사들끼리도 수요조사가 가능하면, 대한민국 국군의 발전에 기여하는 다양한 아이디어 창출과 새로운 소통의 장을 만들 수 있을 것입니다.<br/>
-
-								</p>
-							</div>	
-							<div class="pic-area" style="left: 0; right: auto;">
-								<img src="/resources/img/vv1.jpg" style="width: 553px;"/>
-							</div>						
-						</div>
-						 -->
-						
-						
-						
+						</div>		
 						
 					</div>
 				
 				</div>
 				
-				<!-- #####################################################################[레이어2] -->
 				<div class="layer add-layer2" id="counting" style="border-top: 1px solid #E7E8EF; background: #f2f2f2;">
 					<div class="inner">	
 						
@@ -306,27 +233,18 @@
 			</div>
 		
 		</section>
-		<!-- #####################################################################[컨테이너 끝] -->
-		<!-- #####################################################################[하단 시작] -->
 		<jsp:include page="./include/footer.jsp"/>
-		<!-- #####################################################################[하단 끝] -->
 	</section>
 	
 	<script>
-    
         getUserInfo(function(data){
-    
             var c = '<li><a href="/my">대시보드</a></li><li><a href="/logout">로그아웃</a></li>';
             $("#header-priv").html(c);
-
-
         }, function(err){
             var c = '<li><a href="/join">회원가입</a></li><li><a href="/login">로그인</a></li>';
             $("#header-priv").html(c);
             console.log("로그아웃 상태입니다.");
         }); 
-        
-        
         
         function loadSur() {
 			loadAni(true);
@@ -338,20 +256,13 @@
 					"type" : "progress"
 				},
 				async: true,
-				url : "/surveys",	
-// 				beforeSend : function(xhr){
-// 					xhr.setRequestHeader("authorization", getCookie("token"));
-// 					xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-// 				},
+				url : "/surveys",
 				success : function(data){  
-					
-					console.log(data);
+					//console.log(data);
 					var content = "";
 					var i = 0;
 					$.each(data.data, function(index, value){	
-						
 						i++;
-						
 						if(i<=8){
 							content += '<li class="card-li">';
 							content += '<div><div class="boxx" style="background-image: url('+value.coverImg+'), url(/resources/img/bg-login.jpg);">';
@@ -375,14 +286,10 @@
 							content += '</div></div></div></div>';
 							content += '</li>';
 						}
-						
-						
 					});
 					$(".card-sum").text(data.data.length);
 					$(".card-style-wrapper").html(content);
-					
 					loadAni(false);
-
 				}, 
 				error : function(err, err2, err3) {			
 					console.log("[ERROR]");
@@ -392,8 +299,7 @@
 				} 
 			});
 		}
-		loadSur();
-        
+		loadSur();    
     </script>
 	
 </body>
