@@ -127,13 +127,13 @@
 								<ul class="tab-group">
 									
 									<li>
-										<a class="tab tab-section tab-section2" onclick="toggleMypageTab(2)">진행중인 설문<span class="bottom-bar"></span></span><span class="numb pro-survey-list-count"></span></a>
+										<a class="tab tab-section tab-section1 selected" onclick="toggleMypageTab(1)">진행중인 설문<span class="bottom-bar"></span></span><span class="numb pro-survey-list-count"></span></a>
 									</li> 
 									<li>
-										<a class="tab tab-section tab-section3" onclick="toggleMypageTab(3)">마이 설문<span class="bottom-bar"></span></span><span class="numb my-survey-list-count"></span></a>
+										<a class="tab tab-section tab-section2" onclick="toggleMypageTab(2)">마이 설문<span class="bottom-bar"></span></span><span class="numb my-survey-list-count"></span></a>
 									</li>	
 									<li>
-										<a class="tab tab-section tab-section1 selected" onclick="toggleMypageTab(1)">프로필 수정<span class="bottom-bar"></span></a>
+										<a class="tab tab-section tab-section3" onclick="toggleMypageTab(3)">프로필 수정<span class="bottom-bar"></span></a>
 									</li>
 																
 								</ul>
@@ -151,24 +151,11 @@
 						<div class="inner">
 						    
                             
-							<!-- 탭1 -->
-							<div class="tab-container tab-section tab-section1 selected">
+							<!-- 탭333333333 -->
+							<div class="tab-container tab-section tab-section3 ">
 							<form name="userVo" id="userVo" onsubmit="return false;">
-                                <!-- <div class="normal-title-head">
-									<h1 class="tit">개인정보 수정</h1>
-									<span class="cat">Personal editor</span>
-								</div> -->
-								
+                                
 								<ul class="profile-modify-group">
-									<!-- <li>
-										<div class="intro-title" style="line-height: 140px;">
-											<span class="name">프로필 사진</span>
-										</div>
-										<div class="intro-desc">
-											<img class="va-bottom" src="img/profile.png"/>
-											<a class="default-btn va-bottom upload-btn" href="#">이미지 업로드</a>
-										</div>
-									</li> -->
 									<li>
 										<div class="intro-title">
 											<span class="name">군번(아이디)</span>
@@ -377,8 +364,8 @@
                             </form>	
 							</div>
 							
-							<!-- 탭2 -->
-							<div class="tab-container tab-section tab-section2">
+							<!-- 탭111111 -->
+							<div class="tab-container tab-section tab-section1 selected">
 								
 								<div class="list-filter-wrapper">
 									<div class="row-filter">
@@ -454,8 +441,8 @@
 								
 							</div>
 							
-							<!-- 탭3 -->
-							<div class="tab-container tab-section tab-section3">
+							<!-- 탭22222222222222 -->
+							<div class="tab-container tab-section tab-section2">
 								
 								<div class="list-filter-wrapper">
 									<div class="row-filter">
@@ -790,6 +777,101 @@
 			});
            
         }
+        
+        
+        // 설문 목록 로드
+        function loadSurveyList(type) {
+        	
+        	if(type=="process") {  
+        		loadAni(true);   		
+        		$.ajax({ 
+        			type : "GET",
+        			dataType : "JSON",	
+        			data : { "type" : "progress" },
+        			async: true,
+        			url : "/surveys",	
+        			beforeSend : function(xhr){
+        				xhr.setRequestHeader("authorization", getCookie("token"));
+        				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        			},
+        			success : function(data){  	
+        				console.log(data);
+        				var content = "";
+        				$.each(data.data, function(index, value){	  					
+        					content += '<tr>';
+        					content += '<td>'+( data.data.length - index )+'</td>';
+        					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
+        					content += '<td class="tit"><a class="title" href="/process/'+value.idx+'">';
+        					
+        					content += '<i style="color: #f63c48" class="fa fa-play-circle"></i>';
+        					
+        					content += '&nbsp;';
+
+        					content += value.title;
+        					
+        					content += '</a></td>';
+        					content += '<td>'+value.name+'</td>';
+        					content += '<td class="date">'+value.startdate.split(" ")[0]+'</td>';
+        					content += '<td class="date mobile-hidden">'+value.enddate.split(" ")[0]+'</td>';
+        					content += '</tr>';   					
+        				});   				
+        				$(".pro-survey-list-count").text(data.data.length);
+        				$("#pro-survey-list").html(content);
+        				loadAni(false); 
+        			}, 
+        			error : function(err, err2, err3) {			
+        				loadAni(false);
+        				createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+        			} 
+        		});   
+        	} else {
+        		loadAni(true);
+        		$.ajax({ 
+        			type : "GET",
+        			dataType : "JSON",				
+        			async: true,
+        			url : "/surveys",	
+        			beforeSend : function(xhr){
+        				xhr.setRequestHeader("authorization", getCookie("token"));
+        				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        			},
+        			success : function(data){
+        				console.log(data);
+        				var content = "";
+        				$.each(data.data, function(index, value){	      					
+        					content += '<tr>';
+        					content += '<td>'+( data.data.length - index )+'</td>';
+        					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
+        					content += '<td class="tit"><a class="title" href="/view/'+value.idx+'">';
+        					
+							content += '<i style="color: #f63c48;" class="fa fa-chart-line"></i>';
+        					
+        					content += '&nbsp;';
+
+        					content += value.title;
+        					
+        					content += '</a></td>';
+        					content += '<td class="date">'+value.startdate.split(" ")[0]+'</td>';
+        					content += '<td class="date mobile-hidden">'+value.enddate.split(" ")[0]+'</td>';
+        					content += '</tr>';
+        					
+        				});
+        				$(".my-survey-list-count").text(data.data.length);
+        				$("#my-survey-list").html(content);     				
+        				loadAni(false);  
+        			}, 
+        			error : function(err, err2, err3) {				
+        				loadAni(false);
+        				createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+        			} 
+        		});
+        	}
+        	
+        }
+        
+        
+        loadSurveyList("process");
+        loadSurveyList("my");
         
     </script>
     
