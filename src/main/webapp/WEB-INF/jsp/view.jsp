@@ -288,6 +288,8 @@
 										var numb = index+1;
 										var c = '';
 										
+										var answerSum = 0;   
+										
 										// 객관식 답변
 										if(value.qtype=="multiple") {
 											
