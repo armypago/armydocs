@@ -391,29 +391,33 @@
 										// 주관식 답변
 										else{
 											
-											c += '<li>';
-											c += '<div class="title">'+numb+'. '+value.note+'</div>';
-											c += '<div class="subs">답변한 수: '+(answerSum)+'명</div>';
-											c += '<div class="sta">';
-											c += '<ul class="alist">';
 											
+											var cc = '';
 											
 											for(var tmp=0;tmp<data.data.slist.length;tmp++) {				
 												if(value.idx == data.data.slist[tmp].idx){
 													
 													console.log("=> 답변:"+ data.data.slist[tmp].a +", 합계:"+data.data.slist[tmp].aSum);
 													
-													c += '<li>'+data.data.slist[tmp].a;
+													cc += '<li>'+data.data.slist[tmp].a;
 													if(data.data.slist[tmp].aSum>1) {
-														c += ' ('+data.data.slist[tmp].aSum+')';
+														cc += ' ('+data.data.slist[tmp].aSum+')';
 														answerSum += data.data.slist[tmp].aSum;
 													}else{
 														answerSum++; 
 													}
-													c += '</li>';
+													cc += '</li>';
 													
 												}  
 											}
+											
+											c += '<li>';
+											c += '<div class="title">'+numb+'. '+value.note+'</div>';
+											c += '<div class="subs">답변한 수: '+(answerSum)+'명</div>';
+											c += '<div class="sta">';
+											c += '<ul class="alist">';
+											
+											c += cc;
 											
 											c += '</ul></div>';
 											c += '</li>';
