@@ -319,7 +319,27 @@
 			return false;
 		}
         
+		
+		
+		
+		let today = new Date();
+		let year = today.getFullYear(); // 년도
+		let month = today.getMonth() + 1;  // 월
+		let date = today.getDate();  // 날짜
+		let day = today.getDay();  // 요일
+		
+		var nowDate = year + '-' + month + '-' + date;
+		
+		$("#f-s-start").val(nowDate);
+        $("#f-s-start1").parent().find("> div").text(year); $("#f-s-start1").val(year);
+        $("#f-s-start2").parent().find("> div").text(month); $("#f-s-start2").val(month);
+        $("#f-s-start3").parent().find("> div").text(date); $("#f-s-start3").val(date);
         
+        $("#f-s-end").val(nowDate);
+        $("#f-s-end1").parent().find("> div").text(year); $("#f-s-end1").val(year);
+        $("#f-s-end2").parent().find("> div").text(month); $("#f-s-end2").val(month);
+        $("#f-s-end3").parent().find("> div").text(date); $("#f-s-end3").val(date);
+		
         
     </script>
     

@@ -3008,6 +3008,10 @@ input[type=password].input-style1::placeholder {
 .board-table-style1 tbody tr {
 	border-bottom: 1px solid #efefef; 
 }
+.board-table-style1 tbody tr:hover {
+	background: #efefef;
+}
+
 .board-table-style1 tbody td {
 	padding: 15px;	
 	text-align: center;
