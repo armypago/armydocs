@@ -11,6 +11,7 @@ public class SurveyVo {
 	private String name;
 	private Integer userIdx;
 	private String coverImg;
+	private String bTarget;
 	private int itemCount;
 	
 	private String station;
@@ -28,6 +29,7 @@ public class SurveyVo {
 	public void printVal() {
 
 		String content = "";
+		content += "bTarget: " + bTarget+", ";
 		content += "idx:"+idx+", ";
 		content += "regdate:"+regdate+", ";
 		content += "startdate:"+startdate+", ";
@@ -92,6 +94,16 @@ public class SurveyVo {
 	public void setProgressFlag(boolean progressFlag) {
 		this.progressFlag = progressFlag;
 	}
+
+	public String getbTarget() {
+		return bTarget;
+	}
+
+	public void setbTarget(String bTarget) {
+		this.bTarget = bTarget;
+	}
+
+	
 	
 	
 }

@@ -384,7 +384,15 @@
 													<li><a data-val="PROGRESS">진행중인 설문만</a></li>
 												</ul>
 											</div>
-											
+											<div class="select_box f_2_sel" data-target="pro-survey-list">
+												<div style="width: 140px;">설문 대상</div>
+												<input type="hidden" value="all"/>
+												<ul style="width: 152px;">
+													<li><a data-val="all">전체 대상</a></li> 
+													<li><a data-val="soldier">병사</a></li>
+													<li><a data-val="manager">간부</a></li>
+												</ul>
+											</div>
 										</div>
 										
 										<div class="search-inputbox m100">
@@ -399,8 +407,9 @@
 								<table class="board-table-style1" style="margin-bottom: 150px;">
 									<thead>
 										<tr>
-											<th class="tw100">순서</th>
-											<th class="tw140">작성일</th>
+											<th>순서</th>
+											<th class="tw110">작성일</th>
+											<th>대상</th>
 											<th>설문제목</th>
 											<th class="tw100">작성자</th>
 											<th class="tw110 mobile-last"><a href="#">시작일<img src="/resources/img/ico-order-asc.png"/></a></th>
@@ -421,7 +430,18 @@
 								
 								<div class="list-filter-wrapper">
 									<div class="row-filter">
-										
+										<div class="inlinegroup_m">
+											
+											<div class="select_box f_2_sel" data-target="my-survey-list">
+												<div style="width: 140px;">설문 대상</div>
+												<input type="hidden" value="all"/>
+												<ul style="width: 152px;">
+													<li><a data-val="all">전체 대상</a></li> 
+													<li><a data-val="soldier">병사</a></li>
+													<li><a data-val="manager">간부</a></li>
+												</ul>
+											</div>
+										</div>
 										<div class="search-inputbox m100">
 											<input type="text" data-target="my-survey-list" placeholder="검색어를 입력하세요" onkeyup="saerchK(this)"/>
 										</div>
@@ -434,8 +454,9 @@
 								<table class="board-table-style1" style="margin-bottom: 150px;">
 									<thead>
 										<tr>
-											<th class="tw100">순서</th>
-											<th class="tw140">작성일</th>
+											<th>순서</th>
+											<th class="tw110">작성일</th>
+											<th>대상</th>
 											<th>설문제목</th>
 											<th class="tw110 mobile-last"><a href="#">시작일</a></th>
 											<th class="tw110 mobile-hidden"><a href="#">마감일</a></th>
@@ -837,9 +858,10 @@
         				console.log(data);
         				var content = "";
         				$.each(data.data, function(index, value){	  					
-        					content += '<tr class="pf'+(value.progressFlag==true?"T":"F")+'" data-title="'+value.title+'">';
+        					content += '<tr class="pf'+(value.progressFlag==true?"T":"F")+' tg_'+(value.bTarget)+'" data-title="'+value.title+'">';
         					content += '<td>'+( data.data.length - index )+'</td>';
         					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
+        					content += '<td>'+(value.bTarget=="all"?"전체":value.bTarget=="manager"?"간부":"병사")+'</td>';
         					content += '<td class="tit"><a class="title" href="/process/'+value.idx+'">';
         					
         					if(value.progressFlag==true) {
@@ -878,11 +900,12 @@
         			},
         			success : function(data){
         				console.log(data);
-        				var content = "";
+        				var content = "";    
         				$.each(data.data, function(index, value){	      					
-        					content += '<tr data-title="'+value.title+'">';
+        					content += '<tr data-title="'+value.title+'" class="tg_'+(value.bTarget)+'">';
         					content += '<td>'+( data.data.length - index )+'</td>';
         					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
+        					content += '<td>'+(value.bTarget=="all"?"전체":value.bTarget=="manager"?"간부":"병사")+'</td>';
         					content += '<td class="tit"><a class="title" href="/view/'+value.idx+'">';
         					
 							content += '<i style="color: #f63c48;" class="fa fa-chart-line"></i>';
@@ -925,6 +948,24 @@
     		}else{
     			$("#pro-survey-list tr").removeClass("displayNone");	
     		}
+    	});
+        
+        $(".f_2_sel ul li a").click(function(){
+    		var txt = $(this).text(); 
+    		$(this).parents(".select_box").find("> div").html(txt); 
+    		$(this).parents(".select_box").find("input[type=hidden]").val($(this).attr("data-val"));
+    		
+    		var tbodyClass = $(this).parents(".f_2_sel").attr("data-target");
+    		
+    		$("#"+tbodyClass+" tr").addClass("displayNone");
+    		
+    		
+    		
+    		if($(this).attr("data-val")=="all"){
+    			$("#"+tbodyClass+" tr").removeClass("displayNone");
+    		}else {
+    			$("#"+tbodyClass+" tr.tg_"+$(this).attr("data-val")).removeClass("displayNone");
+    		} 
     	});
         
         function saerchK(i) {

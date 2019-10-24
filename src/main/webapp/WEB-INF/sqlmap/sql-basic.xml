@@ -67,6 +67,7 @@
 			userIdx,
 			name,
 			coverImg,
+			bTarget,
 			TO_DAYS(enddate) - TO_DAYS(now()) as dDay,
 			(select station from am_user_info where idx = userIdx) as station,
 			if(now() between a.startdate and a.enddate, true, false) as progressFlag
@@ -105,7 +106,7 @@
 	<!-- 설문 정보 조회 -->
 	<select id="getSurveyInfoByIdx" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.SurveyVo">
 		select 
-			idx, title, note, regdate, startdate, enddate, userIdx, name, coverImg,
+			idx, title, note, regdate, startdate, enddate, userIdx, name, coverImg, bTarget,
 			(select count(*) from am_survey_items where surveyidx = am_survey_info.idx) as itemCount
 		from 
 			am_survey_info 
@@ -127,7 +128,8 @@
 			note = #{note},
 			startdate = #{startdate},
 			enddate = #{enddate},
-			coverImg = #{coverImg}
+			coverImg = #{coverImg},
+			bTarget = #{bTarget}
 		where 
 			idx = #{idx}	
 	</insert>
@@ -135,9 +137,9 @@
 	<!-- 설문 등록 -->
 	<insert id="insertSurvey" parameterType="com.armydocs.basic.vo.SurveyVo">
 		insert into am_survey_info
-			(title, note, regdate, startdate, enddate, userIdx, name, coverImg)
+			(title, note, regdate, startdate, enddate, userIdx, name, coverImg, bTarget)
 		values
-			(#{title}, #{note}, now(), #{startdate}, #{enddate}, #{userIdx}, #{name}, #{coverImg})
+			(#{title}, #{note}, now(), #{startdate}, #{enddate}, #{userIdx}, #{name}, #{coverImg}, #{bTarget})
 	</insert>
 	
 	<!-- 회원 제거 -->
