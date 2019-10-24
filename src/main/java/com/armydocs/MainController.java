@@ -41,8 +41,8 @@ public class MainController {
     @Autowired private BCryptPasswordEncoder passwordEncoder;
     
     // 페이지
-    @RequestMapping("/test")
-	public String getTestPage(HttpServletRequest request, ModelMap model) {return "test"; }
+    @RequestMapping("/developers")
+	public String getTestPage(HttpServletRequest request, ModelMap model) {return "developers"; }
 	
 	// 약관 페이지
     @RequestMapping("/terms/{terms}")

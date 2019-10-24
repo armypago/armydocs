@@ -185,7 +185,7 @@
         });*/
         getUserInfo(function(data){
     
-            var c = '<li><a href="/my">마이페이지</a></li><li><a href="/logout">로그아웃</a></li>';
+            var c = '<li><a href="/my">대시보드</a></li><li><a href="/logout">로그아웃</a></li>';
             $("#header-priv").html(c);
 
 

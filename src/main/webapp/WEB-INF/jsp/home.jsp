@@ -60,17 +60,15 @@
 		                                        <strong style="font-weight:400;">아미독스</strong>는 <strong style="font-weight:500;">편리</strong>합니다.
 		                                        	<br class="mobile-hidden"/>
 		                                        	누구든지! 언제! 어디서든!
-		                                        <br class="mobile-hidden"/>
-												
+		                                        	<br class="mobile-hidden"/>
 												  <strong style="font-weight:400;">설문에 참여</strong>할 수 있습니다.
-												
 											</div>
 											<p class="bn-ment2">  
 												아미독스 프로젝트는 군 내에서 수기로 시행되는 각종 설문조사를<br class="mobile-hidden"/>전산화하여 군 인트라넷에 구현한 웹 사이트 체계입니다. 
 		                                        
 											</p>
 											<div class="bn-btn-wrap">
-												<a class="comm-btn-style red" onclick="getInfo()"><i style="position: relative; top: 1px;" class="fa fa-sticky-note"></i> 설문 등록하기</a>
+												<a class="comm-btn-style red" href="/my/survey"><i style="position: relative; top: 1px;" class="fa fa-sticky-note"></i> 설문 등록하기</a>
 											</div> 
 										</div> 
 									</div>      
@@ -90,57 +88,12 @@
 												설문 및 수요조사에 참여하는 사용자에게 각각 다른 기능을 제공합니다.
 											</p>
 											<div class="bn-btn-wrap">
-												<a class="comm-btn-style " onclick="getInfo()"><i style="position: relative; top: 1px;" class="fa fa-sticky-note"></i> 설문 등록하기</a>
+												<a class="comm-btn-style " href="/my/survey"><i style="position: relative; top: 1px;" class="fa fa-sticky-note"></i> 설문 등록하기</a>
 											</div> 
 										</div> 
 									</div>      
 								</div>
 								
-								<!-- 슬라이드1 -->
-								<div class="banner-wrapper">
-									<div class="in">
-										<div class="centerbox"> 
-										
-											<div class="bn-ment">
-		                                        
-		                                        <strong style="font-weight:400;">아미독스</strong>는 <strong style="font-weight:500;">편리</strong>합니다.
-		                                        	<br class="mobile-hidden"/>
-		                                        	누구든지! 언제! 어디서든!
-		                                        <br class="mobile-hidden"/>
-												
-												  <strong style="font-weight:400;">설문에 참여</strong>할 수 있습니다.
-												
-											</div>
-											<p class="bn-ment2">  
-												아미독스 프로젝트는 군 내에서 수기로 시행되는 각종 설문조사를<br class="mobile-hidden"/>전산화하여 군 인트라넷에 구현한 웹 사이트 체계입니다. 
-		                                        
-											</p>
-											<div class="bn-btn-wrap">
-												<a class="comm-btn-style red" onclick="getInfo()"><i style="position: relative; top: 1px;" class="fa fa-sticky-note"></i> 설문 등록하기</a>
-											</div> 
-										</div> 
-									</div>      
-								</div>
-								
-								<!-- 슬라이드2 -->
-								<div class="banner-wrapper" style="background-image: url(/resources/img/vs1.jpg)">
-									<div class="in">
-										<div class="centerbox"> 									 	
-											<div class="bn-ment">											
-												전 장병 <strong style="font-weight:400;">누구나</strong> 설문을 등록하거나 <br class="mobile-hidden"/>
-												참여하고, 결과를 <strong style="font-weight:400;">분석</strong>할 수 있습니다.		                                        
-											</div>
-											<p class="bn-ment2">  
-												아미독스 프로젝트는 군 내에서 수기로 시행되는 각종 설문조사를<br class="mobile-hidden"/>전산화하여 군 인트라넷에 구현한 웹 사이트 체계입니다. 
-		                                        <br class="mobile-hidden"/>부대 내 각종 설문 작성 및 결과를 분석하는 관리자와 <br class="mobile-hidden"/>
-												설문 및 수요조사에 참여하는 사용자에게 각각 다른 기능을 제공합니다.
-											</p>
-											<div class="bn-btn-wrap">
-												<a class="comm-btn-style " onclick="getInfo()"><i style="position: relative; top: 1px;" class="fa fa-sticky-note"></i> 설문 등록하기</a>
-											</div> 
-										</div> 
-									</div>      
-								</div>
 								
 							</div>
 						</div><!-- slide end -->
@@ -464,7 +417,7 @@
         });*/
         getUserInfo(function(data){
     
-            var c = '<li><a href="/my">마이페이지</a></li><li><a href="/logout">로그아웃</a></li>';
+            var c = '<li><a href="/my">대시보드</a></li><li><a href="/logout">로그아웃</a></li>';
             $("#header-priv").html(c);
 
 
