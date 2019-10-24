@@ -9,10 +9,10 @@
     </div>
     
      <div class="inner">
-        <a class="scrollTop" href="javascript:moveTop()"><img src="/resources/img/top.png"/></a>
+        <a class="scrollTop" href="javascript:moveTop()"><i class="fa fa-arrow-up" style="color: #f63c48; font-size: 20px;"></i></a>
         <div class="footer-links-group">
-            <a class="link" href="/intro">아미독스 소개</a>
-            <a class="link" href="#">개발자 소개</a>
+            <a class="link" href="/">아미독스 소개</a>
+            <a class="link" href="/developers">개발자 소개</a>
             <a class="link" href="#">문의하기</a>
             <a class="link" href="#">이용가이드</a>
         </div>

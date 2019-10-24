@@ -15,8 +15,8 @@
     <div class="in">
         <div>  
             <ul class="top-links">
-                <li><a href="/">이용가이드</a></li>
-                <li><a href="/">고객센터</a></li>
+                <li><a href="/developers">개발팀 소개</a></li>
+<!--                 <li><a href="/">고객센터</a></li> -->
             </ul>
             <div class="logo-area animated jello">
                 <div class="logo-top">

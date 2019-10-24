@@ -136,7 +136,7 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 }  
 .header .top-links li a {
 	color: #fff; 
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 42px;
 }
 .header .top-links.right {
@@ -212,7 +212,12 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 /* 	top: -60px; */
 	bottom: 60px;
     right: 60px;
+    background: #fff;
+    border-radius: 50%;
+    width: 25px; height: 25px;
+    box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.2);
 }
+.footer .scrollTop > i {position: absolute; bottom: 2px; left: 0; right: 0; margin: auto;}
 
 @media screen and (max-width:1550px) {
 	.footer .scrollTop {
@@ -406,6 +411,8 @@ textarea {font-family: 'NanumSquare', sans-serif; color:#000; font-size:12px; ou
 		box-sizing: border-box;
 		background-image: url('../img/bn-add.png');  */
 		height: 550px;  
+		background-size: cover;
+    	background-position: center;
 	}
 	.add-layer .centerbox {
 		padding: 0px 15px;
@@ -1439,13 +1446,13 @@ input[type=password].input-style1::placeholder {
 @media screen and (max-width:999px) { 
 	
 	.acc-layer.login {
-	    background-image: url(../img/bg-login.png);
+	    background-image: url(../img/bg-login.jpg);
 	    background-size: cover;
 	    background-repeat: no-repeat;
 	    height: auto;
 	}	
 	.acc-layer.join {
-	    background-image: url(../img/bg-join.png);
+	    background-image: url(../img/bg-join.jpg);
 	    background-size: cover;
 	    background-repeat: no-repeat;
 	    height: auto;

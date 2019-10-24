@@ -51,7 +51,7 @@
 								<form action="#" method="post" onsubmit="return loginFunc();">
 									<div class="headline">
 										<h2 class="tit">로그인</h2>
-										<a class="sub" href="03.html">회원가입</a>     
+										<a class="sub" href="/join">회원가입</a>     
 									</div>
 									<div class="field-row">
 										<input id="id" name="id" autocomplete="off" type="text" class="input-style1" placeholder="아이디(군번)" value="19-76039568"/>
@@ -69,14 +69,6 @@
 									 
 									<div class="field-row">
 										<input type="submit" class="btn-login" value="로그인"/>
-										
-										
-										<div style="text-align: center; margin-top: 15px;">
-											<input type="image" style="height: 80px;margin: 10px 0px 5px 0px;" src="/resources/img/login_naver.png"/>
-											<input type="image" style="height: 80px;margin: 10px 0px 5px 0px;" src="/resources/img/login_kakao.png"/>
-											<input type="image" style="height: 80px;margin: 10px 0px 5px 0px;" src="/resources/img/login_google.png"/>
-										</div>
-										
 										
 										<div class="p-vertical-10 p-horizontal-15">
 											<a class="search-ment" href="#">아이디/비밀번호 찾기</a>

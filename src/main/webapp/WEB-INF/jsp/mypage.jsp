@@ -96,13 +96,13 @@
 									<ul class="mymenu-group">
 										<li>
 											<a class="area">
-												<span class="emp my-survey-list-count">00</span><br/>
+												<span class="emp my-survey-list-count">0</span><br/>
 												내가 작성한 설문
 											</a>
 										</li>
 										<li>
 											<a class="area" style="cursor: pointer;" onclick="">
-												<span class="emp pro-survey-list-count">00</span><br/>
+												<span class="emp pro-survey-list-count">0</span><br/>
 												현재 참여 가능한 설문
 											</a>
 										</li>
@@ -125,15 +125,17 @@
 						<div class="contents-navi-wrapper">
 							<div class="inner">
 								<ul class="tab-group">
-									<li>
-										<a class="tab tab-section tab-section1 selected" onclick="toggleMypageTab(1)">프로필 수정<span class="bottom-bar"></span></a>
-									</li>
+									
 									<li>
 										<a class="tab tab-section tab-section2" onclick="toggleMypageTab(2)">진행중인 설문<span class="bottom-bar"></span></span><span class="numb pro-survey-list-count"></span></a>
 									</li> 
 									<li>
 										<a class="tab tab-section tab-section3" onclick="toggleMypageTab(3)">마이 설문<span class="bottom-bar"></span></span><span class="numb my-survey-list-count"></span></a>
-									</li>								
+									</li>	
+									<li>
+										<a class="tab tab-section tab-section1 selected" onclick="toggleMypageTab(1)">프로필 수정<span class="bottom-bar"></span></a>
+									</li>
+																
 								</ul>
 								<ul class="tab-group absol-right">
 									<li class="mobile-hidden">
@@ -622,7 +624,7 @@
         
         getUserInfo(function(data){
     
-            var c = '<li><a href="/my">마이페이지</a></li><li><a href="/logout">로그아웃</a></li>';
+            var c = '<li><a href="/my">대시보드</a></li><li><a href="/logout">로그아웃</a></li>';
             $("#header-priv").html(c);
 
             globalUser = data.data;

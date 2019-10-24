@@ -1,7 +1,6 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
-<!-- #####################################################################[헤더 시작] -->
 <head>
 	
 	<meta charset="UTF-8"/>
@@ -21,6 +20,7 @@
     <link rel="shortcut icon" href="/resources/img/favicon.png" type="image/x-icon"/> 
 	
 	<script type="text/javascript" src="/resources/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.form.js"></script> 
 	<script type="text/javascript" src="/resources/js/jquery.flip.min.js"></script>
 	<script type="text/javascript" src="/resources/js/iscroll.js"></script>
 	<script src="/resources/bxslider/jquery.bxslider.min.js"></script>
@@ -31,44 +31,88 @@
     <script src="/resources/fontawesome/js/fontawesome.min.js"></script> 
 	
 </head>
-<!-- #####################################################################[헤더 끝] -->
 <body>
 	<section id="wrapper">
 	
-		<!-- #####################################################################[상단 시작] -->
+		<!-- #####################################################################[상단 시작] -->		
 		<jsp:include page="./include/header2.jsp"/>
 		<!-- #####################################################################[상단 끝] -->
 		<!-- #####################################################################[컨테이너 시작] -->
 		<section class="container push-top">	
 			<div class="container_inner">	
 				
-				
-				<!-- #####################################################################[레이어1] -->
-				<form>
-					<div class="pdd-top_bottom-50">
+				<div class="inf-mod-wrapper">
+					<div class="inner">
 						
-						<div class="inner">
-							
-							<div class="normal-title-head">  
-								<h1 class="tit">이용약관</h1>
-								<span class="cat">Access Terms</span>
-							</div>
-							
-							<div class="terms-txt-group">
-								
-								
-								
-							</div>
-							
-							
-							
+						<div class="normal-title-head">
+							<h1 class="tit">개발팀 소개</h1>
+							<span class="cat">Introduce armydocs developers</span>
 						</div>
-					
+						  
+					</div>   
+				</div>
+				
+				<div class="nable-intro-wrapper">
+						
+					<div class="inner">
+						
+						
+						<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
+							
+							<div class="contents-box p613" style="padding-right: 0px; padding-left: 613px;">
+								<h2>&#60;육군본부 개발장교 김은진&#62;</h2>
+								<p style="margin-top: 10px;">
+
+									육군본부 정보체계관리단 전산체계 개발과 S/W개발장교<br/>
+									중위 (2019.10)<br/>
+									
+								</p>
+								<h2 style="margin-top: 30px;">&#60;국방부 SW개발병 이지수&#62;</h2>
+								<p style="margin-top: 10px;">
+
+									계룡대근무지원단 지원연대 관리대대 2중대 14분대<br/>
+									육군본부 정보체계관리단 전산체계 개발과 S/W개발병<br/>
+									일등병 (2019.10)<br/>
+									
+								</p>
+								<h2 style="margin-top: 30px;">&#60;국방부 SW개발병 정희성&#62;</h2>
+								<p style="margin-top: 10px;">
+
+									계룡대근무지원단 지원연대 관리대대 2중대 14분대<br/>
+									육군본부 정보체계관리단 전산체계 운영지원과 S/W개발병<br/>
+									일등병 (2019.10)<br/>
+									
+								</p>
+								<h2 style="margin-top: 30px;">&#60;국방부 SW개발병 최준영&#62;</h2>
+								<p style="margin-top: 10px;">
+
+									계룡대근무지원단 지원연대 관리대대 2중대 14분대<br/>
+									육군본부 정보체계관리단 전산체계 개발과 S/W개발병<br/>
+									일등병 (2019.10)<br/>
+									
+								</p>
+							</div>	
+							<div class="pic-area" style="left: 0; right: auto;">
+								<img src="/resources/img/vv100.png" style="width: 553px;"/>
+							</div>						
+						</div>
+						
+						<div class="mid-hori-line" style="margin-top: 100px;"></div>
+						
+						
+						
+						
+						
+						
 					</div>
-				</form> 
+				
+				</div>
+				
+				
 				
 				
 			</div>
+		
 		</section>
 		<!-- #####################################################################[컨테이너 끝] -->
 		<!-- #####################################################################[하단 시작] -->
@@ -78,12 +122,6 @@
 	
 	<script>
     
-        /*getUserInfo(function(data){
-            var c = '<li><a href="/my">마이페이지</a></li>';
-            $("#header-priv").html(c);
-        }, function(err){
-            console.log("로그아웃 상태입니다.");
-        });*/
         getUserInfo(function(data){
     
             var c = '<li><a href="/my">대시보드</a></li><li><a href="/logout">로그아웃</a></li>';
