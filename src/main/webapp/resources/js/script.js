@@ -233,6 +233,8 @@ function toggleSurveyIF(idx) {
 					$("#coverImgSrc").attr("src", data.data.coverImg);
 				}
 				
+				$("#f-s-bTarget").parent().find("> div").text(data.data.bTarget=="all"?"전체":data.data.bTarget=="manager"?"간부":"병사"); $("#f-s-bTarget").val(data.data.bTarget);
+				
 				$("#f-s-start").val(data.data.startdate);
                 $("#f-s-start1").parent().find("> div").text(data.data.startdate.split("-")[0]); $("#f-s-start1").val(data.data.startdate.split("-")[0]);
                 $("#f-s-start2").parent().find("> div").text(data.data.startdate.split("-")[1]); $("#f-s-start2").val(data.data.startdate.split("-")[1]);

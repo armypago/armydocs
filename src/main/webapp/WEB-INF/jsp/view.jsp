@@ -93,6 +93,23 @@
 											</div>
 										</div>
 									</li>
+									
+									<li>
+										<div class="intro-title">
+											<span class="name">타깃 설정</span>
+										</div>
+										<div class="intro-desc m-row-two-item">  
+											<div class="select_box" style="width: 200px;">
+												<div style="width: 100%; box-sizing: border-box;">전체</div>
+												<input type="hidden" name="bTarget" value="all" id="f-s-bTarget"/>
+												<ul style="width: 100%;box-sizing: border-box;">
+													<li><a data-val="all">전체</a></li>
+													<li><a data-val="soldier">병사</a></li> 
+													<li><a data-val="manager">간부</a></li> 
+												</ul>
+											</div>
+										</div>
+									</li>
 		
 									<li>
 										<div class="intro-title">
@@ -389,6 +406,9 @@
 													c += '<li>'+data.data.slist[tmp].a;
 													if(data.data.slist[tmp].aSum>1) {
 														c += ' ('+data.data.slist[tmp].aSum+')';
+														answerSum += data.data.slist[tmp].aSum;
+													}else{
+														answerSum++; 
 													}
 													c += '</li>';
 													
