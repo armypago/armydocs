@@ -89,6 +89,7 @@ public class BasicServiceImpl implements BasicService {
         if(user!=null) {
             
             if( passwordEncoder.matches(pw, user.getPassword()) ) {
+            	user = basicDao.getUserById(id);
 				return user; // ID,PW 모두 일치할시 회원객체 리턴
 			}
         }

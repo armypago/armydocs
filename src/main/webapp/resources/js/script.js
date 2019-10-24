@@ -46,13 +46,14 @@ $(document).ready(function(){
 		}
 	});
 	$(".select_box ul li a").click(function(){
+		if($(this).hasClass("x")){return false;}
 		var txt = $(this).text(); 
 		$(this).parents(".select_box").find("> div").html(txt); 
 		$(this).parents(".select_box").find("input[type=hidden]").val($(this).attr("data-val"));
 	});
 	
 	// 커스텀셀렉트박스
-	$(".select_tabbox").click(function(){
+	/*$(".select_tabbox").click(function(){
 		var ul = $(this).find("ul");
 		if($(ul).is(":visible")) {
 			$(ul).prev().removeClass("up");
@@ -67,7 +68,7 @@ $(document).ready(function(){
 	$(".select_tabbox ul li a").click(function(){
 		var txt = $(this).text();
 		$(this).parents(".select_tabbox").find("> div").html(txt); 
-	});
+	});*/
 	
 	
 	var initHeader;

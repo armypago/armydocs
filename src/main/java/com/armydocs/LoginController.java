@@ -78,12 +78,11 @@ public class LoginController {
         UserVo user = basicService.signIn(id, pw);
         if(user!=null) {
             // 토큰 생성 및 리턴 처리
-            String token = jwtService.create("member", user, "member");
-            response.setHeader("Authorization", token);
+            if(user.isSignFlag()) {
+            	String token = jwtService.create("member", user, "member");
+                response.setHeader("Authorization", token);
+            }
             result.setData(user);
-            
-            //System.out.println("[Login OK]");
-            
             return result;
         }
         

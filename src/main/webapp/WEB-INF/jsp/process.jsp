@@ -149,7 +149,7 @@
 						<br/><br/>
 						
 						<a class="comm-btn-style " href="/my"><i style='top: 1px;position: relative;' class="fa fa-arrow-left"></i> 돌아가기</a>&nbsp;&nbsp;
-						<a class="comm-btn-style red">통계 보기 <i style='top: 1px;position: relative;' class="fa fa-info-circle"></i></a>
+<!-- 						<a class="comm-btn-style red">통계 보기 <i style='top: 1px;position: relative;' class="fa fa-info-circle"></i></a> -->
 						
 					
 					</div>

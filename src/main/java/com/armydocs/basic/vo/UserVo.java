@@ -16,6 +16,8 @@ public class UserVo {
     private String atype2;
     
     private String profile;
+    private boolean masterFlag;
+    private boolean signFlag;
 	
 	public void printVal() {
 
@@ -78,7 +80,21 @@ public class UserVo {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-    
-    
+	public boolean isMasterFlag() {
+		return masterFlag;
+	}
+	public void setMasterFlag(boolean masterFlag) {
+		this.masterFlag = masterFlag;
+	}
+
+
+	public boolean isSignFlag() {
+		return signFlag;
+	}
+
+
+	public void setSignFlag(boolean signFlag) {
+		this.signFlag = signFlag;
+	}
     
 }

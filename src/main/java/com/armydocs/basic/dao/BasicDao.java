@@ -15,6 +15,18 @@ import com.armydocs.basic.vo.UserVo;
 public class BasicDao extends SqlSessionDaoSupport {
 	
 	
+	public boolean signUser(int idx) {
+		Integer result = getSqlSession().update("basic.signUser", idx);
+		if(result!=null&&result>0) {
+            return true;
+        }
+        return false;
+	}
+	
+	public List<UserVo> getNotSignedUsers() {
+		return getSqlSession().selectList("basic.getNotSignedUsers");
+	}
+	
 	public boolean deleteSurveyByIdx(int idx) {
 		Integer result = getSqlSession().delete("basic.deleteSurveyByIdx", idx);
 		if(result!=null&&result>0) {

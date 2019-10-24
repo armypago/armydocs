@@ -94,6 +94,7 @@
 								</div>						
 								<div>  
 									<ul class="mymenu-group">
+										
 										<li>
 											<a class="area">
 												<span class="emp my-survey-list-count">0</span><br/>
@@ -101,17 +102,18 @@
 											</a>
 										</li>
 										<li>
-											<a class="area" style="cursor: pointer;" onclick="">
+											<a class="area">
 												<span class="emp pro-survey-list-count">0</span><br/>
 												현재 참여 가능한 설문
 											</a>
 										</li>
 										<li>
-											<a class="area" style="cursor: pointer;" onclick="">
+											<a class="area">
 												<span class="emp my-signDate">0000-00-00</span><br/>
-												마지막 접속일
-											</a>
+												회원 가입일
+											</a> 
 										</li>
+										
 									</ul>
 								
 								</div>
@@ -127,15 +129,19 @@
 								<ul class="tab-group">
 									
 									<li>
-										<a class="tab tab-section tab-section1 selected" onclick="toggleMypageTab(1)">진행중인 설문<span class="bottom-bar"></span></span><span class="numb pro-survey-list-count"></span></a>
+										<a class="tab tab-section tab-section1 selected" onclick="toggleMypageTab(1)">진행중인 설문<span class="bottom-bar"></span><span class="numb pro-survey-list-count"></span></a>
 									</li> 
 									<li>
-										<a class="tab tab-section tab-section2" onclick="toggleMypageTab(2)">마이 설문<span class="bottom-bar"></span></span><span class="numb my-survey-list-count"></span></a>
+										<a class="tab tab-section tab-section2" onclick="toggleMypageTab(2)">My 설문<span class="bottom-bar"></span><span class="numb my-survey-list-count"></span></a>
 									</li>	
 									<li>
 										<a class="tab tab-section tab-section3" onclick="toggleMypageTab(3)">프로필 수정<span class="bottom-bar"></span></a>
 									</li>
-																
+									
+									<li class="master-menu">
+										<a class="tab tab-section tab-section4" onclick="toggleMypageTab(4)">승인을 기다리는 목록<span class="bottom-bar"></span><span class="numb u-list-count"></span></a>
+									</li>
+																		
 								</ul>
 								<ul class="tab-group absol-right">
 									<li class="mobile-hidden">
@@ -370,29 +376,19 @@
 								<div class="list-filter-wrapper">
 									<div class="row-filter">
 										<div class="inlinegroup_m">
-											<div class="select_box">
-												<div style="width: 100px;">
-													필터1
-												</div>
-												<ul style="width: 112px;">
-													<li><a>제목</a></li> 
-													<li><a>제목</a></li>
+											<div class="select_box f_1_sel">
+												<div style="width: 140px;">전체 설문</div>
+												<input type="hidden" value="ALL"/>
+												<ul style="width: 152px;">
+													<li><a data-val="ALL">전체 설문</a></li> 
+													<li><a data-val="PROGRESS">진행중인 설문만</a></li>
 												</ul>
 											</div>
 											
-											<div class="select_box">
-												<div style="width: 120px;">
-													필터2
-												</div>
-												<ul style="width: 132px;">
-													<li><a>관리대대</a></li> 
-													<li><a>제목</a></li>
-												</ul>
-											</div>
 										</div>
 										
 										<div class="search-inputbox m100">
-											<input type="text" placeholder="검색어를 입력하세요"/>
+											<input type="text" data-target="pro-survey-list" placeholder="검색어를 입력하세요" onkeyup="saerchK(this)"/>
 										</div>
 									</div>
 									<div class="row-filter">
@@ -400,7 +396,7 @@
 									</div> 
 								</div>
 					
-								<table class="board-table-style1">
+								<table class="board-table-style1" style="margin-bottom: 150px;">
 									<thead>
 										<tr>
 											<th class="tw100">순서</th>
@@ -418,27 +414,6 @@
 									</tbody>
 								</table>
 								
-								<div class="c-paging-group">
-									
-									<a class="numb" href="#">◀</a>
-									<a class="numb" href="#">…</a>
-									
-									<a class="numb" href="#">6</a>
-									<a class="numb" href="#">7</a>
-									<a class="numb" href="#">8</a>
-									<a class="numb" href="#">9</a>
-									<a class="numb selected" href="#">10</a>
-									<a class="numb" href="#">11</a>
-									<a class="numb" href="#">12</a>
-									<a class="numb" href="#">13</a>
-									<a class="numb" href="#">14</a>
-									<a class="numb" href="#">15</a>
-									
-									<a class="numb" href="#">…</a>
-									<a class="numb" href="#">▶</a>
-									
-								</div>
-								
 							</div>
 							
 							<!-- 탭22222222222222 -->
@@ -446,31 +421,9 @@
 								
 								<div class="list-filter-wrapper">
 									<div class="row-filter">
-										<div class="inlinegroup_m">
-											<div class="select_box">
-												<div style="width: 100px;">
-													필터1
-												</div>
-												<ul style="width: 112px;">
-													<li><a>제목</a></li> 
-													<li><a>제목</a></li>
-													<li><a>제목</a></li>
-												</ul>
-											</div>
-											
-											<div class="select_box">
-												<div style="width: 120px;">
-													필터2
-												</div>
-												<ul style="width: 132px;">
-													<li><a>제목</a></li> 
-													<li><a>제목</a></li>
-													<li><a>제목</a></li>
-												</ul>
-											</div>
-										</div>
+										
 										<div class="search-inputbox m100">
-											<input type="text" placeholder="검색어를 입력하세요"/>
+											<input type="text" data-target="my-survey-list" placeholder="검색어를 입력하세요" onkeyup="saerchK(this)"/>
 										</div>
 									</div>
 									<div class="row-filter">
@@ -478,14 +431,14 @@
 									</div>   
 								</div>
 								
-								<table class="board-table-style1">
+								<table class="board-table-style1" style="margin-bottom: 150px;">
 									<thead>
 										<tr>
 											<th class="tw100">순서</th>
 											<th class="tw140">작성일</th>
 											<th>설문제목</th>
-											<th class="tw110 mobile-last"><a href="#">시작일<img src="/resources/img/ico-order-asc.png"/></a></th>
-											<th class="tw110 mobile-hidden"><a href="#">마감일<img src="/resources/img/ico-order-asc.png"/></a></th>
+											<th class="tw110 mobile-last"><a href="#">시작일</a></th>
+											<th class="tw110 mobile-hidden"><a href="#">마감일</a></th>
 										</tr>
 									</thead>
 									<tbody id="my-survey-list">
@@ -495,29 +448,47 @@
 									</tbody>
 								</table>
 								
-								<div class="c-paging-group">
-									
-									<a class="numb" href="#">◀</a>
-									<a class="numb" href="#">…</a>
-									
-									<a class="numb" href="#">6</a>
-									<a class="numb" href="#">7</a>
-									<a class="numb" href="#">8</a>
-									<a class="numb" href="#">9</a>
-									<a class="numb selected" href="#">10</a>
-									<a class="numb" href="#">11</a>
-									<a class="numb" href="#">12</a>
-									<a class="numb" href="#">13</a>
-									<a class="numb" href="#">14</a>
-									<a class="numb" href="#">15</a>
-									
-									<a class="numb" href="#">…</a>
-									<a class="numb" href="#">▶</a>
-									
-								</div>
 								
 								
 							</div>
+							
+							
+							<!-- 탭44444444 -->
+							<div class="tab-container tab-section tab-section4 master-menu">
+								
+								<div class="list-filter-wrapper">
+									<div class="row-filter">
+										<div class="search-inputbox m100">
+											<input type="text" data-target="u-list" placeholder="회원 이름,군번을 검색하세요" onkeyup="saerchK(this)"/>
+										</div>
+									</div>
+									<div class="row-filter">
+										<p class="counting"><strong>승인</strong>을 기다리는 회원 <strong class="emp u-list-count">0</strong>명</p>
+									</div>   
+								</div>
+								
+								<table class="board-table-style1" style="margin-bottom: 150px;">
+									<thead>
+										<tr>
+											<th class="tw100">IDX</th>
+											<th>소속</th>
+											<th>이름 (군번)</th>
+											<th>이메일</th>
+											<th>핸드폰번호</th>
+											<th>가입일</th>
+											<th>승인</th>
+										</tr>
+									</thead>
+									<tbody id="u-list">
+										
+									</tbody>
+								</table>
+								
+								
+								
+							</div>
+							
+							
 							
 							
 						</div>
@@ -548,6 +519,8 @@
 	</div>
 
     <script>
+    	
+    	
     
 	    function sleepI (delay) {
     	   var start = new Date().getTime();
@@ -565,20 +538,12 @@
 			var thss = this.form;
 			$(thss).ajaxSubmit({
 				dataType : "JSON",
-				//data: {"type":"profile"},
-				uploadProgress : function(event,position,total,percentComplete){
-					
+				uploadProgress : function(event,position,total,percentComplete){				
 					$("#fu-per").css('width', percentComplete+"%");
 				},
-			/* 	beforeSend : function(xhr){
-					xhr.setRequestHeader("authorization", getCookie("token"));
-					xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				}, */
 				success : function(data){  
 					console.log(data);
-					$("#imgT").css("background-image", 'url(/resources/tmp/'+data.data+'), url(/resources/img/profile.png)');
-					//$("#imgT").addClass("animated");
-					//$("#imgT").addClass("flipInX"); 
+					$("#imgT").css("background-image", 'url(/resources/tmp/'+data.data+'), url(/resources/img/profile.png)');				
 					$("#file-upload-loading-pop .mt").text("파일을 업로드 했습니다.");
 					
 					$.ajax({ 
@@ -595,7 +560,6 @@
 							console.log(data);	
 						}
 					});
-					
 				}, 
 				error : function(xhr, status, error) {		
 					$("#file-upload-loading-pop").detach(); 
@@ -660,6 +624,12 @@
                 
                 var imgRes = globalUser.profile;
                 $("#imgT").css("background-image", "url("+imgRes+"), url(/resources/img/profile.png)");
+                
+                if(globalUser.masterFlag==false){
+                	$(".master-menu").detach();
+                }
+                
+                
             }
 
 
@@ -779,6 +749,75 @@
         }
         
         
+        // 회원 승인 처리
+        function signUser(idx,i) {
+        	loadAni(true);   		
+    		$.ajax({ 
+    			type : "POST",
+    			dataType : "JSON",	
+    			async: true,
+    			url : "/user/sign/"+idx,	
+    			beforeSend : function(xhr){
+    				xhr.setRequestHeader("authorization", getCookie("token"));
+    				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    			},
+    			success : function(data){  	
+    				console.log(data);
+    				$(i).parents("tr").fadeOut();
+    				loadAni(false); 
+    			}, 
+    			error : function(err, err2, err3) {			
+    				loadAni(false);
+    				createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+    			} 
+    		});   
+        }
+        
+        // 미승인 회원 목록 로드
+        function loadNotSignedUser() {
+        	loadAni(true);   		
+    		$.ajax({ 
+    			type : "GET",
+    			dataType : "JSON",	
+    			data : { "type" : "notSigned" },
+    			async: true,
+    			url : "/users",	
+    			beforeSend : function(xhr){
+    				xhr.setRequestHeader("authorization", getCookie("token"));
+    				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    			},
+    			success : function(data){  	
+    				console.log(data);
+    				var content = "";
+    				$.each(data.data, function(index, value){	  					
+    					
+    					content += '<tr data-title="'+value.name+', '+value.id+'">';
+    					content += '<td>'+value.idx+'</td>';
+    					content += '<td>'+value.station+'</td>';
+    					content += '<td>'+( value.name ) + '(' + (value.id) + ')' +'</td>';
+    					
+    					content += '<td>'+value.email+'</td>';
+    					content += '<td>'+value.phonenm+'</td>';
+    					content += '<td>'+value.signDate+'</td>';
+    					
+    					content += '<td><a class="comm-btn-style small" style="width: 90px;" onclick="signUser('+value.idx+',this)">승인</a></td>';
+    					
+    					
+    					content += '</tr>';   					
+    				});   				
+    				$(".u-list-count").text(data.data.length);
+    				$("#u-list").html(content);
+    				
+    				
+    				loadAni(false); 
+    			}, 
+    			error : function(err, err2, err3) {			
+    				loadAni(false);
+    				createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+    			} 
+    		});   
+        }
+        
         // 설문 목록 로드
         function loadSurveyList(type) {
         	
@@ -798,16 +837,18 @@
         				console.log(data);
         				var content = "";
         				$.each(data.data, function(index, value){	  					
-        					content += '<tr>';
+        					content += '<tr class="pf'+(value.progressFlag==true?"T":"F")+'" data-title="'+value.title+'">';
         					content += '<td>'+( data.data.length - index )+'</td>';
         					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
         					content += '<td class="tit"><a class="title" href="/process/'+value.idx+'">';
         					
-        					content += '<i style="color: #f63c48" class="fa fa-play-circle"></i>';
-        					
-        					content += '&nbsp;';
-
-        					content += value.title;
+        					if(value.progressFlag==true) {
+        						content += '<i style="color: #f63c48" class="fa fa-play-circle"></i>&nbsp;';
+        						content +=  value.title + ' [<strong>D-'+value.dDay+'</strong>]';
+        					}else{
+        						content += '<i style="color: #000" class="fa fa-hourglass-end"></i>&nbsp;';
+        						content += value.title;
+        					}
         					
         					content += '</a></td>';
         					content += '<td>'+value.name+'</td>';
@@ -839,7 +880,7 @@
         				console.log(data);
         				var content = "";
         				$.each(data.data, function(index, value){	      					
-        					content += '<tr>';
+        					content += '<tr data-title="'+value.title+'">';
         					content += '<td>'+( data.data.length - index )+'</td>';
         					content += '<td>'+value.regdate.split(" ")[0]+'</td>';
         					content += '<td class="tit"><a class="title" href="/view/'+value.idx+'">';
@@ -872,6 +913,43 @@
         
         loadSurveyList("process");
         loadSurveyList("my");
+        loadNotSignedUser();
+        
+        $(".f_1_sel ul li a").click(function(){
+    		var txt = $(this).text(); 
+    		$(this).parents(".select_box").find("> div").html(txt); 
+    		$(this).parents(".select_box").find("input[type=hidden]").val($(this).attr("data-val"));
+    		
+    		if($(this).attr("data-val")=="PROGRESS"){
+    			$("#pro-survey-list tr.pfF").addClass("displayNone");
+    		}else{
+    			$("#pro-survey-list tr").removeClass("displayNone");	
+    		}
+    	});
+        
+        function saerchK(i) {
+       
+        	var t = $(i).attr("data-target");
+        	var v = $(i).val().trim();
+        	//console.log(v);
+        	
+        	$("#"+t+" tr").removeClass("displayNone");
+        	if(v=="") {   
+        		return;
+        	}
+        	
+        	$("#"+t+" tr").each(function(index, value){
+        		var title = $(this).attr("data-title");
+        		if(title.indexOf(v) != -1){
+        			$(this).removeClass("displayNone");
+        		}else{
+        			$(this).addClass("displayNone");
+        		}
+        	});
+        	
+        }
+    	
+    
         
     </script>
     
