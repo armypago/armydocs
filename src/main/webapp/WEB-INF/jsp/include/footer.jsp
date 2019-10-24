@@ -1,6 +1,44 @@
 <%@ page contentType = "text/html;charset=utf-8" %>
 
 <footer class="footer">
+	
+	<div class="pc-hidden fixed-footer-wrapper">
+		<div>
+			<ul>
+				<li>
+					<a href="/" class="selected">
+						<i class="fa fa-home"></i>
+						<span>홈</span>
+					</a>
+				</li>
+				<li>
+					<a href="/my/survey/register">
+						<i class="fa fa-chart-line"></i>
+						<span>설문등록</span>
+					</a>
+				</li>
+				<li>    
+					<a href="/my">
+						<i class="fa fa-star"></i>
+						<span>대시보드</span>
+					</a>
+				</li>
+				<li>
+					<a href="/developers">
+						<i class="fa fa-code"></i>
+						<span>개발팀</span>
+					</a>
+				</li>
+				<li>
+					<a href="/logout">
+						<i class="fa fa-sign-out-alt"></i>
+						<span>로그아웃</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
     <div class="corps">   	
     	<img src="https://grm-project-template-bucket.s3.ap-northeast-2.amazonaws.com/organization/osam/logo/logo_big.png"/>   	
     	<img  src="https://osam.kr/assets/images/logo_1.bcb31edd7b14e12e88a5a482ed0010ab.svg"/>
