@@ -389,6 +389,9 @@
 													c += '<li>'+data.data.slist[tmp].a;
 													if(data.data.slist[tmp].aSum>1) {
 														c += ' ('+data.data.slist[tmp].aSum+')';
+														answerSum += data.data.slist[tmp].aSum;
+													}else{
+														answerSum++; 
 													}
 													c += '</li>';
 													
