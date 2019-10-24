@@ -74,6 +74,12 @@ ul.bxslider {
   -webkit-border-radius: 7px;
   border-radius: 7px;
 }
+@media screen and (max-width:999px) {
+	.bx-wrapper .bx-pager.bx-default-pager a {
+		width: 11px;
+  		height: 11px;
+	}
+}
 /* .bx-wrapper .bx-pager.bx-default-pager a:hover, */
 .bx-wrapper .bx-pager.bx-default-pager a.active,
 .bx-wrapper .bx-pager.bx-default-pager a:focus {

@@ -56,16 +56,12 @@
 										<div class="centerbox"> 
 										
 											<div class="bn-ment">
-		                                        
-		                                        <strong style="font-weight:400;">아미독스</strong>는 <strong style="font-weight:500;">편리</strong>합니다.
-		                                        	<br class="mobile-hidden"/>
-		                                        	누구든지! 언제! 어디서든!
-		                                        	<br class="mobile-hidden"/>
-												  <strong style="font-weight:400;">설문에 참여</strong>할 수 있습니다.
+		                                        <strong style="font-weight:400;">아미독스</strong>는 <strong style="font-weight:500;">편리</strong>합니다.<br/>
+												누구든지! 언제! 어디서든!<br class="mobile-hidden"/>
+												<strong style="font-weight:400;">설문에 참여</strong>할 수 있습니다.
 											</div>
 											<p class="bn-ment2">  
-												아미독스 프로젝트는 군 내에서 수기로 시행되는 각종 설문조사를<br class="mobile-hidden"/>전산화하여 군 인트라넷에 구현한 웹 사이트 체계입니다. 
-		                                        
+												아미독스 프로젝트는 군 내에서 수기로 시행되는 각종 설문조사를<br class="mobile-hidden"/>전산화하여 군 인트라넷에 구현한 웹 사이트 체계입니다.    
 											</p>
 											<div class="bn-btn-wrap">
 												<a class="comm-btn-style red" href="/my/survey"><i style="position: relative; top: 1px;" class="fa fa-sticky-note"></i> 설문 등록하기</a>
@@ -118,10 +114,12 @@
 					</div>
 				</div>
 				
-				<div class="nable-intro-wrapper">
+				<div class="nable-intro-wrapper np">
 						
 					<div class="inner">
-						<div class="intro-pg-box">
+						
+						
+						<!-- <div class="intro-pg-box">
 							<div class="pic-area">
 								<div style="position: relatvie; width: 653px; height: 536px;">
 									<img src="/resources/img/v_pc.png" style="position: absolute; top: -20px; left: -20px;"/>
@@ -149,16 +147,17 @@
 								</p>
 							</div>							
 							
-						</div>
+						</div> -->
 						
-						<div class="mid-hori-line" style="margin-top: 100px;"></div>
+						<div class="mid-hori-line intro"></div>
 						
-						<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
-							
-							<div class="contents-box p613" style="padding-right: 0px; padding-left: 613px;">
+						<div class="intro-pg-box">
+							<div class="pic-area l">
+								<img src="/resources/img/vv3.jpg" style="width: 553px;"/>
+							</div>	
+							<div class="contents-box p613 r">
 								<h2>&#60;아이템 개요&#62;</h2>
 								<p style="margin-top: 10px;">
-
 									아미독스는 군 내에서 수기로 시행되는 각종 설문조사를 전산화하여 구현한 웹 사이트입니다. 
 									주 기능은 설문 작성 및 결과를 분석하는 관리자와 설문에 참여하는 사용자에 따라 나뉩니다.<br/>
 									<br/>
@@ -171,24 +170,18 @@
 									관리자와 사용자는 간단한 조작으로 객관식, 서술형 등 다양한 형식의 설문을 작성할 수 있으며, 기존의 설문 파일을 업로드해 지난 설문 이력을 추가할 수도 있습니다. 
 									완료된 설문에서는 빅데이터 분석을 통해 그래프화된 다양한 통계적 수치를 확인할 수 있으며, 엑셀 등의 형식으로 저장 가능합니다.<br/>
 								</p>
-							</div>	
-							<div class="pic-area" style="left: 0; right: auto;">
-								<img src="/resources/img/vv3.jpg" style="width: 553px;"/>
-							</div>						
+							</div>				
 						</div>
 						
+						<div class="mid-hori-line intro"></div>
 						
-						
-						<div class="mid-hori-line" style="margin-top: 100px;"></div>
-						
-						<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
+						<div class="intro-pg-box">
 							<div class="pic-area">
 								<img src="/resources/img/vv2.jpg" style="width: 553px;"/>
 							</div>
 							<div class="contents-box p613">
 								<h2>&#60;개발 전망&#62;</h2>
 								<p style="margin-top: 10px;">
-
 									아미독스는 웹 기반 서비스로, 웹 서버는 Tomcat과 Spring을 기반으로 Restful 하게 구축하며, POI 라이브러리를 활용해 엑셀 파일을 관리합니다. 
 									DB는 MySQL을 사용하고, Hadoop으로 집계된 데이터를 분석합니다. 또한 ELK Stack을 사용해 대규모 요청에 따른 서버 상태를 모니터링합니다.<br/>
 									<br/>
@@ -201,11 +194,28 @@
 							</div>							
 						</div>
 						
+						<div class="mid-hori-line intro"></div>
 						
-						<div class="mid-hori-line" style="margin-top: 100px;"></div>
+						<div class="intro-pg-box">
+							<div class="pic-area l">
+								<img src="/resources/img/vv1.jpg" style="width: 553px;"/>
+							</div>	
+							<div class="contents-box p613 r">  
+								<h2>&#60;사업 전망&#62;</h2>
+								<p style="margin-top: 10px;">
+									현재 군 내 설문조사는 수기로 작성한 뒤 담당자가 해당 내용을 일일이 타이핑해 취합되고 있습니다. 
+									이러한 단순 업무를 위해 출장 및 야근을 하는 병사들이 많은데, 아미독스는 이 과정을 전산화하여 불필요한 업무와 비용을 줄이는 것을 목표로 합니다.<br/>
+									<br/>
+									단순히 결과만 출력하는 기존 설문조사와 다르게 아미독스는 빅데이터 분석을 통해 여러 통계수치를 그래프화해, 부대에서 특정 사업을 기획할 때 세부사항을 결정하는 데 도움이 됩니다. 
+									추후 아미독스의 이용률이 높아져 커뮤니티화된다면, 병사 개개인의 활용성도 커질 것으로 보입니다.<br/>
+									<br/>
+									그 사례로, 최근 개최된 국방 K-Startup과 같은 군 내 공모전에 참여한 병사들이 실제 기획 단계에서 아이디어에 대한 실수요를 예측 못 해 탈락하는 경우가 많았는데, 개인이 중대 이상의 수요를 조사하는 건 어렵기 때문입니다. 
+									따라서 병사들끼리도 수요조사가 가능하면, 대한민국 국군의 발전에 기여하는 다양한 아이디어 창출과 새로운 소통의 장을 만들 수 있을 것입니다.<br/>									
+								</p>
+							</div>				
+						</div>
 						
-						
-						<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
+					<!-- 	<div class="intro-pg-box" style="margin-top: 50px; min-height: 480px; ">
 							
 							<div class="contents-box p613" style="padding-right: 0px; padding-left: 613px;">
 								<h2>&#60;사업 전망&#62;</h2>
@@ -226,7 +236,7 @@
 								<img src="/resources/img/vv1.jpg" style="width: 553px;"/>
 							</div>						
 						</div>
-						
+						 -->
 						
 						
 						
