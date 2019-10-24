@@ -3,6 +3,16 @@
 <mapper namespace="basic">	
 	
 	
+	<update id="signUser" parameterType="java.lang.Integer">
+		update am_user_info set signFlag = true where idx = #{idx}
+	</update>
+	
+	<select id="getNotSignedUsers" resultType="com.armydocs.basic.vo.UserVo">
+		select * 
+		from am_user_info 
+		where signFlag = false
+	</select>
+	
 	<delete id="deleteSurveyByIdx" parameterType="java.lang.Integer">
 		delete from am_survey_info where idx = #{idx}
 	</delete>
@@ -58,13 +68,14 @@
 			name,
 			coverImg,
 			TO_DAYS(enddate) - TO_DAYS(now()) as dDay,
-			(select station from am_user_info where idx = userIdx) as station
+			(select station from am_user_info where idx = userIdx) as station,
+			if(now() between a.startdate and a.enddate, true, false) as progressFlag
+			
 		from 
 			am_survey_info as a
-		where 
-			now() between a.startdate and a.enddate
+
 		order by 
-			regdate desc
+			progressFlag desc, regdate desc
 	</select>
 	
 	<select id="getSurveys" parameterType="java.lang.Integer" resultType="com.armydocs.basic.vo.SurveyVo">

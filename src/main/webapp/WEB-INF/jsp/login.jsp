@@ -112,18 +112,22 @@
             success : function(data, txt, resp){
 				
 				loadAni(false);
-				
 				if(data.statusCode==200) {
 					
-					var toekn = resp.getResponseHeader("Authorization");       
-					setCookie("token", toekn, 1);
+					
+					if(data.data.signFlag==false) {
+						createPopup("exclamation-triangle","아직 가입 승인 대기 상태입니다.", "bounceInDown");
+					}else{
+						var toekn = resp.getResponseHeader("Authorization");       
+						setCookie("token", toekn, 1);
 
-					console.log(toekn);
-					location.href = "/my";
+						console.log(toekn);
+						location.href = "/my";
+					}
+					
 				}else {
 					createPopup("exclamation-triangle","아이디와 비밀번호가 일치하지 않습니다.<br/>다시 시도해주세요.", "bounceInDown");
 				}
-                
                 
             }, 
             error : function(err){

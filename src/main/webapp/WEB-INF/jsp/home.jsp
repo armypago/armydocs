@@ -109,112 +109,10 @@
 							<div class="i"><i class="fa fa-arrow-down"></i></div>
 						</div>
 						
-						<ul class="card-style-wrapper"> 
-							
-							<%-- <c:forEach begin="1" end="8" step="1">
-								<li class="card-li">
-									<div class=""> 
-										<div class="boxx" style="background-image:url('/resources/img/bg-login.jpg');">
-											<div class="bg-overlay">
-												<div class="top-line">
-													<i style="font-size: 18px;" class="fa fa-spinner"></i>  
-													<span class="right ment1">일병 정희성</span>
-												</div>
-												<div class="top-line">   
-													<span class="left ment2">2019.10.01</span>
-													<span class="right ment2">계룡대근무지원단 관리대대 2중대</span>
-												</div>
-												<div class="txt-visual">  
-													<i class="fa fa-box" style="font-size: 24px;"></i>
-													<h2 class="tit">
-														2019<br/>지상군 페스티벌<br/>만족도 조사
-													</h2>
-													<div>
-														<a class="comm-btn-style red">참여하기</a><br/>
-													</div>
-													<p class="desc">
-														종료일까지 <span class="emp">7일</span> 남았습니다
-													</p>
-												</div>									
-											</div>
-										</div>
-									</div>
-								</li>
-							</c:forEach> --%>
-							
-							
-						</ul>
-						
-						<script>
-						function loadSur() {
-							loadAni(true);
-							
-							$.ajax({ 
-								type : "GET",
-								dataType : "JSON",	
-								data : {
-									"type" : "progress"
-								},
-								async: true,
-								url : "/surveys",	
-								beforeSend : function(xhr){
-									xhr.setRequestHeader("authorization", getCookie("token"));
-									xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-								},
-								success : function(data){
-									
-									console.log(data);
-									var content = "";
-									var i = 0;
-									$.each(data.data, function(index, value){	
-										
-										i++;
-										
-										if(i<=8){
-											content += '<li class="card-li">';
-											content += '<div><div class="boxx" style="background-image: url('+value.coverImg+'), url(/resources/img/bg-login.jpg);">';
-											content += '<div class="bg-overlay">';
-											
-											content += '<div class="top-line">';
-											content += '<i style="font-size: 18px;" class="fa fa-spinner"></i>';
-											content += '<span class="right ment1">'+(value.name)+'</span>';
-											content += '</div>';
-											
-											content += '<div class="top-line">';
-											content += '<span class="left ment2">'+value.regdate.split(" ")[0]+'</span>';
-											content += '<span class="right ment2">'+value.station+'</span>';
-											content += '</div>';
-											
-											content += '<div class="txt-visual">';
-											content += '<i class="fa fa-box" style="font-size: 24px;"></i>';
-											content += '<h2 class="tit">' + (value.title) + '</h2>';
-											content += '<div><a class="comm-btn-style red" href="/process/'+value.idx+'">참여하기</a></div>';
-											content += '<p class="desc">종료일까지 <span class="emp">'+value.dDay+'일</span> 남았습니다</p>';
-											content += '</div></div></div></div>';
-											content += '</li>';
-										}
-										
-										
-									});
-									$(".card-sum").text(data.data.length);
-									$(".card-style-wrapper").html(content);
-									
-									loadAni(false);
-
-								}, 
-								error : function(err, err2, err3) {			
-									console.log("[ERROR]");
-									console.log(err); console.log(err2); console.log(err3); 	
-									loadAni(false);
-									createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
-								} 
-							});
-						}
-						loadSur();
-						</script>
+						<ul class="card-style-wrapper"></ul>
 						
 						<div style="text-align: center; margin-top: 30px;">
-							<a class="comm-btn-style red">더보기</a>
+							<a class="comm-btn-style red" href="/my">더보기</a>
 						</div>
 								
 					</div>
@@ -406,12 +304,6 @@
 	
 	<script>
     
-        /*getUserInfo(function(data){
-            var c = '<li><a href="/my">마이페이지</a></li>';
-            $("#header-priv").html(c);
-        }, function(err){
-            console.log("로그아웃 상태입니다.");
-        });*/
         getUserInfo(function(data){
     
             var c = '<li><a href="/my">대시보드</a></li><li><a href="/logout">로그아웃</a></li>';
@@ -422,7 +314,75 @@
             var c = '<li><a href="/join">회원가입</a></li><li><a href="/login">로그인</a></li>';
             $("#header-priv").html(c);
             console.log("로그아웃 상태입니다.");
-        });
+        }); 
+        
+        
+        
+        function loadSur() {
+			loadAni(true);
+			
+			$.ajax({ 
+				type : "GET",
+				dataType : "JSON",	
+				data : {
+					"type" : "progress"
+				},
+				async: true,
+				url : "/surveys",	
+// 				beforeSend : function(xhr){
+// 					xhr.setRequestHeader("authorization", getCookie("token"));
+// 					xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+// 				},
+				success : function(data){  
+					
+					console.log(data);
+					var content = "";
+					var i = 0;
+					$.each(data.data, function(index, value){	
+						
+						i++;
+						
+						if(i<=8){
+							content += '<li class="card-li">';
+							content += '<div><div class="boxx" style="background-image: url('+value.coverImg+'), url(/resources/img/bg-login.jpg);">';
+							content += '<div class="bg-overlay">';
+							
+							content += '<div class="top-line">';
+							content += '<i style="font-size: 18px;" class="fa fa-spinner"></i>';
+							content += '<span class="right ment1">'+(value.name)+'</span>';
+							content += '</div>';
+							
+							content += '<div class="top-line">';
+							content += '<span class="left ment2">'+value.regdate.split(" ")[0]+'</span>';
+							content += '<span class="right ment2">'+value.station+'</span>';
+							content += '</div>';
+							
+							content += '<div class="txt-visual">';
+							content += '<i class="fa fa-box" style="font-size: 24px;"></i>';
+							content += '<h2 class="tit">' + (value.title) + '</h2>';
+							content += '<div><a class="comm-btn-style red" href="/process/'+value.idx+'">참여하기</a></div>';
+							content += '<p class="desc">종료일까지 <span class="emp">'+value.dDay+'일</span> 남았습니다</p>';
+							content += '</div></div></div></div>';
+							content += '</li>';
+						}
+						
+						
+					});
+					$(".card-sum").text(data.data.length);
+					$(".card-style-wrapper").html(content);
+					
+					loadAni(false);
+
+				}, 
+				error : function(err, err2, err3) {			
+					console.log("[ERROR]");
+					console.log(err); console.log(err2); console.log(err3); 	
+					loadAni(false);
+					createPopup("exclamation-triangle","오류가 발생했습니다.<br/>자세한 사항은 문의를 주세요.", "bounceInDown");
+				} 
+			});
+		}
+		loadSur();
         
     </script>
 	

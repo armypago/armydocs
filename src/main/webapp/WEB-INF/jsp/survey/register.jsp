@@ -79,7 +79,6 @@
 									<div class="default-inputbox mrti-80" style="width: 100%;margin-right: 10px;">
 										<input type="text" placeholder="설문 제목을 입력하세요." name="title" id="f-s-title"/>										
 									</div>
-									<!--<a class="default-btn mrti-20" href="#">중복확인</a>-->
 								</div>
 							</li>
 

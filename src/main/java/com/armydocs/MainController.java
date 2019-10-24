@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.armydocs.basic.dao.BasicDao;
@@ -28,6 +26,7 @@ import com.armydocs.basic.vo.Rst;
 import com.armydocs.basic.vo.SurveyAnswer;
 import com.armydocs.basic.vo.SurveyItem;
 import com.armydocs.basic.vo.SurveyVo;
+import com.armydocs.basic.vo.UserVo;
 import com.armydocs.util.FileUtil;
 
 
@@ -119,7 +118,33 @@ public class MainController {
     
  
     
+    // 회원 승인 처리
+    @RequestMapping(value = "/user/sign/{userIdx}")
+    @ResponseBody
+	public Rst signUser(@PathVariable int userIdx) throws Exception {
+        Rst result = Rst.successInstance();
+		basicDao.signUser(userIdx);
+        return result;
+    }
     
+    // 회원 목록 로드
+    @RequestMapping(value = "/users")
+    @ResponseBody
+	public Rst getUsers(
+		@RequestParam(required=false, value="type") String type,
+		HttpServletRequest request) throws Exception {
+        
+        Rst result = Rst.successInstance();
+		List<UserVo> list = null;
+		
+		// 미승인 유저 목록 로드
+		if(type!=null && type.equals("notSigned")) {
+			list = basicDao.getNotSignedUsers();
+		}
+		
+		result.setData(list);
+        return result;
+    }
     
 	// 설문 항목 로드
     @RequestMapping(value = "/surveys")

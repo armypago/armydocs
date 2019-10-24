@@ -15,6 +15,7 @@ public class SurveyVo {
 	
 	private String station;
 	private Integer dDay;
+	private boolean progressFlag;// 진행중인지 여부
 	
 	public Integer getdDay() {
 		return dDay;
@@ -82,6 +83,14 @@ public class SurveyVo {
 
 	public void setStation(String station) {
 		this.station = station;
+	}
+
+	public boolean isProgressFlag() {
+		return progressFlag;
+	}
+
+	public void setProgressFlag(boolean progressFlag) {
+		this.progressFlag = progressFlag;
 	}
 	
 	
